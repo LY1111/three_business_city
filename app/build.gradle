@@ -36,7 +36,7 @@ dependencies {
     compile 'com.orhanobut:logger:2.1.1'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.gongwen:marqueelibrary:1.1.2'
-    compile 'com.hjm:BottomTabBar:1.1.2'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'

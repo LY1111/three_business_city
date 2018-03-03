@@ -8,14 +8,25 @@
     tools:context="com.tuoyi.threebusinesscity.fragment.MyFragment">
 
     <RelativeLayout
-        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_centerInParent="true"
-            android:src="@drawable/demo_img"
+        android:layout_height="200dp"
+        android:background="@drawable/demo_img">
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="66dp"
+            android:background="#cc332a00"
+            android:layout_alignParentBottom="true" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/demo_img"
+            app:civ_border_color="#FFFFFFFF"
+            app:civ_border_width="2dp" />
     </RelativeLayout>
 
 </LinearLayout>

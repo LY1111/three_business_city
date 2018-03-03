@@ -288,6 +288,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="6dp"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
                     android:background="@drawable/mainfragment_search_et_bg"
                     android:hint="输入店铺名称搜索"
                     android:maxLines="1"
