@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:clipChildren="false"
     android:background="@color/whiteColor"
+    android:clipChildren="false"
+    android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/main_fl"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <!--只要没有中间凸起这个框架贼好用
     <com.hjm.bottomtabbar.BottomTabBar
@@ -33,86 +33,95 @@
         app:tab_selected_color="#000000"
         app:tab_unselected_color="@color/colorPrimary" />-->
 
+    <View
+        android:background="@color/grayColor"
+        android:layout_width="wrap_content"
+        android:layout_height="0.22dp"/>
+    <RadioGroup
+        android:id="@+id/main_rg"
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
-        <RadioGroup
-            android:id="@+id/main_rg"
-            android:layout_width="match_parent"
-            android:layout_height="77dp"
+        <RadioButton
+            android:id="@+id/main_rb_main"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/ic_launcher_round"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="首页"
+            android:textColor="@drawable/selector_mainf_text_color" />
+
+        <RadioButton
+            android:id="@+id/main_rb_shop"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/ic_launcher_round"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="三商商城"
+            android:textColor="@drawable/selector_mainf_text_color" />
+
+        <LinearLayout
+            android:id="@+id/main_rb_sao"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
             android:gravity="bottom"
-            android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <RadioButton
-                android:id="@+id/main_rb_main"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/ic_launcher_round"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="首页"
-                android:textColor="@color/darkColor" />
+            <ImageView
+                android:layout_width="74dp"
+                android:layout_height="74dp"
+                android:layout_gravity="center"
+                android:background="@mipmap/ic_launcher_round"
+                android:scaleType="centerInside" />
 
-            <RadioButton
-                android:id="@+id/main_rb_shop"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/ic_launcher_round"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="三商商城"
-                android:textColor="@color/darkColor" />
-            <LinearLayout
-                android:id="@+id/main_rb_sao"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_width="0dp"
-                android:layout_height="99dp">
-                <ImageView
-                    android:scaleType="fitXY"
-                    android:layout_weight="1"
-                    android:background="@mipmap/ic_launcher"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp" />
-                <TextView
-                    android:text="扫一扫"
-                    android:padding="2dp"
-                    android:textColor="@color/darkColor"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <RadioButton
-                android:id="@+id/main_rb_message"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/ic_launcher_round"
                 android:gravity="center"
                 android:padding="2dp"
-                android:text="消息中心"
+                android:text="扫一扫"
                 android:textColor="@color/darkColor" />
+        </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/main_rb_my"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:button="@null"
-                android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/ic_launcher_round"
-                android:gravity="center"
-                android:padding="2dp"
-                android:text="个人中心"
-                android:textColor="@color/darkColor" />
-        </RadioGroup>
+        <RadioButton
+            android:id="@+id/main_rb_message"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/ic_launcher_round"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="消息中心"
+            android:textColor="@drawable/selector_mainf_text_color" />
+
+        <RadioButton
+            android:id="@+id/main_rb_my"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/ic_launcher_round"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="个人中心"
+            android:textColor="@drawable/selector_mainf_text_color" />
+    </RadioGroup>
 
 </LinearLayout>

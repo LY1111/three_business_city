@@ -22,8 +22,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    //    @BindView(R.id.main_bottom_tab_bar)
-//    BottomTabBar mainBottomTabBar;
     @BindView(R.id.main_fl)
     FrameLayout mainFl;
     @BindView(R.id.main_rb_main)
@@ -48,111 +46,78 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        mainBottomTabBar.init(getSupportFragmentManager())
-//                .setImgSize(90, 90)
-//                .setFontSize(13)
-//                .setTabPadding(4, 6, 10)
-//                .setChangeColor(Color.GREEN, Color.RED)
-//                .addTabItem("第一项", R.mipmap.ic_launcher, MainFragment.class)
-//                .addTabItem("第二项", R.mipmap.ic_launcher, ShopFragment.class)
-//                .addTabItem("第三项", R.mipmap.ic_launcher, MessageFragment.class)
-//                .addTabItem("第四项", R.mipmap.ic_launcher, MyFragment.class)
-//                //设置底部导航栏的背景图片。
-////                .setTabBarBackgroundResource(R.mipmap.ic_launcher)
-//                // 设置BottomTabBar的整体背景。
-//                .setTabBarBackgroundColor(0xffffffff)
-////                是否显示分割线
-//                .isShowDivider(false)
-//                //添加选项卡切换监听
-//                .setOnTabChangeListener(new BottomTabBar.OnTabChangeListener() {
-//                    @Override
-//                    public void onTabChange(int position, String name, View view) {
-//                        Log.i("TGA", "位置：" + position + "      选项卡的文字内容：" + name);
-//
-//                    }
-//                });
-        /**/
-        //                        FragmentManager fm = getSupportFragmentManager();
-//                        FragmentTransaction beginTransaction = fm.beginTransaction();
-//
-//                        switch (position) {
-//                            case 1:
-//                                if (mMainFragment == null) {
-//                                    mMainFragment = MainFragment.newInstance();
-//                                }
-//                                beginTransaction.replace(R.id.main_fl, mMainFragment);
-//                                break;
-//                            case 2:
-//                                if (mShopFragment == null) {
-//                                    mShopFragment = ShopFragment.newInstance();
-//                                }
-//                                beginTransaction.replace(R.id.main_fl, mShopFragment);
-//                                break;
-//                            case 3:
-//                                if (mMessageFragment == null) {
-//                                    mMessageFragment = MessageFragment.newInstance();
-//                                }
-//                                beginTransaction.replace(R.id.main_fl, mMessageFragment);
-//                                break;
-//                            case 4:
-//                                if (mMyFragment == null) {
-//                                    mMyFragment = MyFragment.newInstance();
-//                                }
-//                                beginTransaction.replace(R.id.main_fl, mMyFragment);
-//                                break;
-//                            default:
-//                                if (mMainFragment == null) {
-//                                    mMainFragment = MainFragment.newInstance();
-//                                }
-//                                beginTransaction.replace(R.id.main_fl, mMainFragment);
-//                                break;
-//                        }
-//                        beginTransaction.commit();
+        initListener();
+    }
 
+    /**
+     * 底部导航栏点击事件
+     */
+    private void initListener() {
         mainRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction beginTransaction = fm.beginTransaction();
                 switch (checkedId) {
                     case R.id.main_rb_main:
-                        if (mMainFragment == null) {
-                            mMainFragment = MainFragment.newInstance();
-                        }
-                        beginTransaction.replace(R.id.main_fl, mMainFragment);
+                        initFragment(1);
                         break;
                     case R.id.main_rb_shop:
-                        if (mShopFragment == null) {
-                            mShopFragment = ShopFragment.newInstance();
-                        }
-                        beginTransaction.replace(R.id.main_fl, mShopFragment);
+                        initFragment(2);
                         break;
                     case R.id.main_rb_message:
-                        if (mMessageFragment == null) {
-                            mMessageFragment = MessageFragment.newInstance();
-                        }
-                        beginTransaction.replace(R.id.main_fl, mMessageFragment);
+                        initFragment(3);
                         break;
                     case R.id.main_rb_my:
-                        if (mMyFragment == null) {
-                            mMyFragment = MyFragment.newInstance();
-                        }
-                        beginTransaction.replace(R.id.main_fl, mMyFragment);
-                        break;
-                    default:
-                        if (mMainFragment == null) {
-                            mMainFragment = MainFragment.newInstance();
-                        }
-                        beginTransaction.replace(R.id.main_fl, mMainFragment);
+                        initFragment(4);
                         break;
                 }
-                beginTransaction.commit();
+
             }
         });
         mainRg.check(R.id.main_rb_main);
     }
 
-    @OnClick(R.id.main_rb_sao)
+    /**
+     * 加载Fragment方法
+     */
+    private void initFragment(int index) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction beginTransaction = fm.beginTransaction();
+        switch (index) {
+            case 1:
+                if (mMainFragment == null) {
+                    mMainFragment = MainFragment.newInstance();
+                }
+                beginTransaction.replace(R.id.main_fl, mMainFragment);
+                break;
+            case 2:
+                if (mShopFragment == null) {
+                    mShopFragment = ShopFragment.newInstance();
+                }
+                beginTransaction.replace(R.id.main_fl, mShopFragment);
+                break;
+            case 3:
+                if (mMessageFragment == null) {
+                    mMessageFragment = MessageFragment.newInstance();
+                }
+                beginTransaction.replace(R.id.main_fl, mMessageFragment);
+                break;
+            case 4:
+                if (mMyFragment == null) {
+                    mMyFragment = MyFragment.newInstance();
+                }
+                beginTransaction.replace(R.id.main_fl, mMyFragment);
+                break;
+            default:
+                if (mMainFragment == null) {
+                    mMainFragment = MainFragment.newInstance();
+                }
+                beginTransaction.replace(R.id.main_fl, mMainFragment);
+                break;
+        }
+        beginTransaction.commit();
+    }
+
+    @OnClick(R.id.main_rb_sao)//二维码扫描
     public void onViewClicked() {
     }
 }
