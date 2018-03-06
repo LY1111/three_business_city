@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,14 +9,166 @@
     tools:context="com.tuoyi.threebusinesscity.fragment.ShopFragment">
 
     <RelativeLayout
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_centerInParent="true"
-            android:src="@drawable/demo_img"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <com.andview.refreshview.XScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:focusable="false"
+                    android:visibility="invisible" />
+
+                <com.youth.banner.Banner
+                    android:id="@+id/mains_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp"
+                    app:delay_time="3000"
+                    app:indicator_drawable_selected="@drawable/shape_banner_indicator_selected"
+                    app:indicator_drawable_unselected="@drawable/shape_banner_indicator_unselected"
+                    app:indicator_height="8dp"
+                    app:indicator_margin="4dp"
+                    app:indicator_width="8dp"
+                    app:scroll_time="2000" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mains_head_grid_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/whiteColor"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/whiteColor"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/ic_launcher_round"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="4dp"
+                        android:gravity="center"
+                        android:text="活动通告"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="13sp" />
+
+                    <com.gongwen.marqueen.MarqueeView
+                        android:id="@+id/mains_marqueeView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:background="@color/whiteColor" />
+
+                    <TextView
+                        android:id="@+id/mains_marqueeView_tv_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center"
+                        android:text="更多>"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.andview.refreshview.XScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/mains_location"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="6dp"
+                android:paddingTop="6dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:tint="@color/whiteColor" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="济南"
+                    android:textColor="@color/whiteColor" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/mains_search_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/mainfragment_search_et_bg"
+                    android:hint="输入店铺名称搜索"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:paddingBottom="1dp"
+                    android:paddingLeft="32dp" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="6dp"
+                    android:src="@mipmap/ic_launcher_round"
+                    android:tint="@color/colorPrimaryDark" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

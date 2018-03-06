@@ -10,34 +10,31 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
-import com.tuoyi.threebusinesscity.activity.MainActivity;
-import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
+import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
 
-import java.lang.reflect.Method;
-import java.util.List;
+import java.util.LinkedList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by md
- * 首页底部商家列表适配器
  * on 2018/3/3 0003.
  */
 
-public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAdapter.ViewHolder> {
+public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.ViewHolder> {
 
     private Context context;
-    private List<MainBottomShopBean> mdatas;
+    private LinkedList<MainGridMenuBean> mdatas;
 
-    public MainBottomShopAdapter(List<MainBottomShopBean> items) {
+    public MyGridMenuAdapter(LinkedList<MainGridMenuBean> items) {
         mdatas = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_main_bottom_shop, parent, false);
+                .inflate(R.layout.item_main_grid_menu, parent, false);
         context = view.getContext();
         return new ViewHolder(view);
     }
@@ -45,12 +42,20 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
-        holder.itemName.setText(holder.mItem.getTitle());
+        holder.itemTitle.setText(holder.mItem.getTitle());
         Glide.with(context).load(holder.mItem.getmImg()).into(holder.itemIcon);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "可点击的：" + position + "号子布局", Toast.LENGTH_SHORT).show();
+                switch (position) {
+                    case 0://
+                        break;
+                    case 1://
+                        break;
+                    case 2://
+                        break;
+                }
             }
         });
 
@@ -62,20 +67,12 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
     }
 
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_main_bottom_shop_icon)
-        ImageView itemIcon;
         @BindView(R.id.item_main_grid_menu_name)
-        TextView itemName;
-        @BindView(R.id.item_main_grid_menu_distance)
-        TextView itemDistance;
-        @BindView(R.id.item_main_grid_menu_content)
-        TextView itemContent;
-        @BindView(R.id.item_main_grid_menu_address)
-        TextView itemAddress;
-        public MainBottomShopBean mItem;
+        TextView itemTitle;
+        @BindView(R.id.item_main_grid_menu_icon)
+        ImageView itemIcon;
+        public MainGridMenuBean mItem;
         public final View mView;
 
         public ViewHolder(View view) {

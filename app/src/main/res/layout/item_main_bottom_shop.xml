@@ -87,7 +87,7 @@
                 android:maxLines="1"
                 android:paddingBottom="2dp"
                 android:paddingTop="4dp"
-                android:text="春节期间全部商品8折出售"
+                android:text="会员到店消费奖励**%三商豆"
                 android:textColor="@color/lightGreyColor"
                 android:textSize="12sp" />
 

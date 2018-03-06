@@ -81,6 +81,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/main_rb_sao_img"
                 android:layout_width="74dp"
                 android:layout_height="74dp"
                 android:layout_gravity="center"
@@ -88,6 +89,7 @@
                 android:scaleType="centerInside" />
 
             <TextView
+                android:id="@+id/main_rb_sao_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -107,7 +109,7 @@
             android:drawableTop="@mipmap/ic_launcher_round"
             android:gravity="center"
             android:padding="2dp"
-            android:text="消息中心"
+            android:text="消息通知"
             android:textColor="@drawable/selector_mainf_text_color" />
 
         <RadioButton

@@ -7,5 +7,57 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <!--灰色小字-->
+    <style name="grayTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkColor</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+    </style>
+    <!--主题色小字-->
+    <style name="primaryTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+    </style>
+    <!--Login布局-->
+    <style name="loginLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/common10dp</item>
+        <item name="android:paddingRight">@dimen/common10dp</item>
+        <item name="android:background">@drawable/shape_login_bg_edittext</item>
+        <item name="android:layout_marginBottom">1dp</item>
+    </style>
 
+    <!--输入框-->
+    <style name="editTextStyle">
+        <item name="android:textColor">@color/blackColor</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/common10dp</item>
+        <item name="android:paddingTop">@dimen/common15dp</item>
+        <item name="android:paddingBottom">@dimen/common15dp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:textColorHint">@color/darkColor</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:minLines">1</item>
+        <item name="android:background">@color/whiteColor</item>
+        <item name="android:drawablePadding">@dimen/common8dp</item>
+    </style>
+
+    <!--按钮-->
+    <style name="loginButtonStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/common10dp</item>
+        <item name="android:layout_marginRight">@dimen/common10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/whiteColor</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:background">@drawable/selector_login_bg_button</item>
+    </style>
 </resources>

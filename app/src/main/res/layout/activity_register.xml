@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteTwoColor"
+    android:orientation="vertical"
+    tools:context="com.tuoyi.threebusinesscity.activity.RegisterActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/register_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="新用户注册"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common8dp"
+        android:layout_marginRight="@dimen/common8dp"
+        android:background="@color/whiteColor"
+        android:elevation="@dimen/common4dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/loginLayout"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/register_phone"
+                style="@style/editTextStyle"
+                android:drawableLeft="@mipmap/ic_login_et_phone"
+                android:drawableTint="@color/darkColor"
+                android:hint="请输入手机号码"
+                android:maxLength="11" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whiteColor">
+
+            <LinearLayout
+                style="@style/loginLayout"
+                android:layout_toLeftOf="@+id/register_Verification_Code_btn"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/register_Verification_password"
+                    style="@style/editTextStyle"
+                    android:drawableLeft="@mipmap/ic_login_et_password"
+                    android:drawableTint="@color/darkColor"
+                    android:hint="请输入验证码"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/register_Verification_Code_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/common10dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center|left"
+                android:padding="@dimen/common6dp"
+                android:text="获取验证码"
+                android:textColor="@color/whiteColor"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+            <LinearLayout
+                style="@style/loginLayout"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/register_passA"
+                    style="@style/editTextStyle"
+                    android:drawableLeft="@mipmap/ic_login_et_phone"
+                    android:drawableTint="@color/darkColor"
+                    android:hint="请设置登录密码"
+                    android:maxLength="11" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/loginLayout"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/register_passB"
+                    style="@style/editTextStyle"
+                    android:drawableLeft="@mipmap/ic_login_et_password"
+                    android:drawableTint="@color/darkColor"
+                    android:hint="请再次输入密码"
+                    android:inputType="textPassword" />
+            </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center|left"
+        android:padding="@dimen/common10dp"
+        android:text="注册表示已经阅读《****协议》"
+        android:textColor="@color/darkColor"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/register_commit_bt"
+        style="@style/loginButtonStyle"
+        android:text="立即注册" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_margin="@dimen/common10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/common0dp"
+            android:text="已有账号，直接"
+            android:textColor="@color/darkColor"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:padding="@dimen/common8dp"
+            android:text="登录"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

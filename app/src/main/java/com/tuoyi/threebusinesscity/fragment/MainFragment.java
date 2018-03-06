@@ -77,7 +77,6 @@ public class MainFragment extends Fragment {
     private View view;
     private int[] image = {R.drawable.demo_img, R.drawable.demo_img, R.drawable.demo_img};
     private List<Integer> images = new ArrayList<>();
-    ;
     private List<String> marqueeList = new ArrayList<>();
     private LinkedList<MainGridMenuBean> headGridList;
     private List<MainBottomShopBean> bottomShopList;
@@ -137,6 +136,16 @@ public class MainFragment extends Fragment {
                 }
             }
         });
+        mainfRgScreen.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+//                switch (checkedId) {
+//
+//                }
+            }
+        });
+        mainfRgMenu.check(R.id.mainf_menu_rb_a);
+        mainfRgScreen.check(R.id.mainf_screen_rb_a);
     }
 
     /**
@@ -144,10 +153,10 @@ public class MainFragment extends Fragment {
      */
     private void initMenuList() {
         headGridList = new LinkedList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 10; i++) {
             headGridList.add(new MainGridMenuBean(R.mipmap.ic_launcher, "第" + i + "个分类"));
         }
-        mainfHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 4));
+        mainfHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 5));
         gridMenuadapter = new MainGridMenuAdapter(headGridList);
         mainfHeadGridList.setAdapter(gridMenuadapter);
     } /**

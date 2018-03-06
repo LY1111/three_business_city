@@ -10,6 +10,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //高斯模糊得使用renderscript 兼容包
+        renderscriptTargetApi 26
+        renderscriptSupportModeEnabled true
     }
     buildTypes {
         release {
@@ -32,12 +35,15 @@ dependencies {
     compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.lzy.net:okgo:3.0.4'
+    compile 'com.android.support:animated-vector-drawable:26.0.0-alpha1'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.orhanobut:logger:2.1.1'
+    compile 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.gongwen:marqueelibrary:1.1.2'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.android.support:support-v4:26.+'
+    compile 'com.github.iwgang:countdownview:2.1.6'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,14 +10,50 @@
 
 
     <RelativeLayout
-        android:background="@color/colorAccent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent">
+
         <ImageView
+            android:id="@+id/mainme_img"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_centerInParent="true"
-            android:src="@drawable/demo_img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/mainme_cdv"
+            android:text="秒杀："
+            android:textColor="@color/whiteColor"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold" />
+
+        <cn.iwgang.countdownview.CountdownView
+            android:id="@+id/mainme_cdv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:isHideTimeBackground="true"
+            app:isShowDay="true"
+            app:isShowHour="true"
+            app:isShowMillisecond="true"
+            app:isShowMinute="true"
+            app:isShowSecond="true"
+            app:isSuffixTextBold="true"
+            app:isTimeTextBold="true"
+            app:suffixGravity="bottom"
+            app:suffixDay="天"
+            app:suffixHour="时"
+            app:suffixMillisecond="毫秒"
+            app:suffixMinute="分"
+            app:suffixSecond="秒"
+            app:suffixTextColor="@color/colorAccent"
+            app:suffixTextSize="16sp"
+            app:timeTextColor="@color/colorAccent"
+            app:timeTextSize="26sp" />
     </RelativeLayout>
 
 </LinearLayout>

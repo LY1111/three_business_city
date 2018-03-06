@@ -8,18 +8,97 @@
     tools:context="com.tuoyi.threebusinesscity.fragment.MyFragment">
 
     <RelativeLayout
+        android:background="@color/whiteColor"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/demo_img">
+        android:layout_height="200dp">
 
-        <View
+        <ImageView
+            android:id="@+id/mainm_iv_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:background="#cc332a00"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true"
+            android:background="#dd332a00"
+            android:orientation="vertical"
+            android:paddingLeft="118dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="奔跑的兔子"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="编辑"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher_round" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:text="三商豆：3000"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:gravity="center|left"
+                    android:padding="4dp"
+                    android:text="佣金：￥3444"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/mainm_withdrawals_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/selector_mainm_btn"
+                    android:gravity="center|left"
+                    android:padding="2dp"
+                    android:text="提现"
+                    android:textColor="@color/whiteColor"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/profile_image"
+            android:id="@+id/mainm_profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_alignParentBottom="true"
@@ -28,5 +107,61 @@
             app:civ_border_color="#FFFFFFFF"
             app:civ_border_width="2dp" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/whiteColor"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="14dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:tint="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:gravity="center"
+            android:text="活动通告"
+            android:textColor="@color/colorAccent"
+            android:textSize="13sp" />
+
+        <com.gongwen.marqueen.MarqueeView
+            android:id="@+id/mainm_marqueeView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@color/whiteColor" />
+
+        <TextView
+            android:id="@+id/mainm_marqueeView_tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="更多>"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mainm_grid_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/whiteColor"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
 </LinearLayout>

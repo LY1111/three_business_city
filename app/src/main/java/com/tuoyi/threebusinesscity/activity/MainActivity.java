@@ -5,10 +5,14 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
@@ -36,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
     RadioButton mainRbMy;
     @BindView(R.id.main_rg)
     RadioGroup mainRg;
+    @BindView(R.id.main_rb_sao_img)
+    ImageView mainRbSaoImg;
+    @BindView(R.id.main_rb_sao_tv)
+    TextView mainRbSaoTv;
     private MainFragment mMainFragment;
     private ShopFragment mShopFragment;
     private MessageFragment mMessageFragment;
@@ -47,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initListener();
+//        initFragment(changIndexListener.changIndex());
+
     }
 
     /**
@@ -59,27 +69,33 @@ public class MainActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.main_rb_main:
                         initFragment(1);
+                        mainRbSaoTv.setText("扫一扫");
                         break;
                     case R.id.main_rb_shop:
                         initFragment(2);
+                        mainRbSaoTv.setText("购物车");
                         break;
                     case R.id.main_rb_message:
                         initFragment(3);
+                        mainRbSaoTv.setText("扫一扫");
                         break;
                     case R.id.main_rb_my:
                         initFragment(4);
+                        mainRbSaoTv.setText("扫一扫");
                         break;
                 }
 
             }
         });
         mainRg.check(R.id.main_rb_main);
+
+
     }
 
     /**
      * 加载Fragment方法
      */
-    private void initFragment(int index) {
+    public void initFragment(int index) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction beginTransaction = fm.beginTransaction();
         switch (index) {
@@ -116,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
         }
         beginTransaction.commit();
     }
-
     @OnClick(R.id.main_rb_sao)//二维码扫描
     public void onViewClicked() {
+        Toast.makeText(this, mainRbSaoTv.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 }
