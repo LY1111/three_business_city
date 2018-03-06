@@ -10,6 +10,7 @@ import com.tuoyi.threebusinesscity.R;
 /**
  * Created by md
  * on 2017/11/21 0021.
+ * 滚动广告条专用适配
  */
 
 public class NoticeMF extends MarqueeFactory<TextView, String> {

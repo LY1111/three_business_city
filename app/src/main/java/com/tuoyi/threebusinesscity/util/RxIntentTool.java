@@ -12,6 +12,7 @@ import java.io.File;
 /**
  * Created by md
  * on 2018/3/2 0002.
+ * Intent管理工具类
  */
 
 public class RxIntentTool {

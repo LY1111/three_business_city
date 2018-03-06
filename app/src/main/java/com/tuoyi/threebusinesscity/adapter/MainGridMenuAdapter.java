@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by md
  * on 2018/3/3 0003.
+ * 线下首页菜单适配器
  */
 
 public class MainGridMenuAdapter extends RecyclerView.Adapter<MainGridMenuAdapter.ViewHolder> {
@@ -54,6 +55,20 @@ public class MainGridMenuAdapter extends RecyclerView.Adapter<MainGridMenuAdapte
                     case 1://
                         break;
                     case 2://
+                        break;
+                    case 3://
+                        break;
+                    case 4://
+                        break;
+                    case 5://
+                        break;
+                    case 6://
+                        break;
+                    case 7://
+                        break;
+                    case 8://
+                        break;
+                    case 9://
                         break;
                 }
             }

@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by md
  * on 2018/3/3 0003.
+ * 个人中心菜单适配器
  */
 
 public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.ViewHolder> {
@@ -34,7 +35,7 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_main_grid_menu, parent, false);
+                .inflate(R.layout.item_my_grid_menu, parent, false);
         context = view.getContext();
         return new ViewHolder(view);
     }
@@ -55,6 +56,18 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                         break;
                     case 2://
                         break;
+                    case 3://
+                        break;
+                    case 4://
+                        break;
+                    case 5://
+                        break;
+                    case 6://
+                        break;
+                    case 7://
+                        break;
+                    case 8://
+                        break;
                 }
             }
         });
@@ -68,9 +81,9 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_main_grid_menu_name)
+        @BindView(R.id.item_my_grid_menu_name)
         TextView itemTitle;
-        @BindView(R.id.item_main_grid_menu_icon)
+        @BindView(R.id.item_my_grid_menu_icon)
         ImageView itemIcon;
         public MainGridMenuBean mItem;
         public final View mView;

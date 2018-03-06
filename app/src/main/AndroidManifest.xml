@@ -29,7 +29,8 @@
         <activity android:name=".activity.GeneralDetailsActivity" />
         <activity android:name=".activity.BindingCellPhoneActivity" />
         <activity android:name=".activity.MyPromoterActivity" />
-        <activity android:name=".activity.MyMembersActivity"></activity>
+        <activity android:name=".activity.MyMembersActivity" />
+        <activity android:name=".activity.IntegralConsumptionRecordsActivity"></activity>
     </application>
 
 </manifest>

@@ -21,12 +21,27 @@ android {
         }
     }
 }
+/**
+ * 基本上我都注释了。没注释的就太简单了
+ * */
 apply plugin: 'com.neenbedankt.android-apt' //添加这行
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //轮播图     compile 'com.youth.banner:banner:1.4.10'
+    //图片加载    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //刷新加载    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+    //消息传递    compile 'org.greenrobot:eventbus:3.0.0'
+    //网络请求    compile 'com.lzy.net:okgo:3.0.4'
+    //json解析   compile 'com.google.code.gson:gson:2.8.1'
+    //日志       compile 'com.orhanobut:logger:2.1.1'
+    //高斯模糊    compile 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
+    //黄油刀      compile 'com.jakewharton:butterknife:8.2.1'
+    //滚动广告条  compile 'com.gongwen:marqueelibrary:1.1.2'
+    //圆形头像    compile 'de.hdodenhof:circleimageview:2.2.0'
+    //秒杀倒计时  compile 'com.github.iwgang:countdownview:2.1.6'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'

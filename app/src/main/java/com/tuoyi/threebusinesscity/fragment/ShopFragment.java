@@ -36,7 +36,7 @@ import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
- * 三商商城
+ * 三商商城（线上）
  */
 public class ShopFragment extends Fragment {
 

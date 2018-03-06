@@ -11,6 +11,7 @@ import com.youth.banner.loader.ImageLoaderInterface;
 /**
  * Created by md
  * on 2017/11/22 0022.
+ * 轮播图专用加载接口
  */
 
 class GlideImageLoader implements ImageLoaderInterface {

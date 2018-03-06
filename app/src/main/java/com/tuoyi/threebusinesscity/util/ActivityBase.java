@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 /**
  * Created by md
  * on 2018/3/2 0002.
+ * 工具类
  */
 
 public class ActivityBase extends FragmentActivity {

@@ -4,14 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.tuoyi.threebusinesscity.R;
+
 /**
- * 我的推广商家爱
+ * 积分消费记录
  */
-public class MyPromoterActivity extends AppCompatActivity {
+public class IntegralConsumptionRecordsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_promoter);
+        setContentView(R.layout.activity_integer_consumption_records);
     }
 }

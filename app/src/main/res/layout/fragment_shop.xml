@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grayColor"
+    android:background="@color/whiteTwoColor"
     android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.fragment.ShopFragment">
 

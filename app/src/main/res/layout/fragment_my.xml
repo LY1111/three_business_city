@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grayColor"
+    android:background="@color/whiteTwoColor"
     android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.fragment.MyFragment">
 
     <RelativeLayout
-        android:background="@color/whiteColor"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="@color/whiteColor">
 
         <ImageView
             android:id="@+id/mainm_iv_bg"
@@ -97,7 +98,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/mainm_profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
@@ -155,13 +156,20 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mainm_grid_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/whiteColor"
+    <LinearLayout
         android:layout_weight="1"
-        android:overScrollMode="never"
-        android:scrollbars="none" />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common0dp"
+        android:background="@color/whiteColor"
+        android:gravity="center">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mainm_grid_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+    </LinearLayout>
+
 
 </LinearLayout>

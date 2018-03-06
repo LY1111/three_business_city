@@ -8,6 +8,7 @@ import android.net.Uri;
  * 需要动态获取权限啊
  * Created by md
  * on 2018/3/6 0006.
+ * 电话工具类
  */
 
 public class PhoneUtil {

@@ -15,7 +15,8 @@ import java.net.URLConnection;
 /**
  * Created by md
  * on 2018/3/5 0005.
- * 图片处理工具类
+ * 图片处理工具类（有需要自己后期添加）
+ * 我是用bitmap做高斯模糊的
  */
 
 public class ImageUtil {

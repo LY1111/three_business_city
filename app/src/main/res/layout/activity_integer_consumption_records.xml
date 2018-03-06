@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/whiteTwoColor"
     android:orientation="vertical"
-    tools:context="com.tuoyi.threebusinesscity.activity.MyMembersActivity">
+    tools:context="com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -14,7 +15,7 @@
         android:elevation="2dp">
 
         <ImageView
-            android:id="@+id/my_menbers_back"
+            android:id="@+id/integer_consumptionRecord_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingLeft="12dp"
@@ -23,7 +24,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/my_menbers_title"
+            android:id="@+id/integer_consumptionRecord_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -33,12 +34,14 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
+
     <LinearLayout
-        android:elevation="2dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common140dp"
         android:layout_gravity="center"
-        android:background="@color/whiteColor"
+        android:layout_marginTop="0.66dp"
+        android:background="@color/colorPrimary"
+        android:elevation="2dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -51,31 +54,32 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:gravity="center"
-                android:text="成员总数"
-                android:textColor="@color/blackColor"
-                android:textSize="16sp" />
+                android:maxLines="1"
+                android:padding="4dp"
+                android:text="12040.00元"
+                android:textColor="@color/whiteColor"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="1240"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp" />
+                android:padding="4dp"
+                android:text="消费总额"
+                android:textColor="@color/whiteColor"
+                android:textSize="16sp" />
+
         </LinearLayout>
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/my_menbers_image"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:src="@drawable/demo_img"
-            app:civ_border_color="#FFFFFFFF"
-            app:civ_border_width="0dp" />
+        <View
+            android:layout_width="0.66dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/common26dp"
+            android:layout_marginTop="@dimen/common26dp"
+            android:background="@color/whiteTwoColor" />
 
         <LinearLayout
             android:layout_width="@dimen/common0dp"
@@ -88,26 +92,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="消费金额"
-                android:textColor="@color/blackColor"
-                android:textSize="16sp" />
+                android:padding="4dp"
+                android:text="8000三商豆"
+                android:textColor="@color/whiteColor"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="3dp"
-                android:text="1240"
-                android:textColor="@color/colorPrimary"
-                android:textSize="15sp" />
+                android:padding="4dp"
+                android:text="积分"
+                android:textColor="@color/whiteColor"
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:overScrollMode="never"
-        android:background="@color/whiteColor"
-        android:layout_marginTop="@dimen/common10dp"
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common10dp"
+        android:background="@color/whiteColor"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 </LinearLayout>

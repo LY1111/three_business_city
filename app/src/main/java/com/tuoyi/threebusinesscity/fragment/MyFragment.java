@@ -55,6 +55,8 @@ public class MyFragment extends Fragment {
     private LinkedList<MainGridMenuBean> headGridList;
     private MyGridMenuAdapter gridMenuadapter;
     private ArrayList<String> marqueeList;
+//    底部导航list
+    private String[] menuTvList = {"商城订单","消费记录","市场收入","分享推荐","我的会员","我的店中店","我是商家","代理商入口","供应商入口"};
 
     public MyFragment() {
         // Required empty public constructor
@@ -128,8 +130,8 @@ public class MyFragment extends Fragment {
      */
     private void initMenuList() {
         headGridList = new LinkedList<>();
-        for (int i = 0; i < 9; i++) {
-            headGridList.add(new MainGridMenuBean(R.mipmap.ic_launcher, "第" + i + "个菜单"));
+        for (int i = 0; i < menuTvList.length; i++) {
+            headGridList.add(new MainGridMenuBean(R.mipmap.ic_launcher, menuTvList[i]));
         }
         mainmGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 3));
         gridMenuadapter = new MyGridMenuAdapter(headGridList);

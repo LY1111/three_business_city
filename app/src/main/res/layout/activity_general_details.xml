@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grayColor"
+    android:background="@color/whiteTwoColor"
     android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.activity.GeneralDetailsActivity">
 
@@ -279,6 +279,8 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:scrollbars="none"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/common0dp"
                 android:layout_marginTop="@dimen/common3dp"

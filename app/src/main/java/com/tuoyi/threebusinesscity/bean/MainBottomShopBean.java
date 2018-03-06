@@ -2,7 +2,7 @@ package com.tuoyi.threebusinesscity.bean;
 
 /**
  * Created by md
- * 底部商家实体类
+ * 首页底部商家实体类
  * on 2018/3/3 0003.
  */
 

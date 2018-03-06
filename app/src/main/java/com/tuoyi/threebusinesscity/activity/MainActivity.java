@@ -23,7 +23,9 @@ import com.tuoyi.threebusinesscity.fragment.ShopFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+/**
+ * 主界面
+ */
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.main_fl)

@@ -3,6 +3,7 @@ package com.tuoyi.threebusinesscity.bean;
 /**
  * Created by md
  * on 2018/3/3 0003.
+ * 网格菜单实体类
  */
 
 public class MainGridMenuBean {
