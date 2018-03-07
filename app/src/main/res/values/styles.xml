@@ -60,4 +60,31 @@
         <item name="android:textSize">@dimen/text_size_16sp</item>
         <item name="android:background">@drawable/selector_login_bg_button</item>
     </style>
+
+    <style name="text_gray12">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkColor</item>
+        <item name="android:textSize">@dimen/text_size_12sp</item>
+    </style>
+
+    <style name="text_black14">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blackColor</item>
+        <item name="android:textSize">@dimen/text_size_14sp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="text_black16">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blackColor</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:background">@null</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lines">1</item>
+    </style>
 </resources>

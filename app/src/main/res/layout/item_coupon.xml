@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/common5dp"
+    android:background="@drawable/shape_login_bg_edittext"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/common20dp"
+        android:paddingTop="@dimen/common10dp"
+        android:paddingBottom="@dimen/common10dp"
+        android:paddingRight="@dimen/common20dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥8"
+            android:textSize="@dimen/text_size_18sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:text="满99减8元"
+            android:layout_marginTop="@dimen/common10dp"
+            style="@style/text_black14" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="@dimen/common1dp"
+        android:layout_height="match_parent"
+        android:background="@color/grayColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_margin="@dimen/common10dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_theme_btn"
+            android:padding="@dimen/common8dp"
+            android:text="立即使用"
+            android:textColor="@color/whiteColor" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/common10dp">
+
+            <TextView
+                android:text="2017-04-14"
+                style="@style/text_gray12" />
+            <TextView
+                style="@style/text_gray12"
+                android:text="至"/>
+            <TextView
+                style="@style/text_gray12"
+                android:text="2017-05-14"/>
+            <TextView
+                style="@style/text_gray12"
+                android:text="（剩余30天）"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/common10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gray_btn"
+            android:padding="@dimen/common8dp"
+            android:text="已使用"
+            android:textColor="@color/whiteColor" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/common10dp">
+
+            <TextView
+                android:text="2017-04-14"
+                style="@style/text_gray12" />
+            <TextView
+                style="@style/text_gray12"
+                android:text="至"/>
+            <TextView
+                style="@style/text_gray12"
+                android:text="2017-05-14"/>
+            <TextView
+                style="@style/text_gray12"
+                android:text="（剩余30天）"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

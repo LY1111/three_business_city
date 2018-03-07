@@ -30,7 +30,10 @@
         <activity android:name=".activity.BindingCellPhoneActivity" />
         <activity android:name=".activity.MyPromoterActivity" />
         <activity android:name=".activity.MyMembersActivity" />
-        <activity android:name=".activity.IntegralConsumptionRecordsActivity"></activity>
+        <activity android:name=".activity.IntegralConsumptionRecordsActivity" />
+        <activity android:name=".activity.MyCouponActivity" />
+        <activity android:name=".activity.AddAddressActivity" />
+        <activity android:name=".activity.PersonalActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteTwoColor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的优惠券"
+            android:textColor="@color/whiteColor"
+            android:textSize="@dimen/text_size_18sp" />
+
+        <ImageButton
+            android:id="@+id/leftBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@mipmap/ic_launcher_round"
+            android:padding="@dimen/common10dp"/>
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common50dp"
+        android:layout_marginTop="@dimen/common8dp"
+        android:background="@color/whiteColor"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="@dimen/common0dp"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:checked="true"
+            android:textSize="@dimen/text_size_16sp"
+            android:textColor="@color/selector_coupon_text"
+            android:text="未使用"/>
+        <View
+            android:layout_width="@dimen/common1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/common15dp"
+            android:layout_marginBottom="@dimen/common15dp"
+            android:background="@color/grayColor"/>
+
+        <RadioButton
+            android:layout_width="@dimen/common0dp"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="@dimen/text_size_16sp"
+            android:textColor="@color/selector_coupon_text"
+            android:text="不可用"/>
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

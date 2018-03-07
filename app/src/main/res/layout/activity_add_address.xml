@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/whiteTwoColor"
+    android:orientation="vertical"
+    tools:context="com.tuoyi.threebusinesscity.activity.AddAddressActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="添加地址"
+            android:textColor="@color/whiteColor"
+            android:textSize="@dimen/text_size_18sp" />
+
+        <ImageButton
+            android:id="@+id/leftBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="@dimen/common10dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common8dp"
+        android:background="@color/whiteColor"
+        android:orientation="vertical">
+
+        <EditText
+            style="@style/text_black14"
+            android:layout_width="match_parent"
+            android:hint="请输入姓名"
+            android:padding="@dimen/common15dp"
+            android:textSize="@dimen/text_size_16sp" />
+
+        <EditText
+            style="@style/text_black16"
+            android:layout_width="match_parent"
+            android:hint="请输入手机号"
+            android:padding="@dimen/common15dp" />
+
+        <TextView
+            style="@style/text_black16"
+            android:layout_width="match_parent"
+            android:hint="请选择所在城市"
+            android:padding="@dimen/common15dp"
+            android:drawableRight="@drawable/shape_banner_indicator_selected"/>
+
+        <EditText
+            style="@style/text_black16"
+            android:layout_width="match_parent"
+            android:hint="请输入具体地址"
+            android:padding="@dimen/common15dp" />
+
+    </LinearLayout>
+
+    <Button
+        style="@style/loginButtonStyle"
+        android:text="提交"
+        android:layout_marginTop="@dimen/common10dp"/>
+
+</LinearLayout>
