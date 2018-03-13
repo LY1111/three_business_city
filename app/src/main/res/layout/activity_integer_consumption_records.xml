@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="我的会员"
+            android:text="消费记录"
             android:textColor="@color/whiteColor"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -52,6 +52,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/integer_consumptionRecord_money"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -89,6 +90,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/integer_consumptionRecord_integer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -110,6 +112,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/integer_consumptionRecord_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/common10dp"

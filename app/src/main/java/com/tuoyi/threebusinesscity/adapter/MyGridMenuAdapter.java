@@ -10,7 +10,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity;
+import com.tuoyi.threebusinesscity.activity.MyMembersActivity;
+import com.tuoyi.threebusinesscity.activity.MyPromoterActivity;
 import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
+import com.tuoyi.threebusinesscity.bean.MyPromoterBean;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.util.LinkedList;
 
@@ -52,19 +57,22 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                 switch (position) {
                     case 0://
                         break;
-                    case 1://
+                    case 1://积分消费记录
+                        RxActivityTool.skipActivity(context, IntegralConsumptionRecordsActivity.class);
                         break;
                     case 2://
                         break;
                     case 3://
                         break;
-                    case 4://
+                    case 4://我的会员
+                        RxActivityTool.skipActivity(context, MyMembersActivity.class);
                         break;
                     case 5://
                         break;
                     case 6://
                         break;
                     case 7://
+                        RxActivityTool.skipActivity(context, MyPromoterActivity.class);
                         break;
                     case 8://
                         break;

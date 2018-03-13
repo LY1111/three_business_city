@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/common6dp"
+        android:paddingTop="@dimen/common6dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/item_my_promoter_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/common6dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:layout_marginRight="@dimen/common6dp"
+            android:layout_marginTop="@dimen/common6dp"
+            android:src="@drawable/demo_img"
+            app:civ_border_color="#FFFFFFFF"
+            app:civ_border_width="0dp" />
+
+        <LinearLayout
+            android:layout_width="@dimen/common0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_my_promoter_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/common4dp"
+                android:text="用户1"
+                android:textColor="@color/blackColor"
+                android:textSize="@dimen/text_size_14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/common4dp">
+
+                <TextView
+                    android:id="@+id/item_my_promoter_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="山东·济南"
+                    android:textColor="@color/darkColor"
+                    android:textSize="@dimen/text_size_12sp" />
+
+                <TextView
+                    android:id="@+id/item_my_promoter_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/common2dp"
+                    android:text="加入时间：2017.12.11"
+                    android:textColor="@color/darkColor"
+                    android:textSize="@dimen/text_size_12sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:tint="@color/grayColor"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_marginRight="10dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0.88dp"
+        android:background="@color/grayColor" />
+</LinearLayout>

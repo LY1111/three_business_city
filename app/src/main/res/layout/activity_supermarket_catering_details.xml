@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grayColor"
+    android:background="@color/whiteColor"
     android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.activity.SupermarketCateringDetailsActivity">
 
@@ -19,6 +19,7 @@
             android:layout_alignParentTop="true">
 
             <LinearLayout
+                android:background="@color/whiteTwoColor"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -30,6 +31,7 @@
                     android:elevation="2dp">
 
                     <ImageView
+                        android:id="@+id/market_back"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingLeft="12dp"
@@ -51,6 +53,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/market_search"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_alignParentRight="true"
@@ -87,6 +90,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/market_tv_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center|left"
@@ -95,6 +99,7 @@
                                 android:textSize="15sp" />
 
                             <TextView
+                                android:id="@+id/market_tv_ID"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center|left"
@@ -110,6 +115,7 @@
                             android:orientation="horizontal">
 
                             <RatingBar
+                                android:id="@+id/market_tv_star"
                                 style="@style/Base.Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -120,6 +126,7 @@
                                 android:rating="2" />
 
                             <TextView
+                                android:id="@+id/market_tv_money"
                                 android:layout_width="@dimen/common0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
@@ -162,6 +169,7 @@
                         android:tint="@color/colorPrimary" />
 
                     <TextView
+                        android:id="@+id/market_tv_location"
                         android:layout_width="@dimen/common0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -214,6 +222,7 @@
                         android:tint="@color/colorPrimary" />
 
                     <TextView
+                        android:id="@+id/market_tv_phone"
                         android:layout_width="@dimen/common0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -258,6 +267,7 @@
                         android:tint="@color/colorPrimary" />
 
                     <TextView
+                        android:id="@+id/market_tv_content"
                         android:layout_width="@dimen/common0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -266,6 +276,7 @@
                         android:text="促销活动：会员到店消费奖励**%三商豆"
                         android:textColor="@color/darkColor"
                         android:textSize="12sp" />
+
                     <TextView
                         android:id="@+id/market_sao_btn"
                         android:layout_width="wrap_content"
@@ -283,14 +294,33 @@
 
                 </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common0dp"
                     android:layout_marginTop="@dimen/common3dp"
                     android:layout_weight="1"
-                    android:background="@color/whiteColor" />
+                    android:background="@color/whiteColor"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/market_list_left"
+                        android:layout_width="96dp"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="@dimen/common1dp"
+                        android:background="@color/whiteTwoColor"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/market_list_right"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_marginTop="@dimen/common3dp"
+                        android:background="@color/whiteColor"
+                        android:overScrollMode="never"
+                        android:scrollbars="none" />
+                </LinearLayout>
+
             </LinearLayout>
         </com.andview.refreshview.XScrollView>
 
@@ -302,6 +332,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/market_tv_shopNum"
                 android:layout_width="@dimen/common0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -311,11 +342,12 @@
                 android:paddingLeft="@dimen/common10dp"
                 android:paddingRight="@dimen/common10dp"
                 android:paddingTop="@dimen/common4dp"
-                android:text="您已选择4件商品"
+                android:text="您已选择0件商品"
                 android:textColor="@color/whiteColor"
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/market_tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimary"
@@ -324,7 +356,7 @@
                 android:paddingLeft="@dimen/common10dp"
                 android:paddingRight="@dimen/common10dp"
                 android:paddingTop="@dimen/common4dp"
-                android:text="共计：144元"
+                android:text="共计：0元"
                 android:textColor="@color/whiteColor"
                 android:textSize="13sp"
                 android:textStyle="bold" />

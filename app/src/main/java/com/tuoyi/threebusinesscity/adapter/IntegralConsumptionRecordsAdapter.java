@@ -5,41 +5,35 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
-import com.tuoyi.threebusinesscity.activity.MainActivity;
-import com.tuoyi.threebusinesscity.activity.SupermarketCateringDetailsActivity;
-import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
-import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.tuoyi.threebusinesscity.bean.IntegralConsumptionRecordsBean;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
+ * 消费积分详情
  * Created by md
- * 首页底部商家列表适配器
- * on 2018/3/3 0003.
+ * on 2018/3/7 0007.
  */
 
-public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAdapter.ViewHolder> {
+public class IntegralConsumptionRecordsAdapter extends RecyclerView.Adapter<IntegralConsumptionRecordsAdapter.ViewHolder> {
 
     private Context context;
-    private List<MainBottomShopBean> mdatas;
+    private List<IntegralConsumptionRecordsBean> mdatas;
 
-    public MainBottomShopAdapter(List<MainBottomShopBean> items) {
+    public IntegralConsumptionRecordsAdapter(List<IntegralConsumptionRecordsBean> items) {
         mdatas = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_main_bottom_shop, parent, false);
+                .inflate(R.layout.item_integral_consumptiion_records, parent, false);
         context = view.getContext();
         return new ViewHolder(view);
     }
@@ -47,13 +41,11 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
-        holder.itemName.setText(holder.mItem.getTitle());
-        Glide.with(context).load(holder.mItem.getmImg()).into(holder.itemIcon);
+        holder.mTvIntegral.setText(String.valueOf(holder.mItem.getIntegral()));
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "可点击的：" + position + "号子布局", Toast.LENGTH_SHORT).show();
-                RxActivityTool.skipActivity(context, SupermarketCateringDetailsActivity.class);
             }
         });
 
@@ -66,17 +58,17 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.item_main_bottom_shop_icon)
-        ImageView itemIcon;
-        @BindView(R.id.item_main_grid_menu_name)
-        TextView itemName;
-        @BindView(R.id.item_main_grid_menu_distance)
-        TextView itemDistance;
-        @BindView(R.id.item_main_grid_menu_content)
-        TextView itemContent;
-        @BindView(R.id.item_main_grid_menu_address)
-        TextView itemAddress;
-        public MainBottomShopBean mItem;
+        @BindView(R.id.item_integral_consumptionRecords_tv_name)
+        TextView mTvName;
+        @BindView(R.id.item_integral_consumptionRecords_tv_type)
+        TextView mTvType;
+        @BindView(R.id.item_integral_consumptionRecords_tv_money)
+        TextView mTvMoney;
+        @BindView(R.id.item_integral_consumptionRecords_tv_integral)
+        TextView mTvIntegral;
+        @BindView(R.id.item_integral_consumptionRecords_tv_time)
+        TextView mTvTime;
+        public IntegralConsumptionRecordsBean mItem;
         public final View mView;
 
         public ViewHolder(View view) {
