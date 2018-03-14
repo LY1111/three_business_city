@@ -33,7 +33,8 @@
         <activity android:name=".activity.IntegralConsumptionRecordsActivity" />
         <activity android:name=".activity.MyCouponActivity" />
         <activity android:name=".activity.AddAddressActivity" />
-        <activity android:name=".activity.PersonalActivity"></activity>
+        <activity android:name=".activity.PersonalActivity" />
+        <activity android:name=".activity.OrderDetailsActivity"></activity>
     </application>
 
 </manifest>

@@ -26,7 +26,7 @@
         <TextView
             android:text="满99减8元"
             android:layout_marginTop="@dimen/common10dp"
-            style="@style/text_black14" />
+            style="@style/black_text14" />
 
     </LinearLayout>
 
@@ -60,15 +60,15 @@
 
             <TextView
                 android:text="2017-04-14"
-                style="@style/text_gray12" />
+                style="@style/gray_text12" />
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:text="至"/>
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:text="2017-05-14"/>
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:text="（剩余30天）"/>
         </LinearLayout>
     </LinearLayout>
@@ -96,15 +96,15 @@
 
             <TextView
                 android:text="2017-04-14"
-                style="@style/text_gray12" />
+                style="@style/gray_text12" />
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:text="至"/>
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:text="2017-05-14"/>
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:text="（剩余30天）"/>
         </LinearLayout>
     </LinearLayout>

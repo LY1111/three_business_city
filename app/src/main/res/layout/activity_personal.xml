@@ -42,7 +42,7 @@
 
 
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:padding="@dimen/common10dp"
                 android:text="基本信息"
                 android:textSize="@dimen/text_size_14sp" />
@@ -62,7 +62,7 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="头像" />
 
@@ -89,12 +89,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="昵称" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:text="杨玲子" />
 
@@ -114,12 +114,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="会员号" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:text="1231241" />
 
@@ -139,12 +139,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="E-mail" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:text="未填写" />
 
@@ -164,12 +164,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="性别" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:text="女" />
 
@@ -189,12 +189,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="生日" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:text="1990-01-01" />
 
@@ -214,12 +214,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="我的地址" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:text="女" />
 
@@ -239,7 +239,7 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_width="match_parent"
                         android:layout_centerVertical="true"
                         android:drawableRight="@drawable/shape_banner_indicator_selected"
@@ -252,7 +252,7 @@
 
 
             <TextView
-                style="@style/text_gray12"
+                style="@style/gray_text12"
                 android:padding="@dimen/common10dp"
                 android:text="银行账户"
                 android:textSize="@dimen/text_size_14sp" />
@@ -272,12 +272,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="收款银行" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:hint="请选择收款银行" />
 
@@ -297,12 +297,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="所属省份" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:hint="请选择" />
 
@@ -323,12 +323,12 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="所属市" />
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:hint="请选择" />
 
@@ -348,13 +348,13 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="所属支行" />
 
                     <EditText
                         android:layout_width="match_parent"
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:gravity="end"
                         android:hint="请输入支行名称" />
@@ -375,13 +375,13 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="开户名" />
 
                     <EditText
                         android:layout_width="match_parent"
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:gravity="end"
                         android:hint="请输入开户名" />
@@ -402,13 +402,13 @@
                     android:paddingTop="@dimen/common15dp">
 
                     <TextView
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_centerVertical="true"
                         android:text="银行账号" />
 
                     <EditText
                         android:layout_width="match_parent"
-                        style="@style/text_black16"
+                        style="@style/black_text16"
                         android:layout_alignParentRight="true"
                         android:gravity="end"
                         android:hint="请输入银行账号" />

@@ -39,27 +39,27 @@
         android:orientation="vertical">
 
         <EditText
-            style="@style/text_black14"
+            style="@style/black_text14"
             android:layout_width="match_parent"
             android:hint="请输入姓名"
             android:padding="@dimen/common15dp"
             android:textSize="@dimen/text_size_16sp" />
 
         <EditText
-            style="@style/text_black16"
+            style="@style/black_text16"
             android:layout_width="match_parent"
             android:hint="请输入手机号"
             android:padding="@dimen/common15dp" />
 
         <TextView
-            style="@style/text_black16"
+            style="@style/black_text16"
             android:layout_width="match_parent"
             android:hint="请选择所在城市"
             android:padding="@dimen/common15dp"
             android:drawableRight="@drawable/shape_banner_indicator_selected"/>
 
         <EditText
-            style="@style/text_black16"
+            style="@style/black_text16"
             android:layout_width="match_parent"
             android:hint="请输入具体地址"
             android:padding="@dimen/common15dp" />
