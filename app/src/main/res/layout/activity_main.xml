@@ -13,6 +13,7 @@
         android:id="@+id/main_fl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingBottom="@dimen/common10dp"
         android:layout_weight="1" />
 
     <!--只要没有中间凸起这个框架贼好用
@@ -34,13 +35,14 @@
         app:tab_unselected_color="@color/colorPrimary" />-->
 
     <View
-        android:background="@color/grayColor"
         android:layout_width="wrap_content"
-        android:layout_height="0.22dp"/>
+        android:layout_height="0.33dp"
+        android:background="@color/grayColor" />
+
     <RadioGroup
         android:id="@+id/main_rg"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
+        android:layout_height="52dp"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
         android:orientation="horizontal">
@@ -51,10 +53,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="2dp"
-            android:drawableTop="@mipmap/ic_launcher_round"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/select_main_menu_a"
             android:gravity="center"
-            android:padding="2dp"
+            android:padding="4dp"
             android:text="首页"
             android:textColor="@drawable/selector_mainf_text_color" />
 
@@ -64,37 +66,50 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="2dp"
-            android:drawableTop="@mipmap/ic_launcher_round"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/select_main_menu_b"
             android:gravity="center"
-            android:padding="2dp"
+            android:padding="4dp"
             android:text="三商商城"
             android:textColor="@drawable/selector_mainf_text_color" />
 
         <LinearLayout
             android:id="@+id/main_rb_sao"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="74dp"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:gravity="bottom"
+            android:gravity="bottom|center"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/main_rb_sao_img"
-                android:layout_width="74dp"
-                android:layout_height="74dp"
+
+            <LinearLayout
+                android:background="@drawable/shape_main_btn_bg"
+                android:layout_width="wrap_content"
+                android:padding="@dimen/common12dp"
                 android:layout_gravity="center"
-                android:background="@mipmap/ic_launcher_round"
-                android:scaleType="centerInside" />
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/main_rb_sao_img"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:elevation="@dimen/common6dp"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/gouwuche" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/main_rb_sao_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/common1dp"
                 android:gravity="center"
-                android:padding="2dp"
                 android:text="扫一扫"
                 android:textColor="@color/darkColor" />
         </LinearLayout>
@@ -105,10 +120,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="2dp"
-            android:drawableTop="@mipmap/ic_launcher_round"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/select_main_menu_c"
             android:gravity="center"
-            android:padding="2dp"
+            android:padding="4dp"
             android:text="消息通知"
             android:textColor="@drawable/selector_mainf_text_color" />
 
@@ -118,10 +133,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawablePadding="2dp"
-            android:drawableTop="@mipmap/ic_launcher_round"
+            android:drawablePadding="0dp"
+            android:drawableTop="@drawable/select_main_menu_d"
             android:gravity="center"
-            android:padding="2dp"
+            android:padding="4dp"
             android:text="个人中心"
             android:textColor="@drawable/selector_mainf_text_color" />
     </RadioGroup>

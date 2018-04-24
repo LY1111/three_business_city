@@ -14,15 +14,24 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
 import com.tuoyi.threebusinesscity.fragment.MessageFragment;
 import com.tuoyi.threebusinesscity.fragment.MyFragment;
 import com.tuoyi.threebusinesscity.fragment.ShopFragment;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.tuoyi.threebusinesscity.url.Config.S;
+
 /**
  * 主界面
  */
@@ -57,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initListener();
+
 //        initFragment(changIndexListener.changIndex());
 
     }
@@ -71,18 +81,22 @@ public class MainActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.main_rb_main:
                         initFragment(1);
+                        Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
                         break;
                     case R.id.main_rb_shop:
                         initFragment(2);
+                        Glide.with(MainActivity.this).load(R.mipmap.gouwuche).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("购物车");
                         break;
                     case R.id.main_rb_message:
                         initFragment(3);
+                        Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
                         break;
                     case R.id.main_rb_my:
                         initFragment(4);
+                        Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
                         break;
                 }
@@ -134,8 +148,10 @@ public class MainActivity extends AppCompatActivity {
         }
         beginTransaction.commit();
     }
+
     @OnClick(R.id.main_rb_sao)//二维码扫描
     public void onViewClicked() {
+        RxActivityTool.skipActivity(this,RegisterActivity.class);
         Toast.makeText(this, mainRbSaoTv.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 }

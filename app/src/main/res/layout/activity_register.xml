@@ -149,6 +149,7 @@
             android:textColor="@color/darkColor"
             android:textSize="13sp" />
         <TextView
+            android:id="@+id/register_toLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

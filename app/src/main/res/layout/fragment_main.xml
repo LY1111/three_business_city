@@ -63,7 +63,7 @@
                         android:layout_width="16dp"
                         android:layout_height="16dp"
                         android:layout_marginLeft="14dp"
-                        android:src="@mipmap/ic_launcher_round"
+                        android:src="@mipmap/ic_laba"
                         android:tint="@color/colorPrimaryDark" />
 
                     <TextView
@@ -264,7 +264,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@mipmap/ic_adress"
                     android:tint="@color/whiteColor" />
 
                 <TextView
@@ -285,7 +285,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="6dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="12dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="6dp"
                     android:imeOptions="actionSearch"
@@ -297,16 +297,15 @@
                     android:paddingLeft="32dp" />
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="6dp"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="6dp"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:tint="@color/colorPrimaryDark" />
+                    android:src="@mipmap/ic_sousuo" />
             </RelativeLayout>
 
 

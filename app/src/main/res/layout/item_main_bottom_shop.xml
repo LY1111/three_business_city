@@ -20,9 +20,9 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_vertical"
-            android:padding="16dp"
-            android:scaleType="centerInside"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_margin="6dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/demo_img" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -49,10 +49,10 @@
                     android:textSize="14sp" />
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="16dp"
+                    android:layout_height="12dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@mipmap/ic_juli"
                     android:tint="@color/lightGreyColor" />
 
                 <TextView
@@ -102,17 +102,17 @@
                 android:paddingTop="2dp">
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher_round"
-                    android:tint="@color/lightGreyColor" />
+                    android:src="@mipmap/ic_dingwei" />
 
                 <TextView
                     android:id="@+id/item_main_grid_menu_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
+                    android:paddingLeft="@dimen/common2dp"
                     android:gravity="center_vertical|left"
                     android:maxLines="1"
                     android:text="济南市历下区明湖广场777号3单元10号楼1009室"
