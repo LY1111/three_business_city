@@ -13,6 +13,11 @@ android {
         //高斯模糊得使用renderscript 兼容包
         renderscriptTargetApi 26
         renderscriptSupportModeEnabled true
+        multiDexEnabled true
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
+        }
     }
     buildTypes {
         release {
@@ -42,6 +47,12 @@ dependencies {
     //滚动广告条  compile 'com.gongwen:marqueelibrary:1.1.2'
     //圆形头像    compile 'de.hdodenhof:circleimageview:2.2.0'
     //秒杀倒计时  compile 'com.github.iwgang:countdownview:2.1.6'
+    //定位功能    compile 'com.amap.api:location:latest.integration'
+    //搜索功能    compile 'com.amap.api:search:latest.integration'
+    //导航功能    compile 'com.amap.api:navi-3dmap:latest.integration'
+    //2D地图    compile 'com.amap.api:map2d:latest.integration'
+    //3D地图    compile 'com.amap.api:3dmap:latest.integration'
+    //二维码     compile 'com.google.zxing:core:3.3.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.+'
@@ -59,6 +70,10 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.android.support:support-v4:26.+'
     compile 'com.github.iwgang:countdownview:2.1.6'
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.amap.api:location:latest.integration'
+    compile 'com.amap.api:navi-3dmap:latest.integration'
+    compile 'com.google.zxing:core:3.3.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }

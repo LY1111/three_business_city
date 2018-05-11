@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.youth.banner.loader.ImageLoaderInterface;
 
+import static com.tuoyi.threebusinesscity.url.Config.IMGS;
+
 
 /**
  * Created by md
@@ -19,7 +21,7 @@ class GlideImageLoader implements ImageLoaderInterface {
     public void displayImage(Context context, Object path, View imageView) {
         //Glide 加载图片简单用法
 //        Glide.with(context).load(IMGS + path).into((ImageView) imageView);
-        Glide.with(context).load(path).into((ImageView) imageView);
+        Glide.with(context).load(IMGS+path).into((ImageView) imageView);
     }
 
     @Override

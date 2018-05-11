@@ -44,6 +44,10 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mPassA;
     @BindView(R.id.register_passB)
     EditText mPassB;
+    @BindView(R.id.register_userName)
+    EditText mUsername;
+    @BindView(R.id.register_topPhone)
+    EditText mTopPhone;
     @BindView(R.id.register_commit_bt)
     Button mCommitBt;
 
@@ -69,8 +73,10 @@ public class RegisterActivity extends AppCompatActivity {
             case R.id.register_commit_bt:
                 OkGo.<String>post(S + "api/member/register")
                         .tag(this)
+                        .params("username", mUsername.getText().toString().trim())
                         .params("telephone", mPhone.getText().toString().trim())
                         .params("password", mPassA.getText().toString().trim())
+                        .params("referee", mTopPhone.getText().toString().trim())
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
@@ -84,6 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                             }
                         });
+
+
                 break;
         }
     }

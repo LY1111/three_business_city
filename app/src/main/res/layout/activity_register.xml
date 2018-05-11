@@ -7,6 +7,7 @@
     android:background="@color/whiteTwoColor"
     android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.activity.RegisterActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -53,6 +54,7 @@
                 android:drawableLeft="@mipmap/ic_login_et_phone"
                 android:drawableTint="@color/darkColor"
                 android:hint="请输入手机号码"
+                android:inputType="phone"
                 android:maxLength="11" />
         </LinearLayout>
 
@@ -69,10 +71,12 @@
                 <EditText
                     android:id="@+id/register_Verification_password"
                     style="@style/editTextStyle"
-                    android:drawableLeft="@mipmap/ic_login_et_password"
+                    android:drawableLeft="@mipmap/ic_login_et_phone"
                     android:drawableTint="@color/darkColor"
                     android:hint="请输入验证码"
-                    android:inputType="textPassword" />
+                    android:maxLines="1"
+                    android:maxLength="6"
+                    android:inputType="number" />
 
             </LinearLayout>
 
@@ -92,31 +96,76 @@
                 android:textSize="13sp" />
         </RelativeLayout>
 
-            <LinearLayout
-                style="@style/loginLayout"
-                android:orientation="horizontal">
+        <LinearLayout
+            style="@style/loginLayout"
+            android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/register_passA"
-                    style="@style/editTextStyle"
-                    android:drawableLeft="@mipmap/ic_login_et_phone"
-                    android:drawableTint="@color/darkColor"
-                    android:hint="请设置登录密码"
-                    android:maxLength="11" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/register_passA"
+                style="@style/editTextStyle"
+                android:drawableLeft="@mipmap/ic_login_et_password"
+                android:drawableTint="@color/darkColor"
+                android:hint="请设置登录密码"
+                android:text="123456"
+                android:inputType="textPassword" />
+        </LinearLayout>
 
-            <LinearLayout
-                style="@style/loginLayout"
-                android:orientation="horizontal">
+        <LinearLayout
+            style="@style/loginLayout"
+            android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/register_passB"
-                    style="@style/editTextStyle"
-                    android:drawableLeft="@mipmap/ic_login_et_password"
-                    android:drawableTint="@color/darkColor"
-                    android:hint="请再次输入密码"
-                    android:inputType="textPassword" />
-            </LinearLayout>
+            <EditText
+                android:id="@+id/register_passB"
+                style="@style/editTextStyle"
+                android:text="123456"
+                android:drawableLeft="@mipmap/ic_login_et_password"
+                android:drawableTint="@color/darkColor"
+                android:hint="请再次输入密码"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/loginLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text=" 姓  名 ："
+                android:textColor="@color/blackColor"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/register_userName"
+                style="@style/editTextStyle"
+                android:text="123"
+                android:drawableTint="@color/darkColor"
+                android:hint="请输入姓名"
+                android:inputType="text" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/loginLayout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:text="推荐人："
+                android:textColor="@color/blackColor"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/register_topPhone"
+                style="@style/editTextStyle"
+                android:drawableTint="@color/darkColor"
+                android:hint="请输入推荐人手机号"
+                android:inputType="phone" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -134,12 +183,14 @@
         android:id="@+id/register_commit_bt"
         style="@style/loginButtonStyle"
         android:text="立即注册" />
+
     <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_margin="@dimen/common10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common10dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,6 +199,7 @@
             android:text="已有账号，直接"
             android:textColor="@color/darkColor"
             android:textSize="13sp" />
+
         <TextView
             android:id="@+id/register_toLogin"
             android:layout_width="wrap_content"

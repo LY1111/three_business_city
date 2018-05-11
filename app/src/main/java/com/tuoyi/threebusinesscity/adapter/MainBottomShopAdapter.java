@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.GeneralDetailsActivity;
 import com.tuoyi.threebusinesscity.activity.MainActivity;
 import com.tuoyi.threebusinesscity.activity.SupermarketCateringDetailsActivity;
 import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
+import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.lang.reflect.Method;
@@ -20,6 +22,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 
 /**
  * Created by md
@@ -30,9 +34,9 @@ import butterknife.ButterKnife;
 public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAdapter.ViewHolder> {
 
     private Context context;
-    private List<MainBottomShopBean> mdatas;
+    private List<MainBottomShopBean.DataBean> mdatas;
 
-    public MainBottomShopAdapter(List<MainBottomShopBean> items) {
+    public MainBottomShopAdapter(List<MainBottomShopBean.DataBean> items) {
         mdatas = items;
     }
 
@@ -47,15 +51,20 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
-        holder.itemName.setText(holder.mItem.getTitle());
-        Glide.with(context).load(holder.mItem.getmImg()).into(holder.itemIcon);
+        holder.itemName.setText(holder.mItem.getShop_name());
+        holder.itemDistance.setText("距离：" + holder.mItem.getDistance() + "m");
+        holder.itemContent.setText("会员到店消费奖励" + holder.mItem.getMember() + "%三商豆");
+        holder.itemAddress.setText(holder.mItem.getAddress());
+        Glide.with(context).load(IMGS + holder.mItem.getImage()).into(holder.itemIcon);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(context, "可点击的：" + position + "号子布局", Toast.LENGTH_SHORT).show();
-                RxActivityTool.skipActivity(context, SupermarketCateringDetailsActivity.class);
+                UserBean.setPosID(context,String.valueOf(holder.mItem.getUid()));
+                RxActivityTool.skipActivity(context, GeneralDetailsActivity.class);
             }
         });
+
 
     }
 
@@ -76,7 +85,7 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
         TextView itemContent;
         @BindView(R.id.item_main_grid_menu_address)
         TextView itemAddress;
-        public MainBottomShopBean mItem;
+        public MainBottomShopBean.DataBean mItem;
         public final View mView;
 
         public ViewHolder(View view) {

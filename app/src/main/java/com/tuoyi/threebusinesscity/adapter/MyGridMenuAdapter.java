@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -13,14 +14,19 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity;
 import com.tuoyi.threebusinesscity.activity.MyMembersActivity;
 import com.tuoyi.threebusinesscity.activity.MyPromoterActivity;
+import com.tuoyi.threebusinesscity.activity.ShareActivity;
 import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
+import com.tuoyi.threebusinesscity.bean.MyGridMenuBean;
 import com.tuoyi.threebusinesscity.bean.MyPromoterBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 
 /**
  * Created by md
@@ -31,9 +37,9 @@ import butterknife.ButterKnife;
 public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.ViewHolder> {
 
     private Context context;
-    private LinkedList<MainGridMenuBean> mdatas;
+    private List<MyGridMenuBean> mdatas;
 
-    public MyGridMenuAdapter(LinkedList<MainGridMenuBean> items) {
+    public MyGridMenuAdapter(List<MyGridMenuBean> items) {
         mdatas = items;
     }
 
@@ -48,8 +54,9 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
-        holder.itemTitle.setText(holder.mItem.getTitle());
-        Glide.with(context).load(holder.mItem.getmImg()).into(holder.itemIcon);
+        holder.itemTitle.setText(holder.mItem.getName());
+        Glide.with(context).load( holder.mItem.getImg()).into(holder.itemIcon);
+//        Glide.with(context).load(IMGS + holder.mItem.getImg()).into(holder.itemIcon);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,7 +69,8 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                         break;
                     case 2://
                         break;
-                    case 3://
+                    case 3://分享推荐
+                        RxActivityTool.skipActivity(context, ShareActivity.class);
                         break;
                     case 4://我的会员
                         RxActivityTool.skipActivity(context, MyMembersActivity.class);
@@ -93,7 +101,7 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
         TextView itemTitle;
         @BindView(R.id.item_my_grid_menu_icon)
         ImageView itemIcon;
-        public MainGridMenuBean mItem;
+        public MyGridMenuBean mItem;
         public final View mView;
 
         public ViewHolder(View view) {

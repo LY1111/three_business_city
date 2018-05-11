@@ -5,17 +5,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
+import com.tuoyi.threebusinesscity.fragment.MainFragment;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 
 /**
  * Created by md
@@ -26,9 +34,15 @@ import butterknife.ButterKnife;
 public class MainGridMenuAdapter extends RecyclerView.Adapter<MainGridMenuAdapter.ViewHolder> {
 
     private Context context;
-    private LinkedList<MainGridMenuBean> mdatas;
+    private List<MainGridMenuBean.DataBean> mdatas;
+    private int selectPos = 0;
+    private boolean selectType;
 
-    public MainGridMenuAdapter(LinkedList<MainGridMenuBean> items) {
+    private Map<Integer, Boolean> map = new HashMap<>();
+    private boolean onBind;
+    private MyOnItemClickListener itemClickListener;
+
+    public MainGridMenuAdapter(List<MainGridMenuBean.DataBean> items) {
         mdatas = items;
     }
 
@@ -43,36 +57,45 @@ public class MainGridMenuAdapter extends RecyclerView.Adapter<MainGridMenuAdapte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
-        holder.itemTitle.setText(holder.mItem.getTitle());
-        Glide.with(context).load(holder.mItem.getmImg()).into(holder.itemIcon);
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(context, "可点击的：" + position + "号子布局", Toast.LENGTH_SHORT).show();
-                switch (position) {
-                    case 0://
-                        break;
-                    case 1://
-                        break;
-                    case 2://
-                        break;
-                    case 3://
-                        break;
-                    case 4://
-                        break;
-                    case 5://
-                        break;
-                    case 6://
-                        break;
-                    case 7://
-                        break;
-                    case 8://
-                        break;
-                    case 9://
-                        break;
+        holder.itemTitle.setText(holder.mItem.getName());
+        Glide.with(context).load(IMGS + holder.mItem.getImage()).into(holder.itemIcon);
+        if (selectType) {
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (map != null && map.containsKey(position)) {
+//                    map.remove(position);
+                    } else {
+                        map.clear();
+                        map.put(position, true);
+                        itemClickListener.OnItemClickListener(position);
+                    }
+                    if (!onBind) {
+                        notifyDataSetChanged();
+                    }
+
                 }
-            }
-        });
+            });
+        }else {
+            map.clear();
+            map.put(0, true);
+            itemClickListener.OnItemClickListener(0);
+            selectType = true;
+        }
+
+        onBind = true;
+
+        if (map != null && map.containsKey(position)) {
+//            holder.itemTitle.setChecked(true);
+            selectPos = position;
+            holder.itemTitle.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+
+        } else {
+            map.remove(position);
+//            holder.itemTitle.setChecked(false);
+            holder.itemTitle.setTextColor(context.getResources().getColor(R.color.blackColor));
+        }
+        onBind = false;
 
     }
 
@@ -81,14 +104,37 @@ public class MainGridMenuAdapter extends RecyclerView.Adapter<MainGridMenuAdapte
         return mdatas.size();
     }
 
+    public void setSelectPos(int selectPos) {
+        this.selectPos = selectPos;
+    }
+
+    public int getSelectPos() {
+        return selectPos;
+    }
+
+    /**
+     * 列表点击事件
+     *
+     * @param itemClickListener
+     */
+    public void setOnItemClickListener(MyOnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
+    /**
+     * item点击接口
+     */
+    public interface MyOnItemClickListener {
+        void OnItemClickListener(int position);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.item_main_grid_menu_name)
         TextView itemTitle;
         @BindView(R.id.item_main_grid_menu_icon)
         ImageView itemIcon;
-        public MainGridMenuBean mItem;
-        public final View mView;
+        private MainGridMenuBean.DataBean mItem;
+        private final View mView;
 
         public ViewHolder(View view) {
             super(view);

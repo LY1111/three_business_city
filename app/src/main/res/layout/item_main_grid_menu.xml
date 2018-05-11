@@ -8,20 +8,20 @@
 
     <ImageView
         android:id="@+id/item_main_grid_menu_icon"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="6dp"
-        android:scaleType="centerInside"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:padding="3dp"
+        android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/item_main_grid_menu_name"
         android:layout_width="match_parent"
+        android:button="@null"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text="银行卡"
-        android:textColor="@color/darkColor"
+        android:textColor="@color/select_menu_tv_color"
         android:textSize="14sp" />
 </LinearLayout>

@@ -91,13 +91,13 @@ public class ShopFragment extends Fragment {
      */
     private void initMenuList() {
         headGridList = new LinkedList<>();
-        for (int i = 0; i < 8; i++) {
-            headGridList.add(new MainGridMenuBean(R.mipmap.ic_launcher, "第" + i + "个分类"));
-        }
-        mainsHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 4));
-        gridMenuadapter = new MainGridMenuAdapter(headGridList);
-        mainsHeadGridList.setAdapter(gridMenuadapter);
-    } 
+//        for (int i = 0; i < 8; i++) {
+//            headGridList.add(new MainGridMenuBean(R.mipmap.ic_launcher, "第" + i + "个分类"));
+//        }
+//        mainsHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 4));
+//        gridMenuadapter = new MainGridMenuAdapter(headGridList);
+//        mainsHeadGridList.setAdapter(gridMenuadapter);
+    }
 
     /**
      * 轮播图设置
@@ -158,7 +158,6 @@ public class ShopFragment extends Fragment {
         mainsMarqueeView.stopFlipping();
         //结束轮播
         mainsBanner.stopAutoPlay();
-
     }
 
     @OnClick({R.id.mains_marqueeView_tv_right, R.id.mains_location})

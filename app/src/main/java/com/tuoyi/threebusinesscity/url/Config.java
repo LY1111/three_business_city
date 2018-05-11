@@ -7,4 +7,5 @@ package com.tuoyi.threebusinesscity.url;
 
 public class Config {
     public static String S = "http://sszl.tuoee.com/";
+    public static String IMGS = S +"public/uploads/";
 }

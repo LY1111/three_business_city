@@ -13,7 +13,6 @@
         android:id="@+id/main_fl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="@dimen/common10dp"
         android:layout_weight="1" />
 
     <!--只要没有中间凸起这个框架贼好用
@@ -76,7 +75,7 @@
         <LinearLayout
             android:id="@+id/main_rb_sao"
             android:layout_width="0dp"
-            android:layout_height="74dp"
+            android:layout_height="72dp"
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:gravity="bottom|center"
@@ -86,9 +85,10 @@
             <LinearLayout
                 android:background="@drawable/shape_main_btn_bg"
                 android:layout_width="wrap_content"
-                android:padding="@dimen/common12dp"
+                android:padding="@dimen/common10dp"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:elevation="@dimen/common6dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -97,7 +97,6 @@
                     android:layout_width="28dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center"
-                    android:elevation="@dimen/common6dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/gouwuche" />
             </LinearLayout>

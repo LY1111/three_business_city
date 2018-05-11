@@ -32,19 +32,19 @@
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/general_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
-                    android:text="商家名称"
+                    android:text="商家详情"
                     android:textColor="@color/whiteColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_alignParentRight="true"
@@ -81,6 +81,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/general_title"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -89,6 +90,8 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:visibility="gone"
+                            android:id="@+id/general_myId"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -104,6 +107,7 @@
                         android:orientation="horizontal">
 
                         <RatingBar
+                            android:visibility="gone"
                             style="@style/Base.Widget.AppCompat.RatingBar.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -114,6 +118,7 @@
                             android:rating="2" />
 
                         <TextView
+                            android:id="@+id/general_turnover"
                             android:layout_width="@dimen/common0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -152,10 +157,11 @@
                     android:layout_height="@dimen/common16dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/common1dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@mipmap/ic_dingwei"
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/general_address"
                     android:layout_width="@dimen/common0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -176,10 +182,12 @@
                     android:layout_height="@dimen/common16dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/common1dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@mipmap/ic_juli"
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/general_distance"
+                    android:minWidth="@dimen/common30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -204,10 +212,11 @@
                     android:layout_height="@dimen/common16dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/common1dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@mipmap/ic_sousuo"
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/general_phone_tv"
                     android:layout_width="@dimen/common0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -248,10 +257,11 @@
                     android:layout_height="@dimen/common16dp"
                     android:layout_gravity="center_vertical"
                     android:padding="@dimen/common1dp"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@mipmap/ic_laba"
                     android:tint="@color/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/general_activity"
                     android:layout_width="@dimen/common0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -279,13 +289,14 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:overScrollMode="never"
-                android:scrollbars="none"
+                android:id="@+id/general_RecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/common0dp"
                 android:layout_marginTop="@dimen/common3dp"
                 android:layout_weight="1"
-                android:background="@color/whiteColor" />
+                android:background="@color/whiteColor"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
         </LinearLayout>
     </com.andview.refreshview.XScrollView>
 </LinearLayout>

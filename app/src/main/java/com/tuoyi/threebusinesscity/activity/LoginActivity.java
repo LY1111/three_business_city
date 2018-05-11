@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.login_bt:
                 OkGo.<String>post(S + "api/Member/login")
                         .tag(this)
-                        .params("telephone", "15631557242")
+                        .params("telephone", loginPhone.getText().toString().trim())
                         .params("password", "123456")
                         .execute(new StringCallback() {
                             @Override
@@ -74,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                 LoginBean loginBean = gson.fromJson(response.body(), LoginBean.class);
                                 if (loginBean.getCode() == 200) {
                                     UserBean.setToken(LoginActivity.this, loginBean.getData().getToken());
+                                    RxActivityTool.skipActivity(LoginActivity.this,MainActivity.class);
                                 }
                                 Toast.makeText(LoginActivity.this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
 //

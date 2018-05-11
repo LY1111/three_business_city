@@ -1,7 +1,5 @@
 package com.tuoyi.threebusinesscity.fragment;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,19 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gongwen.marqueen.MarqueeFactory;
 import com.gongwen.marqueen.MarqueeView;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
-import com.tuoyi.threebusinesscity.adapter.MainGridMenuAdapter;
 import com.tuoyi.threebusinesscity.adapter.MyGridMenuAdapter;
 import com.tuoyi.threebusinesscity.adapter.NoticeMF;
-import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
+import com.tuoyi.threebusinesscity.bean.MyGridMenuBean;
+import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.FullyGridLayoutManager;
 import com.tuoyi.threebusinesscity.util.ImageUtil;
-import com.zhouwei.blurlibrary.EasyBlur;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,6 +36,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.tuoyi.threebusinesscity.url.Config.S;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,12 +57,18 @@ public class MyFragment extends Fragment {
     @BindView(R.id.mainm_iv_bg)
     ImageView mainmIvbg;
     Unbinder unbinder;
+    @BindView(R.id.userName)
+    TextView userName;
+    @BindView(R.id.userQuotient)
+    TextView userQuotient;
+    @BindView(R.id.userMoney)
+    TextView userMoney;
     private View view;
-    private LinkedList<MainGridMenuBean> headGridList;
+    private LinkedList<MyGridMenuBean> headGridList;
     private MyGridMenuAdapter gridMenuadapter;
     private ArrayList<String> marqueeList;
-//    底部导航list
-    private String[] menuTvList = {"商城订单","消费记录","市场收入","分享推荐","我的会员","我的店中店","我是商家","代理商入口","供应商入口"};
+    //    底部导航list
+    private String[] menuTvList = {"商城订单", "消费记录", "市场收入", "分享推荐", "我的会员", "我的店中店", "我是商家", "代理商入口", "供应商入口"};
 
     public MyFragment() {
         // Required empty public constructor
@@ -81,11 +93,45 @@ public class MyFragment extends Fragment {
         initView();
         initMenuList();
         initMarqueeView();
+        GetUserInfo();
     }
 
     private void initView() {
         mainmIvbg.setImageBitmap(ImageUtil.getDrawableBitmap(getContext(), R.drawable.demo_img));
     }
+
+    //    token获取用户信息
+    private void GetUserInfo() {
+        OkGo.<String>post(S + "api/AppProve/member_info")
+                .tag(this)
+                .params("token", UserBean.getToken(getContext()))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Logger.json(response.body());
+                        try {
+                            JSONObject jsonObject = new JSONObject(response.body());
+                            String message = jsonObject.getString("message");
+                            if (jsonObject.getString("code").equals("200")) {
+                                JSONObject object = jsonObject.getJSONObject("data");
+                                userName.setText(object.getString("username"));
+                                userMoney.setText("佣金：￥" + object.getString("total_bonus"));
+                                userQuotient.setText("三商豆：" + object.getString("points"));
+                            } else if (jsonObject.getString("code").equals("400")) {
+                                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                            } else if (jsonObject.getString("code").equals("401")) {
+                                Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                                userName.setText("未登录");
+                                UserBean.removeToken(getActivity());
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+    }
+
 
     /**
      * 滚动广告条设置
@@ -131,7 +177,7 @@ public class MyFragment extends Fragment {
     private void initMenuList() {
         headGridList = new LinkedList<>();
         for (int i = 0; i < menuTvList.length; i++) {
-            headGridList.add(new MainGridMenuBean(R.mipmap.ic_launcher, menuTvList[i]));
+            headGridList.add(new MyGridMenuBean(R.mipmap.ic_launcher, menuTvList[i]));
         }
         mainmGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 3));
         gridMenuadapter = new MyGridMenuAdapter(headGridList);
