@@ -6,27 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity;
+import com.tuoyi.threebusinesscity.activity.MyBusinessActivity;
 import com.tuoyi.threebusinesscity.activity.MyMembersActivity;
 import com.tuoyi.threebusinesscity.activity.MyPromoterActivity;
 import com.tuoyi.threebusinesscity.activity.ShareActivity;
-import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
 import com.tuoyi.threebusinesscity.bean.MyGridMenuBean;
-import com.tuoyi.threebusinesscity.bean.MyPromoterBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 
 /**
  * Created by md
@@ -77,7 +72,8 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                         break;
                     case 5://
                         break;
-                    case 6://
+                    case 6://我是商家
+                        RxActivityTool.skipActivity(context,MyBusinessActivity.class);
                         break;
                     case 7://
                         RxActivityTool.skipActivity(context, MyPromoterActivity.class);
