@@ -177,8 +177,38 @@ public class MyFragment extends Fragment {
     private void initMenuList() {
         headGridList = new LinkedList<>();
         for (int i = 0; i < menuTvList.length; i++) {
-            headGridList.add(new MyGridMenuBean(R.mipmap.ic_launcher, menuTvList[i]));
+            switch (i){
+                case 0:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_1,menuTvList[0]));
+                    break;
+                case 1:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_2,menuTvList[1]));
+                    break;
+                case 2:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_3,menuTvList[2]));
+                    break;
+                case 3:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_4,menuTvList[3]));
+                    break;
+                case 4:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_5,menuTvList[4]));
+                    break;
+                case 5:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_6,menuTvList[5]));
+                    break;
+                case 6:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_7,menuTvList[6]));
+                    break;
+                case 7:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_8,menuTvList[7]));
+                    break;
+                case 8:
+                    headGridList.add(new MyGridMenuBean(R.mipmap.p_9,menuTvList[8]));
+                    break;
+            }
+//            headGridList.add(new MyGridMenuBean(R.mipmap.ic_launcher, menuTvList[i]));
         }
+
         mainmGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 3));
         gridMenuadapter = new MyGridMenuAdapter(headGridList);
         mainmGridList.setAdapter(gridMenuadapter);

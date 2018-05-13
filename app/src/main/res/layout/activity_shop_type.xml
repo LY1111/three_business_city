@@ -38,6 +38,15 @@
     <ListView
         android:id="@+id/mList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="@dimen/common0dp"
+        android:layout_weight="1"/>
 
+    <Button
+        android:id="@+id/mOk"
+        android:text="确定"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/text_size_16sp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/bg_theme_btn"/>
 </LinearLayout>

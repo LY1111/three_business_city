@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<TextView
+    android:id="@+id/mItem"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common50dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="@dimen/common15dp"
+    android:text="啦啦啦"
+    android:textColor="@color/blackColor"
+    android:textSize="@dimen/text_size_16sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common1dp"
+    android:background="@color/gray_1" />
+</LinearLayout>

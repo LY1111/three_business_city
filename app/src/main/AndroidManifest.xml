@@ -121,7 +121,10 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".activity.ShareActivity" />
         <activity android:name=".activity.MyBusinessActivity" />
-        <activity android:name=".activity.ShopTypeActivity"></activity>
+        <activity android:name=".activity.ShopTypeActivity" />
+        <activity android:name=".activity.ShopSortActivity" />
+        <activity android:name=".activity.MapAddressActivity" />
+        <activity android:name=".activity.CompLoginActivity"></activity>
     </application>
 
 </manifest>

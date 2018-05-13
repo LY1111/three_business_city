@@ -10,9 +10,7 @@
         android:layout_height="@dimen/common50dp"
         android:text="这是一个商家类型"
         android:paddingLeft="@dimen/common15dp"
-        android:paddingRight="@dimen/common15dp"
-        android:drawableRight="@drawable/selector_shop_type_checked"
-        android:button="@null"/>
+        android:paddingRight="@dimen/common15dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/common1dp"

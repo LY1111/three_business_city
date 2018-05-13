@@ -83,9 +83,9 @@
                             android:drawableLeft="@mipmap/ic_login_et_phone"
                             android:drawableTint="@color/darkColor"
                             android:hint="请输入验证码"
-                            android:maxLines="1"
+                            android:inputType="number"
                             android:maxLength="6"
-                            android:inputType="number" />
+                            android:maxLines="1" />
 
                     </LinearLayout>
 
@@ -115,7 +115,6 @@
                         android:drawableLeft="@mipmap/ic_login_et_password"
                         android:drawableTint="@color/darkColor"
                         android:hint="请设置登录密码"
-                        android:text="123456"
                         android:inputType="textPassword" />
                 </LinearLayout>
 
@@ -126,7 +125,6 @@
                     <EditText
                         android:id="@+id/mPasswordB"
                         style="@style/editTextStyle"
-                        android:text="123456"
                         android:drawableLeft="@mipmap/ic_login_et_password"
                         android:drawableTint="@color/darkColor"
                         android:hint="请再次输入密码"
@@ -172,9 +170,10 @@
                         android:id="@+id/mType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/common15dp"
+                        android:hint="请选择商家类型（可多选）"
                         android:paddingBottom="@dimen/common15dp"
-                        android:hint="请选择商家类型（可多选）"/>
+                        android:paddingTop="@dimen/common15dp"
+                        android:textColor="@color/blackColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -194,9 +193,10 @@
                         android:id="@+id/mSort"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/common15dp"
+                        android:hint="请选择商家分类"
                         android:paddingBottom="@dimen/common15dp"
-                        android:hint="请选择商家分类"/>
+                        android:paddingTop="@dimen/common15dp"
+                        android:textColor="@color/blackColor" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -218,7 +218,7 @@
                         android:drawableTint="@color/darkColor"
                         android:hint="请输入农行卡号"
                         android:inputType="number"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </LinearLayout>
 
 
@@ -240,7 +240,7 @@
                         style="@style/editTextStyle"
                         android:drawableTint="@color/darkColor"
                         android:hint="与银行卡开户人姓名一致"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,7 +261,7 @@
                         style="@style/editTextStyle"
                         android:drawableTint="@color/darkColor"
                         android:hint="请输入店铺名称"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,7 +282,7 @@
                         style="@style/editTextStyle"
                         android:drawableTint="@color/darkColor"
                         android:hint="请选择店铺地址"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -328,7 +328,6 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="14sp" />
             </LinearLayout>
-
 
 
         </LinearLayout>
