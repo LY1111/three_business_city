@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,32 +22,27 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.amap.api.location.AMapLocation;
-//import com.amap.api.location.AMapLocationClient;
-//import com.amap.api.location.AMapLocationClientOption;
-//import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
-import com.lzy.okgo.OkGo;
-import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
 import com.tuoyi.threebusinesscity.fragment.MessageFragment;
 import com.tuoyi.threebusinesscity.fragment.MyFragment;
+import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
 import com.tuoyi.threebusinesscity.fragment.ShopFragment;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.tuoyi.threebusinesscity.url.Config.S;
+//import com.amap.api.location.AMapLocation;
+//import com.amap.api.location.AMapLocationClient;
+//import com.amap.api.location.AMapLocationClientOption;
+//import com.amap.api.location.AMapLocationListener;
 
 /**
  * 主界面
@@ -77,6 +71,7 @@ public class MainActivity extends AppCompatActivity  {
     private ShopFragment mShopFragment;
     private MessageFragment mMessageFragment;
     private MyFragment mMyFragment;
+    private OnLineShopFragment onLineShopFragment;
 
     /**
      * 需要进行检测的权限数组
@@ -286,10 +281,10 @@ public class MainActivity extends AppCompatActivity  {
                 beginTransaction.replace(R.id.main_fl, mMainFragment);
                 break;
             case 2:
-                if (mShopFragment == null) {
-                    mShopFragment = ShopFragment.newInstance();
+                if (onLineShopFragment == null) {
+                    onLineShopFragment = OnLineShopFragment.newInstance();
                 }
-                beginTransaction.replace(R.id.main_fl, mShopFragment);
+                beginTransaction.replace(R.id.main_fl, onLineShopFragment);
                 break;
             case 3:
                 if (mMessageFragment == null) {
