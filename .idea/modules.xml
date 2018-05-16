@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://G:\StudioProjects\three_business_city\ThreeBusinessCity.iml" filepath="G:\StudioProjects\three_business_city\ThreeBusinessCity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://G:\StudioProjects\three_business_city\app\app.iml" filepath="G:\StudioProjects\three_business_city\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/three_business_city.iml" filepath="$PROJECT_DIR$/.idea/three_business_city.iml" />
       <module fileurl="file://G:\StudioProjects\three_business_city\three_business_city.iml" filepath="G:\StudioProjects\three_business_city\three_business_city.iml" />
     </modules>

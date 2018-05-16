@@ -21,7 +21,9 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.GoodsSortActivity;
 import com.tuoyi.threebusinesscity.bean.OnLineShopListBean;
+import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -201,6 +203,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 }
                 break;
             case R.id.mSort1:
+                JumpUtil.newInstance().jumpRight(getContext(), GoodsSortActivity.class);
                 break;
             case R.id.mSort2:
                 break;
