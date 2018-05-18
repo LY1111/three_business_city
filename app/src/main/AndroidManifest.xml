@@ -130,7 +130,9 @@
         <activity android:name=".activity.ShopSortActivity" />
         <activity android:name=".activity.MapAddressActivity" />
         <activity android:name=".activity.CompLoginActivity" />
-        <activity android:name=".activity.GoodsSortActivity"></activity>
+        <activity android:name=".activity.GoodsSortActivity" />
+        <activity android:name=".activity.ShoppingCartActivity" />
+        <activity android:name=".activity.GoodDetailsActivity"></activity>
     </application>
 
 </manifest>

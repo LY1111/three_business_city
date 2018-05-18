@@ -111,36 +111,36 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/baby"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="母婴用品" />
 
                     <TextView
                         android:id="@+id/mSort2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/electric"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="家用电器" />
 
                     <TextView
                         android:id="@+id/mSort3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/beauty"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="美妆护理" />
 
                     <TextView
                         android:id="@+id/mSort4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/food"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="食品特产" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -154,36 +154,36 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/phone"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="手机数码" />
 
                     <TextView
                         android:id="@+id/mSort6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/book"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="图书音像" />
 
                     <TextView
                         android:id="@+id/mSort7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/jewelry"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="珠宝首饰" />
 
                     <TextView
                         android:id="@+id/mSort8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:drawableTop="@mipmap/ic_launcher_round"
+                        android:drawableTop="@drawable/clothes"
                         android:gravity="center_horizontal"
-                        android:text="商家分类" />
+                        android:text="服装服饰" />
                 </LinearLayout>
 
             </LinearLayout>

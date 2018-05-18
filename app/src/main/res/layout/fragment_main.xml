@@ -10,328 +10,319 @@
     android:orientation="vertical"
     tools:context="com.tuoyi.threebusinesscity.fragment.MainFragment">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/mainf_location"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:focusable="false"
-                android:visibility="invisible" />
-
-            <com.youth.banner.Banner
-                android:id="@+id/mainf_banner"
-                android:layout_width="match_parent"
-                android:layout_height="144dp"
-                app:delay_time="3000"
-                app:indicator_drawable_selected="@drawable/shape_banner_indicator_selected"
-                app:indicator_drawable_unselected="@drawable/shape_banner_indicator_unselected"
-                app:indicator_height="8dp"
-                app:indicator_margin="4dp"
-                app:indicator_width="8dp"
-                app:scroll_time="2000" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/mainf_head_grid_list"
-                android:layout_width="match_parent"
+            <ImageView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/whiteColor"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                android:scrollbars="none" />
+                android:layout_weight="1"
+                android:src="@mipmap/ic_adress"
+                android:tint="@color/whiteColor" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/mainf_location_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:text="点击定位"
+                android:textColor="@color/whiteColor" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/mainf_search_et"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="6dp"
-                android:background="@color/whiteColor"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:background="@drawable/mainfragment_search_et_bg"
+                android:hint="输入店铺名称搜索"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="1dp"
+                android:paddingLeft="32dp" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginLeft="14dp"
-                    android:src="@mipmap/ic_laba"
-                    android:tint="@color/colorPrimaryDark" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="6dp"
+                android:src="@mipmap/ic_sousuo" />
+        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="6dp"
-                    android:layout_marginRight="4dp"
-                    android:gravity="center"
-                    android:text="活动通告"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="13sp" />
 
-                <com.gongwen.marqueen.MarqueeView
-                    android:id="@+id/mainf_marqueeView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_weight="1"
-                    android:background="@color/whiteColor" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/marqueeView_tv_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center"
-                    android:text="更多>"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="12sp" />
-            </LinearLayout>
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/mainf_XRefreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.andview.refreshview.XScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="1.2dp"
-                android:background="@color/whiteColor"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="gone">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="4dp"
-                    android:gravity="center"
-                    android:text="◆ 热门商家"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="15sp" />
 
-                <RadioGroup
-                    android:id="@+id/mainf_rg_menu"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                <com.youth.banner.Banner
+                    android:id="@+id/mainf_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp"
+                    app:delay_time="3000"
+                    app:indicator_drawable_selected="@drawable/shape_banner_indicator_selected"
+                    app:indicator_drawable_unselected="@drawable/shape_banner_indicator_unselected"
+                    app:indicator_height="8dp"
+                    app:indicator_margin="4dp"
+                    app:indicator_width="8dp"
+                    app:scroll_time="2000" />
 
-                    <RadioButton
-                        android:id="@+id/mainf_menu_rb_a"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="餐饮"
-                        android:textColor="@drawable/selector_mainf_text_color"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/mainf_menu_rb_b"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="购物"
-                        android:textColor="@drawable/selector_mainf_text_color"
-                        android:textSize="12sp" />
-
-                    <RadioButton
-                        android:id="@+id/mainf_menu_rb_c"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="全部"
-                        android:textColor="@drawable/selector_mainf_text_color"
-                        android:textSize="12sp" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/mainf_ll_screen"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="1.2dp"
-                android:background="@color/whiteColor"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="gone">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="4dp"
-                    android:gravity="center"
-                    android:text="综合排序 ∨"
-                    android:textColor="@color/blackColor" />
-
-                <RadioGroup
-                    android:id="@+id/mainf_rg_screen"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/mainf_screen_rb_a"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="距离"
-                        android:textColor="@drawable/selector_mainf_text_color"
-                        android:textSize="13sp" />
-
-                    <RadioButton
-                        android:id="@+id/mainf_screen_rb_b"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="好评"
-                        android:textColor="@drawable/selector_mainf_text_color"
-                        android:textSize="13sp" />
-
-                    <RadioButton
-                        android:id="@+id/mainf_screen_rb_c"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="交易额"
-                        android:textColor="@drawable/selector_mainf_text_color"
-                        android:textSize="13sp" />
-                </RadioGroup>
-            </LinearLayout>
-
-            <com.andview.refreshview.XRefreshView
-                android:id="@+id/mainf_XRefreshView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.andview.refreshview.XScrollView
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mainf_head_grid_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/whiteColor"
+                    android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
-                    android:scrollbars="none">
+                    android:scrollbars="none" />
 
-                    <LinearLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@color/whiteColor"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginLeft="14dp"
+                        android:src="@mipmap/ic_laba"
+                        android:tint="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="4dp"
+                        android:gravity="center"
+                        android:text="活动通告"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="13sp" />
+
+                    <com.gongwen.marqueen.MarqueeView
+                        android:id="@+id/mainf_marqueeView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:background="@color/whiteColor" />
+
+                    <TextView
+                        android:id="@+id/marqueeView_tv_right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center"
+                        android:text="更多>"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1.2dp"
+                    android:background="@color/whiteColor"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="4dp"
+                        android:gravity="center"
+                        android:text="◆ 热门商家"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15sp" />
+
+                    <RadioGroup
+                        android:id="@+id/mainf_rg_menu"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/mainf_menu_rb_a"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="餐饮"
+                            android:textColor="@drawable/selector_mainf_text_color"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/mainf_menu_rb_b"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="购物"
+                            android:textColor="@drawable/selector_mainf_text_color"
+                            android:textSize="12sp" />
+
+                        <RadioButton
+                            android:id="@+id/mainf_menu_rb_c"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="全部"
+                            android:textColor="@drawable/selector_mainf_text_color"
+                            android:textSize="12sp" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mainf_ll_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="1.2dp"
+                    android:background="@color/whiteColor"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginRight="4dp"
+                        android:gravity="center"
+                        android:text="综合排序 ∨"
+                        android:textColor="@color/blackColor" />
+
+                    <RadioGroup
+                        android:id="@+id/mainf_rg_screen"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/mainf_screen_rb_a"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="距离"
+                            android:textColor="@drawable/selector_mainf_text_color"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/mainf_screen_rb_b"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="好评"
+                            android:textColor="@drawable/selector_mainf_text_color"
+                            android:textSize="13sp" />
+
+                        <RadioButton
+                            android:id="@+id/mainf_screen_rb_c"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:padding="2dp"
+                            android:text="交易额"
+                            android:textColor="@drawable/selector_mainf_text_color"
+                            android:textSize="13sp" />
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1.2dp">
 
-                        <RelativeLayout
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/mainf_bottom_shop_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="1.2dp">
+                            android:background="@color/whiteColor"
+                            android:nestedScrollingEnabled="false"
+                            android:overScrollMode="never"
+                            android:scrollbars="none" />
+                    </RelativeLayout>
 
-                            <android.support.v7.widget.RecyclerView
-                                android:id="@+id/mainf_bottom_shop_list"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@color/whiteColor"
-                                android:nestedScrollingEnabled="false"
-                                android:overScrollMode="never"
-                                android:scrollbars="none" />
-                        </RelativeLayout>
+                </LinearLayout>
 
-                    </LinearLayout>
 
-                </com.andview.refreshview.XScrollView>
-
-            </com.andview.refreshview.XRefreshView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/mainf_location"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="6dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="6dp"
-                android:paddingTop="6dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@mipmap/ic_adress"
-                    android:tint="@color/whiteColor" />
-
-                <TextView
-                    android:id="@+id/mainf_location_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:text="点击定位"
-                    android:textColor="@color/whiteColor" />
             </LinearLayout>
+        </com.andview.refreshview.XScrollView>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <EditText
-                    android:id="@+id/mainf_search_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="6dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="6dp"
-                    android:background="@drawable/mainfragment_search_et_bg"
-                    android:hint="输入店铺名称搜索"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:paddingBottom="1dp"
-                    android:paddingLeft="32dp" />
-
-                <ImageView
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="6dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="6dp"
-                    android:src="@mipmap/ic_sousuo" />
-            </RelativeLayout>
-
-
-        </LinearLayout>
-    </RelativeLayout>
+    </com.andview.refreshview.XRefreshView>
 </LinearLayout>
