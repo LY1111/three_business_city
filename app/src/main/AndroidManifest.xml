@@ -49,9 +49,14 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
+        <!-- 孟-高德key -->
+        <!-- <meta-data -->
+        <!-- android:name="com.amap.api.v2.apikey" -->
+        <!-- android:value="46f8eb2a7e8698bb1cde403921a2ae06" /> -->
+        <!-- 公-高德key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="46f8eb2a7e8698bb1cde403921a2ae06" />
+            android:value="31778155a6194f87efad9f23e9e3741a" />
         <!-- =========================================================== -->
         <activity
             android:name=".activity.MainActivity"
@@ -124,7 +129,10 @@
         <activity android:name=".activity.ShopTypeActivity" />
         <activity android:name=".activity.ShopSortActivity" />
         <activity android:name=".activity.MapAddressActivity" />
-        <activity android:name=".activity.CompLoginActivity"></activity>
+        <activity android:name=".activity.CompLoginActivity" />
+        <activity android:name=".activity.GoodsSortActivity" />
+        <activity android:name=".activity.ShoppingCartActivity" />
+        <activity android:name=".activity.GoodDetailsActivity"></activity>
     </application>
 
 </manifest>

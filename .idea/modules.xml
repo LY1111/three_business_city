@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ThreeBusinessCity.iml" filepath="$PROJECT_DIR$/ThreeBusinessCity.iml" />
+      <module fileurl="file://G:\StudioProjects\three_business_city\ThreeBusinessCity.iml" filepath="G:\StudioProjects\three_business_city\ThreeBusinessCity.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/three_business_city.iml" filepath="$PROJECT_DIR$/three_business_city.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/three_business_city.iml" filepath="$PROJECT_DIR$/.idea/three_business_city.iml" />
+      <module fileurl="file://G:\StudioProjects\three_business_city\three_business_city.iml" filepath="G:\StudioProjects\three_business_city\three_business_city.iml" />
     </modules>
   </component>
 </project>
