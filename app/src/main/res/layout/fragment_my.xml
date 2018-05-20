@@ -82,7 +82,7 @@
                     android:layout_margin="2dp"
                     android:gravity="center|left"
                     android:padding="4dp"
-                    android:text="佣金：￥3444"
+                    android:text="余额：￥3444"
                     android:textColor="@color/whiteColor"
                     android:textSize="10sp" />
 

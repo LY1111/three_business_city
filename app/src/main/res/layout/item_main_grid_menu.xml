@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/item_main_grid_menu_icon"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="@dimen/common50dp"
+        android:layout_height="@dimen/common50dp"
         android:padding="3dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />

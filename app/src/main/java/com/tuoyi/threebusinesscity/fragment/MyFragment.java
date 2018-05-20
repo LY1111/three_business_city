@@ -68,7 +68,7 @@ public class MyFragment extends Fragment {
     private MyGridMenuAdapter gridMenuadapter;
     private ArrayList<String> marqueeList;
     //    底部导航list
-    private String[] menuTvList = {"商城订单", "消费记录", "市场收入", "分享推荐", "我的会员", "我的店中店", "我是商家", "代理商入口", "供应商入口"};
+    private String[] menuTvList = {"商城订单", "消费记录", "推荐奖", "分享推荐", "我发展的下线用户", "我的店中店", "合作商家入口", "代理商入口", "供货商家入口"};
 
     public MyFragment() {
         // Required empty public constructor

@@ -39,6 +39,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.MainShopDetailsActivity;
 import com.tuoyi.threebusinesscity.adapter.MainBottomShopAdapter;
 import com.tuoyi.threebusinesscity.adapter.MainGridMenuAdapter;
 import com.tuoyi.threebusinesscity.adapter.NoticeMF;
@@ -47,6 +48,7 @@ import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
 import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.FullyGridLayoutManager;
+import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.KeyBoardUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -189,8 +191,10 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                         if (bannerBean.getCode() == 200) {
                             List<BannerBean.DataBean> data = bannerBean.getData();
                             images = new ArrayList<>();
-                            for (int i = 0; i < bannerBean.getData().size(); i++) {
-                                images.add(data.get(i).getPicurl());
+                            if (data!=null) {
+                                for (int i = 0; i < bannerBean.getData().size(); i++) {
+                                    images.add(data.get(i).getPicurl());
+                                }
                             }
                             initBanner();
                         }
@@ -362,6 +366,11 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         gridMenuadapter.setOnItemClickListener(new MainGridMenuAdapter.MyOnItemClickListener() {
             @Override
             public void OnItemClickListener(int position) {
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("id",headGridList.get(position).getId());
+//                bundle.putDouble("lat",mLat);
+//                bundle.putDouble("lon",mLng);
+//                JumpUtil.newInstance().jumpRight(getContext(), MainShopDetailsActivity.class,bundle);
                 setPagenow(1);
                 mListType = 1;
                 mPosition = position;

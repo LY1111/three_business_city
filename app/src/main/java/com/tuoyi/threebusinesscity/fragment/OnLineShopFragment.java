@@ -21,6 +21,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.GoodDetailsActivity;
 import com.tuoyi.threebusinesscity.activity.GoodsSortActivity;
 import com.tuoyi.threebusinesscity.bean.OnLineShopListBean;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
@@ -410,6 +411,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                     @Override
                     public void onClick(View view) {
                         ToastUtil.show(getContext(),"点击了"+position);
+//                        JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class);
                     }
                 });
             }
