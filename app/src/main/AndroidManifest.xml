@@ -50,13 +50,13 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <!-- 孟-高德key -->
-         <!--<meta-data-->
-         <!--android:name="com.amap.api.v2.apikey"-->
-         <!--android:value="46f8eb2a7e8698bb1cde403921a2ae06" />-->
+        <!-- <meta-data -->
+        <!-- android:name="com.amap.api.v2.apikey" -->
+        <!-- android:value="46f8eb2a7e8698bb1cde403921a2ae06" /> -->
         <!-- 公-高德key -->
-        <!--<meta-data-->
-            <!--android:name="com.amap.api.v2.apikey"-->
-            <!--android:value="31778155a6194f87efad9f23e9e3741a" />-->
+        <!-- <meta-data -->
+        <!-- android:name="com.amap.api.v2.apikey" -->
+        <!-- android:value="31778155a6194f87efad9f23e9e3741a" /> -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="d2e59d2f22f52b406990500bdf9d6c3e" />
@@ -136,7 +136,8 @@
         <activity android:name=".activity.GoodsSortActivity" />
         <activity android:name=".activity.ShoppingCartActivity" />
         <activity android:name=".activity.GoodDetailsActivity" />
-        <activity android:name=".activity.MainShopDetailsActivity"></activity>
+        <activity android:name=".activity.MainShopDetailsActivity" />
+        <activity android:name=".activity.onLineShop.OnLineShopActivity"></activity>
     </application>
 
 </manifest>

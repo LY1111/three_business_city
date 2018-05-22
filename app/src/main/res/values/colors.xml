@@ -11,4 +11,5 @@
     <color name="lightGreyColor">#666666</color>
     <color name="gray_1">#d8d8d8</color>
     <color name="bg_color">#f4f4f4</color>
+    <color name="gray_2">#FF868686</color>
 </resources>

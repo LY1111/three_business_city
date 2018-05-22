@@ -20,9 +20,13 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
-import com.tuoyi.threebusinesscity.activity.GoodDetailsActivity;
 import com.tuoyi.threebusinesscity.activity.GoodsSortActivity;
+import com.tuoyi.threebusinesscity.bean.BannerBean;
 import com.tuoyi.threebusinesscity.bean.OnLineShopListBean;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
@@ -46,6 +50,7 @@ import butterknife.Unbinder;
 
 public class OnLineShopFragment extends Fragment implements AMapLocationListener {
 
+    private static final String TAG = "线上商城" ;
     @BindView(R.id.mLocation_tv)
     TextView mLocationTv;
     @BindView(R.id.mSearch)
@@ -70,12 +75,12 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     TextView mSort8;
     @BindView(R.id.mBigPic)
     ImageView mBigPic;
-    @BindView(R.id.mSmall1)
-    ImageView mSmall1;
-    @BindView(R.id.mSmall2)
-    ImageView mSmall2;
-    @BindView(R.id.mSmall3)
-    ImageView mSmall3;
+//    @BindView(R.id.mSmall1)
+//    ImageView mSmall1;
+//    @BindView(R.id.mSmall2)
+//    ImageView mSmall2;
+//    @BindView(R.id.mSmall3)
+//    ImageView mSmall3;
     @BindView(R.id.mHandPick1_pic)
     ImageView mHandPick1Pic;
     @BindView(R.id.mHandPick1_text)
@@ -172,6 +177,33 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
 
     /* banner广告 */
     private void initBanner() {
+        OkGo.<String>post("http://sszl.tuoee.com/api/app/link")
+                .tag(this)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.d(TAG, "onSuccess: " + response.body());
+
+                        Gson gson = new Gson();
+                        BannerBean bannerBean = gson.fromJson(response.body(), BannerBean.class);
+                        if (bannerBean.getCode() == 200) {
+                            List<BannerBean.DataBean> data = bannerBean.getData();
+                            images = new ArrayList<>();
+                            if (data!=null) {
+                                for (int i = 0; i < bannerBean.getData().size(); i++) {
+                                    images.add(data.get(i).getPicurl());
+                                }
+                            }
+                            initBanner2();
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 轮播图设置
+     */
+    private void initBanner2() {
         //设置图片加载器
         mBanner.setImageLoader(new GlideImageLoader());
         //设置图片集合
@@ -184,14 +216,13 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             }
         });
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
     }
 
-    @OnClick({R.id.mLocation, R.id.mSort1, R.id.mSort2, R.id.mSort3, R.id.mSort4, R.id.mSort5, R.id.mSort6, R.id.mSort7, R.id.mSort8, R.id.mBigPic, R.id.mSmall1, R.id.mSmall2, R.id.mSmall3, R.id.mHandPick1, R.id.mHandPick2, R.id.mHandPick3, R.id.mHandPick4})
+    @OnClick({R.id.mLocation, R.id.mSort1, R.id.mSort2, R.id.mSort3, R.id.mSort4, R.id.mSort5, R.id.mSort6, R.id.mSort7, R.id.mSort8, R.id.mBigPic, R.id.mHandPick1, R.id.mHandPick2, R.id.mHandPick3, R.id.mHandPick4})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.mLocation:
@@ -222,12 +253,12 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 break;
             case R.id.mBigPic:
                 break;
-            case R.id.mSmall1:
-                break;
-            case R.id.mSmall2:
-                break;
-            case R.id.mSmall3:
-                break;
+//            case R.id.mSmall1:
+//                break;
+//            case R.id.mSmall2:
+//                break;
+//            case R.id.mSmall3:
+//                break;
             case R.id.mHandPick1:
                 break;
             case R.id.mHandPick2:

@@ -93,7 +93,7 @@ public class MainGridMenuAdapter extends RecyclerView.Adapter<MainGridMenuAdapte
         } else {
             map.remove(position);
 //            holder.itemTitle.setChecked(false);
-            holder.itemTitle.setTextColor(context.getResources().getColor(R.color.blackColor));
+            holder.itemTitle.setTextColor(context.getResources().getColor(R.color.gray_2));
         }
         onBind = false;
 

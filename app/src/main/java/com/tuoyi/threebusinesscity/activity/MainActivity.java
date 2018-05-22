@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.onLineShop.OnLineShopActivity;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
 import com.tuoyi.threebusinesscity.fragment.MessageFragment;
 import com.tuoyi.threebusinesscity.fragment.MyFragment;
@@ -252,16 +253,17 @@ public class MainActivity extends AppCompatActivity  {
                         });
                         break;
                     case R.id.main_rb_shop:
-                        initFragment(2);
-                        Glide.with(MainActivity.this).load(R.mipmap.gouwuche).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
-                        mainRbSaoTv.setText("购物车");
-                        /* 跳转到购物车界面 */
-                        mainRbSao.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                JumpUtil.newInstance().jumpRight(MainActivity.this,ShoppingCartActivity.class);
-                            }
-                        });
+                        JumpUtil.newInstance().jumpRight(MainActivity.this, OnLineShopActivity.class);
+//                        initFragment(2);
+//                        Glide.with(MainActivity.this).load(R.mipmap.gouwuche).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
+//                        mainRbSaoTv.setText("购物车");
+//                        /* 跳转到购物车界面 */
+//                        mainRbSao.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                JumpUtil.newInstance().jumpRight(MainActivity.this,ShoppingCartActivity.class);
+//                            }
+//                        });
                         break;
                     case R.id.main_rb_message:
                         initFragment(3);

@@ -93,4 +93,14 @@
         <item name="android:layout_height">@dimen/common1dp</item>
         <item name="android:background">@color/grayColor</item>
     </style>
+
+    <style name="radioBtn">
+        <item name="android:layout_width">@dimen/common0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/selector_bottom_textview</item>
+        <item name="android:drawablePadding">@dimen/common3dp</item>
+    </style>
 </resources>
