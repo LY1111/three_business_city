@@ -41,6 +41,7 @@ android:orientation="horizontal">
         android:maxLength="10"
         android:maxLines="1"
         android:text="点击定位"
+        android:textSize="13sp"
         android:textColor="@color/whiteColor" />
 </LinearLayout>
 
@@ -58,7 +59,7 @@ android:orientation="horizontal">
         android:layout_marginRight="10dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/mainfragment_search_et_bg"
-        android:hint="输入店铺名称搜索"
+        android:hint="商品搜索"
         android:imeOptions="actionSearch"
         android:inputType="text"
         android:maxLines="1"
@@ -96,6 +97,66 @@ android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/common10dp"
+        android:background="@color/whiteColor">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common50dp"
+            android:layout_marginBottom="@dimen/common10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/mSort1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common15dp"
+                android:layout_marginRight="@dimen/common5dp"
+                android:layout_weight="1"
+                android:src="@drawable/on1" />
+
+            <ImageView
+                android:id="@+id/mSort2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common5dp"
+                android:layout_marginRight="@dimen/common15dp"
+                android:layout_weight="1"
+                android:src="@drawable/on2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/mSort3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common15dp"
+                android:layout_marginRight="@dimen/common5dp"
+                android:layout_weight="1"
+                android:src="@drawable/on3" />
+
+            <ImageView
+                android:id="@+id/mSort4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/common5dp"
+                android:layout_marginRight="@dimen/common15dp"
+                android:layout_weight="1"
+                android:src="@drawable/on4" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/whiteColor"
         android:orientation="vertical"
         android:paddingBottom="@dimen/common10dp"
@@ -104,10 +165,12 @@ android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/common15dp"
+            android:layout_marginRight="@dimen/common15dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/mSort1"
+                android:id="@+id/mBaby"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -117,7 +180,7 @@ android:layout_height="match_parent">
                 android:text="母婴用品" />
 
             <TextView
-                android:id="@+id/mSort2"
+                android:id="@+id/mElectric"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -127,7 +190,7 @@ android:layout_height="match_parent">
                 android:text="家用电器" />
 
             <TextView
-                android:id="@+id/mSort3"
+                android:id="@+id/mBeauty"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -137,7 +200,7 @@ android:layout_height="match_parent">
                 android:text="美妆护理" />
 
             <TextView
-                android:id="@+id/mSort4"
+                android:id="@+id/mFood"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -145,16 +208,28 @@ android:layout_height="match_parent">
                 android:drawableTop="@drawable/food"
                 android:gravity="center_horizontal"
                 android:text="食品特产" />
+
+            <TextView
+                android:id="@+id/mComputer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/common5dp"
+                android:drawableTop="@drawable/computer"
+                android:gravity="center_horizontal"
+                android:text="电脑办公" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/common10dp"
+            android:paddingLeft="@dimen/common15dp"
+            android:layout_marginRight="@dimen/common15dp"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/mSort5"
+                android:id="@+id/mPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -164,7 +239,7 @@ android:layout_height="match_parent">
                 android:text="手机数码" />
 
             <TextView
-                android:id="@+id/mSort6"
+                android:id="@+id/mBook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -174,7 +249,7 @@ android:layout_height="match_parent">
                 android:text="图书音像" />
 
             <TextView
-                android:id="@+id/mSort7"
+                android:id="@+id/mJewelry"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -184,7 +259,7 @@ android:layout_height="match_parent">
                 android:text="珠宝首饰" />
 
             <TextView
-                android:id="@+id/mSort8"
+                android:id="@+id/mClothes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -192,6 +267,16 @@ android:layout_height="match_parent">
                 android:drawableTop="@drawable/clothes"
                 android:gravity="center_horizontal"
                 android:text="服装服饰" />
+
+            <TextView
+                android:id="@+id/mFurniture"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/common5dp"
+                android:drawableTop="@drawable/furniture"
+                android:gravity="center_horizontal"
+                android:text="家具家居" />
         </LinearLayout>
 
     </LinearLayout>
@@ -211,52 +296,45 @@ android:layout_height="match_parent">
             android:text="积分活动"
             android:textColor="@color/colorPrimary" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/common50dp"
-            android:layout_marginBottom="@dimen/common10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/mBigPic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common15dp"
-                android:layout_marginRight="@dimen/common5dp"
-                android:layout_weight="1"
-                android:src="@drawable/on1" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common5dp"
-                android:layout_marginRight="@dimen/common15dp"
-                android:layout_weight="1"
-                android:src="@drawable/on2" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/common50dp"
+            android:layout_height="150dp"
+            android:paddingLeft="@dimen/common15dp"
+            android:paddingRight="@dimen/common15dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/common5dp"
-                android:layout_marginLeft="@dimen/common15dp"
-                android:layout_marginRight="@dimen/common5dp"
                 android:layout_weight="1"
-                android:src="@drawable/on3" />
+                android:scaleType="fitXY"
+                android:src="@drawable/text_pic"/>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common5dp"
-                android:layout_marginRight="@dimen/common15dp"
                 android:layout_weight="1"
-                android:src="@drawable/on4" />
+                android:layout_marginLeft="@dimen/common5dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:layout_marginBottom="@dimen/common2dp"
+                    android:src="@drawable/text_pic"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="@dimen/common2dp"
+                    android:src="@drawable/text_pic"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
