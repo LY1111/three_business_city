@@ -1,16 +1,20 @@
 package com.tuoyi.threebusinesscity.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tuoyi.threebusinesscity.R;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2018/5/23 0023.
@@ -215,8 +219,7 @@ public class RushBuyCountDownTimerView extends LinearLayout {
 
                                 if (isDay4Unit(tv_day_unit)) {
                                     if (isDay4Decade(tv_day_decade)) {
-                                        Toast.makeText(context, "时间到了",
-                                                Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(context, "时间到了", Toast.LENGTH_SHORT).show();
                                         tv_day_decade.setText("0");
                                         tv_day_unit.setText("0");
                                         tv_hour_decade.setText("0");
