@@ -53,11 +53,11 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="0dp"
-            android:drawableTop="@drawable/select_main_menu_a"
+            android:drawableTop="@mipmap/shouye_a"
             android:gravity="center"
             android:padding="4dp"
             android:text="首页"
-            android:textColor="@drawable/selector_mainf_text_color" />
+            android:textColor="@color/darkColor" />
 
         <RadioButton
             android:id="@+id/main_rb_shop"
@@ -66,11 +66,11 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="0dp"
-            android:drawableTop="@drawable/select_main_menu_b"
+            android:drawableTop="@mipmap/shangcheng_a"
             android:gravity="center"
             android:padding="4dp"
             android:text="三商商城"
-            android:textColor="@drawable/selector_mainf_text_color" />
+            android:textColor="@color/darkColor" />
 
         <LinearLayout
             android:id="@+id/main_rb_sao"
@@ -120,11 +120,11 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="0dp"
-            android:drawableTop="@drawable/select_main_menu_c"
+            android:drawableTop="@mipmap/email_a"
             android:gravity="center"
             android:padding="4dp"
             android:text="消息通知"
-            android:textColor="@drawable/selector_mainf_text_color" />
+            android:textColor="@color/darkColor" />
 
         <RadioButton
             android:id="@+id/main_rb_my"
@@ -133,11 +133,11 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="0dp"
-            android:drawableTop="@drawable/select_main_menu_d"
+            android:drawableTop="@mipmap/geren_a"
             android:gravity="center"
             android:padding="4dp"
             android:text="个人中心"
-            android:textColor="@drawable/selector_mainf_text_color" />
+            android:textColor="@color/darkColor" />
     </RadioGroup>
 
 </LinearLayout>

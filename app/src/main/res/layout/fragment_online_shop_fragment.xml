@@ -7,577 +7,596 @@
     android:orientation="vertical">
 
     <LinearLayout
-android:layout_width="match_parent"
-android:layout_height="50dp"
-android:background="@color/colorPrimary"
-android:elevation="4dp"
-android:gravity="center_vertical"
-android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-<LinearLayout
-    android:id="@+id/mLocation"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingBottom="6dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="6dp"
-    android:paddingTop="6dp">
+        <LinearLayout
+            android:id="@+id/mLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="6dp"
+            android:paddingTop="6dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@mipmap/ic_adress"
-        android:tint="@color/whiteColor" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@mipmap/ic_adress"
+                android:tint="@color/whiteColor" />
 
-    <TextView
-        android:id="@+id/mLocation_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLength="10"
-        android:maxLines="1"
-        android:text="点击定位"
-        android:textSize="13sp"
-        android:textColor="@color/whiteColor" />
-</LinearLayout>
+            <TextView
+                android:id="@+id/mLocation_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:text="点击定位"
+                android:textColor="@color/whiteColor"
+                android:textSize="13sp" />
+        </LinearLayout>
 
-<RelativeLayout
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1">
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-    <EditText
-        android:id="@+id/mSearch"
+            <EditText
+                android:id="@+id/mSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/mainfragment_search_et_bg"
+                android:hint="商品搜索"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="1dp"
+                android:paddingLeft="32dp" />
+
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="6dp"
+                android:src="@mipmap/ic_sousuo" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/mainfragment_search_et_bg"
-        android:hint="商品搜索"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:maxLines="1"
-        android:paddingBottom="1dp"
-        android:paddingLeft="32dp" />
+        android:scrollbars="none">
 
-    <ImageView
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="6dp"
-        android:src="@mipmap/ic_sousuo" />
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.youth.banner.Banner
+                android:id="@+id/mBanner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common150dp"
+                app:image_scale_type="fit_xy" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whiteColor"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/common10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common80dp"
+                    android:layout_marginBottom="@dimen/common5dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/mSort1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common15dp"
+                        android:layout_marginRight="@dimen/common2dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/on1" />
+
+                    <ImageView
+                        android:id="@+id/mSort2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common2dp"
+                        android:layout_marginRight="@dimen/common15dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/on2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common80dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/mSort3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common15dp"
+                        android:layout_marginRight="@dimen/common2dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/on3" />
+
+                    <ImageView
+                        android:id="@+id/mSort4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common2dp"
+                        android:layout_marginRight="@dimen/common15dp"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/on4" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mainf_head_grid_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/whiteColor"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:layout_marginTop="@dimen/common8dp"
+                android:scrollbars="none" />
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/whiteColor"-->
+            <!--android:orientation="vertical"-->
+            <!--android:paddingBottom="@dimen/common10dp"-->
+            <!--android:paddingTop="@dimen/common10dp">-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="@dimen/common15dp"-->
+            <!--android:layout_marginRight="@dimen/common15dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mBaby"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/baby"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="母婴用品" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mElectric"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/electric"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="家用电器" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mBeauty"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/beauty"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="美妆护理" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mFood"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/food"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="食品特产" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mComputer"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/computer"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="电脑办公" />-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/common10dp"-->
+            <!--android:paddingLeft="@dimen/common15dp"-->
+            <!--android:layout_marginRight="@dimen/common15dp"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mPhone"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/phone"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="手机数码" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mBook"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/book"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="图书音像" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mJewelry"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/jewelry"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="珠宝首饰" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mClothes"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/clothes"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="服装服饰" />-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/mFurniture"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:drawablePadding="@dimen/common5dp"-->
+            <!--android:drawableTop="@drawable/furniture"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:text="家具家居" />-->
+            <!--</LinearLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common5dp"
+                android:background="@color/whiteColor"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/common15dp"
+                    android:text="积分活动"
+                    android:textColor="@color/colorPrimary" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/common15dp"
+                    android:paddingRight="@dimen/common15dp">
+
+                    <ImageView
+                        android:id="@+id/mImg1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/text_pic" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/common5dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mImg2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/common2dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/text_pic" />
+
+                        <ImageView
+                            android:id="@+id/mImg3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/common2dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/text_pic" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common5dp"
+                android:background="@color/whiteColor"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/common15dp"
+                    android:text="积分秒杀"
+                    android:textColor="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/common15dp"
+                    android:paddingLeft="@dimen/common15dp"
+                    android:paddingRight="@dimen/common15dp"
+                    android:paddingTop="@dimen/common15dp">
+
+                    <LinearLayout
+                        android:id="@+id/mHandPick1"
+                        android:layout_width="@dimen/common0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mHandPick1_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/mHandPick1_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="360手机 N6 Life 全网通..."
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <TextView
+                            android:id="@+id/mHandPick1_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_main_btn_bg"
+                            android:paddingBottom="@dimen/common2dp"
+                            android:paddingLeft="@dimen/common8dp"
+                            android:paddingRight="@dimen/common8dp"
+                            android:paddingTop="@dimen/common2dp"
+                            android:text="积分：199"
+                            android:textColor="@color/whiteColor"
+                            android:textSize="@dimen/text_size_12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="秒杀倒计时"
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
+                            android:id="@+id/timeView1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mHandPick2"
+                        android:layout_width="@dimen/common0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mHandPick2_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/mHandPick2_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="360手机 N6 Life 全网通..."
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <TextView
+                            android:id="@+id/mHandPick2_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_main_btn_bg"
+                            android:paddingBottom="@dimen/common2dp"
+                            android:paddingLeft="@dimen/common8dp"
+                            android:paddingRight="@dimen/common8dp"
+                            android:paddingTop="@dimen/common2dp"
+                            android:text="积分：199"
+                            android:textColor="@color/whiteColor"
+                            android:textSize="@dimen/text_size_12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="秒杀倒计时"
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
+                            android:id="@+id/timeView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mHandPick3"
+                        android:layout_width="@dimen/common0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mHandPick3_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/mHandPick3_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="360手机 N6 Life 全网通..."
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <TextView
+                            android:id="@+id/mHandPick3_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_main_btn_bg"
+                            android:paddingBottom="@dimen/common2dp"
+                            android:paddingLeft="@dimen/common8dp"
+                            android:paddingRight="@dimen/common8dp"
+                            android:paddingTop="@dimen/common2dp"
+                            android:text="积分：199"
+                            android:textColor="@color/whiteColor"
+                            android:textSize="@dimen/text_size_12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="秒杀倒计时"
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
+                            android:id="@+id/timeView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mHandPick4"
+                        android:layout_width="@dimen/common0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/mHandPick4_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <TextView
+                            android:id="@+id/mHandPick4_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="360手机 N6 Life 全网通..."
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <TextView
+                            android:id="@+id/mHandPick4_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/shape_main_btn_bg"
+                            android:paddingBottom="@dimen/common2dp"
+                            android:paddingLeft="@dimen/common8dp"
+                            android:paddingRight="@dimen/common8dp"
+                            android:paddingTop="@dimen/common2dp"
+                            android:text="积分：199"
+                            android:textColor="@color/whiteColor"
+                            android:textSize="@dimen/text_size_12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="秒杀倒计时"
+                            android:textSize="@dimen/text_size_10sp" />
+
+                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
+                            android:id="@+id/timeView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingLeft="@dimen/common15dp"-->
+            <!--android:text="最新商品"-->
+            <!--android:textColor="@color/colorPrimary" />-->
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/whiteColor" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
-
-<ScrollView
-android:layout_width="match_parent"
-android:layout_height="match_parent">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.youth.banner.Banner
-        android:id="@+id/mBanner"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common150dp"
-        app:image_scale_type="fit_xy" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/common10dp"
-        android:background="@color/whiteColor">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/common50dp"
-            android:layout_marginBottom="@dimen/common10dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/mSort1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common15dp"
-                android:layout_marginRight="@dimen/common5dp"
-                android:layout_weight="1"
-                android:src="@drawable/on1" />
-
-            <ImageView
-                android:id="@+id/mSort2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common5dp"
-                android:layout_marginRight="@dimen/common15dp"
-                android:layout_weight="1"
-                android:src="@drawable/on2" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/common50dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/mSort3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common15dp"
-                android:layout_marginRight="@dimen/common5dp"
-                android:layout_weight="1"
-                android:src="@drawable/on3" />
-
-            <ImageView
-                android:id="@+id/mSort4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common5dp"
-                android:layout_marginRight="@dimen/common15dp"
-                android:layout_weight="1"
-                android:src="@drawable/on4" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/whiteColor"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/common10dp"
-        android:paddingTop="@dimen/common10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/common15dp"
-            android:layout_marginRight="@dimen/common15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/mBaby"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/baby"
-                android:gravity="center_horizontal"
-                android:text="母婴用品" />
-
-            <TextView
-                android:id="@+id/mElectric"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/electric"
-                android:gravity="center_horizontal"
-                android:text="家用电器" />
-
-            <TextView
-                android:id="@+id/mBeauty"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/beauty"
-                android:gravity="center_horizontal"
-                android:text="美妆护理" />
-
-            <TextView
-                android:id="@+id/mFood"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/food"
-                android:gravity="center_horizontal"
-                android:text="食品特产" />
-
-            <TextView
-                android:id="@+id/mComputer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/computer"
-                android:gravity="center_horizontal"
-                android:text="电脑办公" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common10dp"
-            android:paddingLeft="@dimen/common15dp"
-            android:layout_marginRight="@dimen/common15dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/mPhone"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/phone"
-                android:gravity="center_horizontal"
-                android:text="手机数码" />
-
-            <TextView
-                android:id="@+id/mBook"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/book"
-                android:gravity="center_horizontal"
-                android:text="图书音像" />
-
-            <TextView
-                android:id="@+id/mJewelry"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/jewelry"
-                android:gravity="center_horizontal"
-                android:text="珠宝首饰" />
-
-            <TextView
-                android:id="@+id/mClothes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/clothes"
-                android:gravity="center_horizontal"
-                android:text="服装服饰" />
-
-            <TextView
-                android:id="@+id/mFurniture"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawablePadding="@dimen/common5dp"
-                android:drawableTop="@drawable/furniture"
-                android:gravity="center_horizontal"
-                android:text="家具家居" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common5dp"
-        android:background="@color/whiteColor"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/common15dp"
-            android:text="积分活动"
-            android:textColor="@color/colorPrimary" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:paddingLeft="@dimen/common15dp"
-            android:paddingRight="@dimen/common15dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/mImg1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitXY"
-                android:src="@drawable/text_pic"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/common5dp"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/mImg2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY"
-                    android:layout_marginBottom="@dimen/common2dp"
-                    android:src="@drawable/text_pic"/>
-
-                <ImageView
-                    android:id="@+id/mImg3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY"
-                    android:layout_marginTop="@dimen/common2dp"
-                    android:src="@drawable/text_pic"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/common5dp"
-        android:background="@color/whiteColor"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="@dimen/common15dp"
-            android:text="积分秒杀"
-            android:textColor="@color/colorPrimary" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/common15dp"
-            android:paddingLeft="@dimen/common15dp"
-            android:paddingRight="@dimen/common15dp"
-            android:paddingTop="@dimen/common15dp">
-
-            <LinearLayout
-                android:id="@+id/mHandPick1"
-                android:layout_width="@dimen/common0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/mHandPick1_pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
-
-                <TextView
-                    android:id="@+id/mHandPick1_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="360手机 N6 Life 全网通..."
-                    android:textSize="@dimen/text_size_10sp" />
-
-                <TextView
-                    android:id="@+id/mHandPick1_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_main_btn_bg"
-                    android:paddingBottom="@dimen/common2dp"
-                    android:paddingLeft="@dimen/common8dp"
-                    android:paddingRight="@dimen/common8dp"
-                    android:paddingTop="@dimen/common2dp"
-                    android:text="积分：199"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/text_size_12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10sp"
-                    android:text="秒杀倒计时"/>
-                <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                    android:id="@+id/timeView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/mHandPick2"
-                android:layout_width="@dimen/common0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/mHandPick2_pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
-
-                <TextView
-                    android:id="@+id/mHandPick2_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="360手机 N6 Life 全网通..."
-                    android:textSize="@dimen/text_size_10sp" />
-
-                <TextView
-                    android:id="@+id/mHandPick2_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_main_btn_bg"
-                    android:paddingBottom="@dimen/common2dp"
-                    android:paddingLeft="@dimen/common8dp"
-                    android:paddingRight="@dimen/common8dp"
-                    android:paddingTop="@dimen/common2dp"
-                    android:text="积分：199"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/text_size_12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10sp"
-                    android:text="秒杀倒计时"/>
-                <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                    android:id="@+id/timeView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/mHandPick3"
-                android:layout_width="@dimen/common0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/mHandPick3_pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
-
-                <TextView
-                    android:id="@+id/mHandPick3_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="360手机 N6 Life 全网通..."
-                    android:textSize="@dimen/text_size_10sp" />
-
-                <TextView
-                    android:id="@+id/mHandPick3_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_main_btn_bg"
-                    android:paddingBottom="@dimen/common2dp"
-                    android:paddingLeft="@dimen/common8dp"
-                    android:paddingRight="@dimen/common8dp"
-                    android:paddingTop="@dimen/common2dp"
-                    android:text="积分：199"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/text_size_12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10sp"
-                    android:text="秒杀倒计时"/>
-                <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                    android:id="@+id/timeView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/mHandPick4"
-                android:layout_width="@dimen/common0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/mHandPick4_pic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher" />
-
-                <TextView
-                    android:id="@+id/mHandPick4_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="360手机 N6 Life 全网通..."
-                    android:textSize="@dimen/text_size_10sp" />
-
-                <TextView
-                    android:id="@+id/mHandPick4_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_main_btn_bg"
-                    android:paddingBottom="@dimen/common2dp"
-                    android:paddingLeft="@dimen/common8dp"
-                    android:paddingRight="@dimen/common8dp"
-                    android:paddingTop="@dimen/common2dp"
-                    android:text="积分：199"
-                    android:textColor="@color/whiteColor"
-                    android:textSize="@dimen/text_size_12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_size_10sp"
-                    android:text="秒杀倒计时"/>
-                <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                    android:id="@+id/timeView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!--<TextView-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="45dp"-->
-    <!--android:gravity="center_vertical"-->
-    <!--android:paddingLeft="@dimen/common15dp"-->
-    <!--android:text="最新商品"-->
-    <!--android:textColor="@color/colorPrimary" />-->
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/mRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/whiteColor" />
-
-</LinearLayout>
-
-</ScrollView>
-    </LinearLayout>

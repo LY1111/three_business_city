@@ -11,7 +11,10 @@ import android.widget.RadioGroup;
 
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.ViewPagerAdapter;
+import com.tuoyi.threebusinesscity.fragment.MyFragment;
+import com.tuoyi.threebusinesscity.fragment.OnLineCarFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
+import com.tuoyi.threebusinesscity.fragment.OnLineSortFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +65,9 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
     /* 添加viewpager */
     public List<Fragment> getFragments() {
         fragmentList.add(new OnLineShopFragment());
+        fragmentList.add(new OnLineSortFragment());
+        fragmentList.add(new OnLineCarFragment());
+        fragmentList.add(new MyFragment());
 //        fragmentList.add(new ExpressFragment());
 //        fragmentList.add(new RecruitFragment());
 //        fragmentList.add(new BidFragment());
@@ -78,18 +84,18 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
                 fragment = fragmentList.get(0);
                 transaction.replace(R.id.view_pager, fragment);
                 break;
-//            case R.id.mSort:
-//                fragment = fragmentList.get(1);
-//                transaction.replace(R.id.view_pager, fragment);
-//                break;
-//            case R.id.mCar:
-//                fragment = fragmentList.get(2);
-//                transaction.replace(R.id.view_pager, fragment);
-//                break;
-//            case R.id.mMine:
-//                fragment = fragmentList.get(3);
-//                transaction.replace(R.id.view_pager, fragment);
-//                break;
+            case R.id.mSort:
+                fragment = fragmentList.get(1);
+                transaction.replace(R.id.view_pager, fragment);
+                break;
+            case R.id.mCar:
+                fragment = fragmentList.get(2);
+                transaction.replace(R.id.view_pager, fragment);
+                break;
+            case R.id.mMine:
+                fragment = fragmentList.get(3);
+                transaction.replace(R.id.view_pager, fragment);
+                break;
         }
         transaction.commit();
     }

@@ -1,4 +1,4 @@
-package com.tuoyi.threebusinesscity.activity;
+package com.tuoyi.threebusinesscity.activity.onLineShop;
 
 import android.content.Context;
 import android.content.res.AssetManager;

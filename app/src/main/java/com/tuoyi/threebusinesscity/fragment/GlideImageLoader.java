@@ -16,7 +16,7 @@ import static com.tuoyi.threebusinesscity.url.Config.IMGS;
  * 轮播图专用加载接口
  */
 
-class GlideImageLoader implements ImageLoaderInterface {
+public class GlideImageLoader implements ImageLoaderInterface {
     @Override
     public void displayImage(Context context, Object path, View imageView) {
         //Glide 加载图片简单用法

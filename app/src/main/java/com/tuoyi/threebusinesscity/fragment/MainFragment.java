@@ -536,7 +536,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                         + aMapLocation.getErrorCode() + ", errInfo:"
                         + aMapLocation.getErrorInfo());
                 mainfLocation.setEnabled(true);
-                Toast.makeText(getContext(), "ErrCode:" + aMapLocation.getErrorCode() + "\n" + "errInfo:" + aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "ErrCode:" + aMapLocation.getErrorCode() + "\n" + "errInfo:" + aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
             }
         }
     }

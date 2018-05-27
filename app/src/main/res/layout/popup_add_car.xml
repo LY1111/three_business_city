@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_pay_popup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#60000000"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/ll"
+        android:background="@color/whiteColor"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/common50dp"
+                android:layout_height="@dimen/common50dp"
+                android:layout_marginBottom="@dimen/common5dp"
+                android:layout_marginLeft="@dimen/common5dp"
+                android:layout_marginTop="@dimen/common5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/text_pic" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/mName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/common5dp"
+                    android:text="2017春季新款美鞋"
+                    android:textColor="@color/blackColor" />
+
+                <TextView
+                    android:id="@+id/mPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/common5dp"
+                    android:text="¥ 199"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_size_16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mQuit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common5dp"
+                android:layout_marginTop="@dimen/common5dp"
+                android:background="@drawable/bg_theme_btn"
+                android:paddingBottom="@dimen/common2dp"
+                android:paddingLeft="@dimen/common10dp"
+                android:paddingRight="@dimen/common10dp"
+                android:paddingTop="@dimen/common2dp"
+                android:text="取消"
+                android:textColor="@color/whiteColor" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common1dp"
+            android:background="@color/bg_color" />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common1dp"
+            android:background="@color/bg_color" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/whiteColor"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/common10dp"
+        android:paddingLeft="@dimen/common20dp"
+        android:paddingRight="@dimen/common20dp"
+        android:paddingTop="@dimen/common10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_theme_btn"
+            android:gravity="center"
+            android:paddingBottom="@dimen/common5dp"
+            android:paddingLeft="@dimen/common15dp"
+            android:paddingRight="@dimen/common15dp"
+            android:paddingTop="@dimen/common5dp"
+            android:text="立即购买"
+            android:textColor="@color/whiteColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/common20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_theme_btn"
+            android:gravity="center"
+            android:paddingBottom="@dimen/common5dp"
+            android:paddingLeft="@dimen/common15dp"
+            android:paddingRight="@dimen/common15dp"
+            android:paddingTop="@dimen/common5dp"
+            android:text="加入购物车"
+            android:textColor="@color/whiteColor" />
+
+    </LinearLayout>
+
+</RelativeLayout>

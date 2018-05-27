@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -239,8 +240,40 @@ public class MainActivity extends AppCompatActivity  {
         mainRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                Drawable main_b = getResources().getDrawable(R.mipmap.shouye_b);
+                main_b.setBounds(0,0,main_b.getMinimumWidth(),main_b.getMinimumHeight());
+                Drawable main_a = getResources().getDrawable(R.mipmap.shouye_a);
+                main_a.setBounds(0,0,main_a.getMinimumWidth(),main_a.getMinimumHeight());
+
+                Drawable shop_a = getResources().getDrawable(R.mipmap.shangcheng_a);
+                shop_a.setBounds(0,0,shop_a.getMinimumWidth(),shop_a.getMinimumHeight());
+                Drawable shop_b = getResources().getDrawable(R.mipmap.shangcheng_b);
+                shop_b.setBounds(0,0,shop_b.getMinimumWidth(),shop_b.getMinimumHeight());
+
+                Drawable message_a = getResources().getDrawable(R.mipmap.email_a);
+                message_a.setBounds(0,0,message_a.getMinimumWidth(),message_a.getMinimumHeight());
+                Drawable message_b = getResources().getDrawable(R.mipmap.email_b);
+                message_b.setBounds(0,0,message_b.getMinimumWidth(),message_b.getMinimumHeight());
+
+                Drawable my_a = getResources().getDrawable(R.mipmap.geren_a);
+                my_a.setBounds(0,0,my_a.getMinimumWidth(),my_a.getMinimumHeight());
+                Drawable my_b = getResources().getDrawable(R.mipmap.geren_b);
+                my_b.setBounds(0,0,my_b.getMinimumWidth(),my_b.getMinimumHeight());
+
                 switch (checkedId) {
                     case R.id.main_rb_main:
+
+                        mainRbMain.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        mainRbMain.setCompoundDrawables(null,main_b,null,null);
+
+                        mainRbShop.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbShop.setCompoundDrawables(null,shop_a,null,null);
+
+                        mainRbMessage.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbMessage.setCompoundDrawables(null,message_a,null,null);
+
+                        mainRbMy.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbMy.setCompoundDrawables(null,my_a,null,null);
                         initFragment(1);
                         Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
@@ -266,6 +299,17 @@ public class MainActivity extends AppCompatActivity  {
 //                        });
                         break;
                     case R.id.main_rb_message:
+                        mainRbMain.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbMain.setCompoundDrawables(null,main_a,null,null);
+
+                        mainRbShop.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbShop.setCompoundDrawables(null,shop_a,null,null);
+
+                        mainRbMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        mainRbMessage.setCompoundDrawables(null,message_b,null,null);
+
+                        mainRbMy.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbMy.setCompoundDrawables(null,my_a,null,null);
                         initFragment(3);
                         Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
@@ -278,6 +322,14 @@ public class MainActivity extends AppCompatActivity  {
                         });
                         break;
                     case R.id.main_rb_my:
+                        mainRbMain.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbMain.setCompoundDrawables(null,main_a,null,null);
+                        mainRbShop.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbShop.setCompoundDrawables(null,shop_a,null,null);
+                        mainRbMessage.setTextColor(getResources().getColor(R.color.darkColor));
+                        mainRbMessage.setCompoundDrawables(null,message_a,null,null);
+                        mainRbMy.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        mainRbMy.setCompoundDrawables(null,my_b,null,null);
                         initFragment(4);
                         Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");

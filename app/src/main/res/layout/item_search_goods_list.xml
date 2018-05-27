@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mDetails"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/common8dp"
+    android:paddingBottom="@dimen/common8dp"
+    android:paddingLeft="@dimen/common15dp"
+    android:paddingRight="@dimen/common15dp">
+
+    <ImageView
+        android:id="@+id/mImg"
+        android:layout_width="@dimen/common100dp"
+        android:layout_height="@dimen/common100dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/text_pic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/common10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="这是商品名称"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:textSize="@dimen/text_size_16sp" />
+
+        <TextView
+            android:id="@+id/mPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="￥200"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+</LinearLayout>

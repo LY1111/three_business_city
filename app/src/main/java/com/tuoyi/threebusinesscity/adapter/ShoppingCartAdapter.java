@@ -87,92 +87,92 @@ public class ShoppingCartAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_shopping_cart_layout, parent, false);
-            holder = new ViewHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
-        final ShoppingCartBean shoppingCartBean = shoppingCartBeanList.get(position);
-        boolean choosed = shoppingCartBean.isChoosed();
-        if (choosed){
-            holder.ckOneChose.setChecked(true);
-        }else{
-            holder.ckOneChose.setChecked(false);
-        }
-        String attribute = shoppingCartBean.getAttribute();
-        if (!StringUtil.isEmpty(attribute)){
-            holder.tvCommodityAttr.setText(attribute);
-        }else{
-            holder.tvCommodityAttr.setText(shoppingCartBean.getDressSize()+"");
-        }
-        holder.tvCommodityName.setText(shoppingCartBean.getShoppingName());
-        holder.tvCommodityPrice.setText(shoppingCartBean.getPrice()+"");
-        holder.tvCommodityNum.setText(" X"+shoppingCartBean.getCount()+"");
-        holder.tvCommodityShowNum.setText(shoppingCartBean.getCount()+"");
-        ImageLoader.getInstance().displayImage(shoppingCartBean.getImageUrl(),holder.ivShowPic);
-        //单选框按钮
-        holder.ckOneChose.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        shoppingCartBean.setChoosed(((CheckBox) v).isChecked());
-                        checkInterface.checkGroup(position, ((CheckBox) v).isChecked());//向外暴露接口
-                    }
-                }
-        );
-        //增加按钮
-        holder.ivAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modifyCountInterface.doIncrease(position, holder.tvCommodityShowNum, holder.ckOneChose.isChecked());//暴露增加接口
-            }
-        });
-        //删减按钮
-        holder.ivSub.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                modifyCountInterface.doDecrease(position, holder.tvCommodityShowNum, holder.ckOneChose.isChecked());//暴露删减接口
-            }
-        });
-        //删除弹窗
-        holder.tvCommodityDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog alert = new AlertDialog.Builder(context).create();
-                alert.setTitle("操作提示");
-                alert.setMessage("您确定要将这些商品从购物车中移除吗？");
-                alert.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                return;
-                            }
-                        });
-                alert.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                modifyCountInterface.childDelete(position);//删除 目前只是从item中移除
-
-                            }
-                        });
-                alert.show();
-            }
-        });
-        //判断是否在编辑状态下
-        if (isShow) {
-            holder.tvCommodityName.setVisibility(View.VISIBLE);
-            holder.rlEdit.setVisibility(View.GONE);
-            holder.tvCommodityNum.setVisibility(View.VISIBLE);
-            holder.tvCommodityDelete.setVisibility(View.GONE);
-        } else {
-            holder.tvCommodityName.setVisibility(View.VISIBLE);
-            holder.rlEdit.setVisibility(View.VISIBLE);
-            holder.tvCommodityNum.setVisibility(View.GONE);
-            holder.tvCommodityDelete.setVisibility(View.VISIBLE);
-        }
+//        if (convertView == null) {
+//            convertView = LayoutInflater.from(context).ingouwucheflate(R.layout.item_shopping_cart_layout, parent, false);
+//            holder = new ViewHolder(convertView);
+//            convertView.setTag(holder);
+//        } else {
+//            holder = (ViewHolder) convertView.getTag();
+//        }
+//        final ShoppingCartBean shoppingCartBean = shoppingCartBeanList.get(position);
+//        boolean choosed = shoppingCartBean.isChoosed();
+//        if (choosed){
+//            holder.ckOneChose.setChecked(true);
+//        }else{
+//            holder.ckOneChose.setChecked(false);
+//        }
+//        String attribute = shoppingCartBean.getAttribute();
+//        if (!StringUtil.isEmpty(attribute)){
+//            holder.tvCommodityAttr.setText(attribute);
+//        }else{
+//            holder.tvCommodityAttr.setText(shoppingCartBean.getDressSize()+"");
+//        }
+//        holder.tvCommodityName.setText(shoppingCartBean.getShoppingName());
+//        holder.tvCommodityPrice.setText(shoppingCartBean.getPrice()+"");
+//        holder.tvCommodityNum.setText(" X"+shoppingCartBean.getCount()+"");
+//        holder.tvCommodityShowNum.setText(shoppingCartBean.getCount()+"");
+//        ImageLoader.getInstance().displayImage(shoppingCartBean.getImageUrl(),holder.ivShowPic);
+//        //单选框按钮
+//        holder.ckOneChose.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        shoppingCartBean.setChoosed(((CheckBox) v).isChecked());
+//                        checkInterface.checkGroup(position, ((CheckBox) v).isChecked());//向外暴露接口
+//                    }
+//                }
+//        );
+//        //增加按钮
+//        holder.ivAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                modifyCountInterface.doIncrease(position, holder.tvCommodityShowNum, holder.ckOneChose.isChecked());//暴露增加接口
+//            }
+//        });
+//        //删减按钮
+//        holder.ivSub.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                modifyCountInterface.doDecrease(position, holder.tvCommodityShowNum, holder.ckOneChose.isChecked());//暴露删减接口
+//            }
+//        });
+//        //删除弹窗
+//        holder.tvCommodityDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialog alert = new AlertDialog.Builder(context).create();
+//                alert.setTitle("操作提示");
+//                alert.setMessage("您确定要将这些商品从购物车中移除吗？");
+//                alert.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                return;
+//                            }
+//                        });
+//                alert.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+//                        new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                modifyCountInterface.childDelete(position);//删除 目前只是从item中移除
+//
+//                            }
+//                        });
+//                alert.show();
+//            }
+//        });
+//        //判断是否在编辑状态下
+//        if (isShow) {
+//            holder.tvCommodityName.setVisibility(View.VISIBLE);
+//            holder.rlEdit.setVisibility(View.GONE);
+//            holder.tvCommodityNum.setVisibility(View.VISIBLE);
+//            holder.tvCommodityDelete.setVisibility(View.GONE);
+//        } else {
+//            holder.tvCommodityName.setVisibility(View.VISIBLE);
+//            holder.rlEdit.setVisibility(View.VISIBLE);
+//            holder.tvCommodityNum.setVisibility(View.GONE);
+//            holder.tvCommodityDelete.setVisibility(View.VISIBLE);
+//        }
 
         return convertView;
     }

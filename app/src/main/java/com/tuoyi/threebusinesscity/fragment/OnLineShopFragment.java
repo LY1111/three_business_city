@@ -7,9 +7,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,8 +27,15 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.onLineShop.GoodsListActivity;
+import com.tuoyi.threebusinesscity.activity.onLineShop.SearchGoodsListActivity;
+import com.tuoyi.threebusinesscity.adapter.OnLineShopMenuAdapter;
 import com.tuoyi.threebusinesscity.bean.BannerBean;
 import com.tuoyi.threebusinesscity.bean.OnLineShopListBean;
+import com.tuoyi.threebusinesscity.bean.OnLineShopMenuBean;
+import com.tuoyi.threebusinesscity.util.FullyGridLayoutManager;
+import com.tuoyi.threebusinesscity.util.JumpUtil;
+import com.tuoyi.threebusinesscity.util.KeyBoardUtils;
 import com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.youth.banner.Banner;
@@ -99,6 +108,8 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     RushBuyCountDownTimerView timeView3;
     @BindView(R.id.timeView4)
     RushBuyCountDownTimerView timeView4;
+    @BindView(R.id.mainf_head_grid_list)
+    RecyclerView mainfHeadGridList;
     private View view;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -114,6 +125,11 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     private MyAdapter adapter;
     private List<OnLineShopListBean> beanList = new ArrayList<>();
     private OnLineShopListBean bean;
+    private OnLineShopMenuAdapter menuAdapter;
+    private List<OnLineShopMenuBean.DataBean> headGridList;
+    private int mPosition = 0;
+    private int mListType = 0;
+    private String sSearch;
 
     public static OnLineShopFragment newInstance() {
         OnLineShopFragment fragment = new OnLineShopFragment();
@@ -139,10 +155,52 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         timeView4.addTime(sum);
         timeView4.start();
 
+        mSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+//                    Toast.makeText(getContext(), "你点击了搜索键。。。。", Toast.LENGTH_SHORT).show();
+                    sSearch = mSearch.getText().toString().trim();
+                    if (!TextUtils.isEmpty(sSearch)) {
+                        mListType = 2;
+                        Bundle bundle = new Bundle();
+                        bundle.putString("search",sSearch);
+                        bundle.putString("s","搜索");
+                        JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
+                    } else {
+                        Toast.makeText(getContext(), "请输入后搜索商品", Toast.LENGTH_SHORT).show();
+                    }
+                    KeyBoardUtils.closeKeybord(mSearch, getContext());
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
         initLocation();
         initBanner();
+        initMenu();
         initData();
         return view;
+    }
+
+    /* 获取顶部分类 */
+    private void initMenu() {
+        OkGo.<String>post("http://sszl.tuoee.com/api/App/get_category")
+                .tag(this)
+                .params("num","10")
+                .params("page",1)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.d(TAG, "onSuccess: " + response.body());
+                        Gson gson = new Gson();
+                        OnLineShopMenuBean menuBean = gson.fromJson(response.body(),OnLineShopMenuBean.class);
+                        headGridList = menuBean.getData();
+                        initMenuList();
+                    }
+                });
     }
 
     /* 添加数据 */
@@ -165,6 +223,20 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             }
         });
         mRecycler.setLayoutManager(layoutManager);
+    }
+
+    /* 顶部广告 */
+    private void initMenuList() {
+        mainfHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 5));
+        menuAdapter = new OnLineShopMenuAdapter(getContext(),headGridList);
+        mainfHeadGridList.setAdapter(menuAdapter);
+        menuAdapter.setOnItemClickListener(new OnLineShopMenuAdapter.MyOnItemClickListener() {
+            @Override
+            public void OnItemClickListener(int position) {
+                mListType = 1;
+                mPosition = position;
+            }
+        });
     }
 
     /* banner广告 */
@@ -325,7 +397,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                         + aMapLocation.getErrorCode() + ", errInfo:"
                         + aMapLocation.getErrorInfo());
                 mLocation.setEnabled(true);
-                Toast.makeText(getContext(), "ErrCode:" + aMapLocation.getErrorCode() + "\n" + "errInfo:" + aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "ErrCode:" + aMapLocation.getErrorCode() + "\n" + "errInfo:" + aMapLocation.getErrorInfo(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -338,8 +410,10 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         }
     }
 
-    @OnClick({R.id.mLocation, R.id.mSort1, R.id.mSort2, R.id.mSort3, R.id.mSort4, R.id.mBaby, R.id.mElectric, R.id.mBeauty, R.id.mFood, R.id.mComputer, R.id.mPhone, R.id.mBook, R.id.mJewelry, R.id.mClothes, R.id.mFurniture, R.id.mImg1, R.id.mImg2, R.id.mImg3, R.id.mHandPick1, R.id.mHandPick2, R.id.mHandPick3, R.id.mHandPick4})
+    @OnClick({R.id.mLocation, R.id.mSort1, R.id.mSort2, R.id.mSort3, R.id.mSort4, R.id.mImg1, R.id.mImg2, R.id.mImg3, R.id.mHandPick1, R.id.mHandPick2, R.id.mHandPick3, R.id.mHandPick4})
     public void onViewClicked(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putString("s","分类");
         switch (view.getId()) {
             case R.id.mLocation:
                 mLocation.setEnabled(false);
@@ -351,32 +425,20 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 }
                 break;
             case R.id.mSort1:
+                bundle.putString("type","1");
+                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
                 break;
             case R.id.mSort2:
+                bundle.putString("type","2");
+                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
                 break;
             case R.id.mSort3:
+                bundle.putString("type","3");
+                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
                 break;
             case R.id.mSort4:
-                break;
-            case R.id.mBaby:
-                break;
-            case R.id.mElectric:
-                break;
-            case R.id.mBeauty:
-                break;
-            case R.id.mFood:
-                break;
-            case R.id.mComputer:
-                break;
-            case R.id.mPhone:
-                break;
-            case R.id.mBook:
-                break;
-            case R.id.mJewelry:
-                break;
-            case R.id.mClothes:
-                break;
-            case R.id.mFurniture:
+                bundle.putString("type","4");
+                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
                 break;
             case R.id.mImg1:
                 break;
@@ -394,6 +456,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 break;
         }
     }
+
 
 
     public class MyAdapter extends RecyclerView.Adapter {
