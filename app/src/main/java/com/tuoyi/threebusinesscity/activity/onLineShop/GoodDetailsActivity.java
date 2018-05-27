@@ -52,7 +52,8 @@ public class GoodDetailsActivity extends AppCompatActivity {
     @BindView(R.id.mFrame)
     FrameLayout mFrame;
     private String goods_id;//商品id
-    private String sNumber;//商品数量
+    private int number;//商品数量
+    private String sNumber;
     private List<String> images = new ArrayList<>();
 
     @Override
@@ -95,7 +96,8 @@ public class GoodDetailsActivity extends AppCompatActivity {
                             OnLineGoodsDetailsBean.DataBean.GoodsBean goodsBean = beanData.getGoods();
                            mName.setText(goodsBean.getName());
                            mPrice.setText(goodsBean.getPrice());
-                           mAll.setText(String.valueOf(goodsBean.getQuantity()));
+                           sNumber = String.valueOf(goodsBean.getQuantity());
+                           mAll.setText("库存 "+sNumber);
                         }
 
                         }
@@ -105,12 +107,25 @@ public class GoodDetailsActivity extends AppCompatActivity {
 
     @OnClick({R.id.mCollect, R.id.iv_sub, R.id.iv_add, R.id.mCar, R.id.mAddCar, R.id.mBuy})
     public void onViewClicked(View view) {
+        number = Integer.parseInt(mNumber.getText().toString());
         switch (view.getId()) {
             case R.id.mCollect:
                 break;
             case R.id.iv_sub:
+                if (number == 1){
+
+                }else {
+                    --number;
+                    mNumber.setText(String.valueOf(number));
+                }
                 break;
             case R.id.iv_add:
+                if (number == Integer.valueOf(sNumber)){
+
+                }else {
+                    ++number;
+                    mNumber.setText(String.valueOf(number));
+                }
                 break;
             case R.id.mCar:
                 JumpUtil.newInstance().jumpRight(this, ShoppingCartActivity.class);
