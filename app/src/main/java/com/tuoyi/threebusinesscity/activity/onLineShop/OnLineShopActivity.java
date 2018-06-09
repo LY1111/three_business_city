@@ -5,14 +5,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.andview.refreshview.utils.LogUtils;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.ViewPagerAdapter;
-import com.tuoyi.threebusinesscity.fragment.MyFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineCarFragment;
+import com.tuoyi.threebusinesscity.fragment.OnLineMyFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineSortFragment;
 
@@ -37,27 +39,50 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
     @BindView(R.id.tab_bottom)
     RadioGroup tabBottom;
     private ViewPagerAdapter mAdapter;
-    private FragmentManager fm;
     private Fragment fragment;
     private FragmentTransaction transaction;
     private List<Fragment> fragmentList = new ArrayList<>();
+    private String where;       //哪里来？
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_line_shop);
         ButterKnife.bind(this);
+        where = getIntent().getStringExtra("where");
+
         initView();
     }
+
+    /**
+     * back键监听
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        LogUtils.e("111111111111");
+        setResult(RESULT_OK);
+        finish();
+    }
+
 
     /* 初始化界面 */
     private void initView() {
         /* 底部导航 */
         tabBottom.setOnCheckedChangeListener(this);
         fragmentList = getFragments();
-        fm = getSupportFragmentManager();
-        transaction = fm.beginTransaction();
-        fragment = fragmentList.get(0);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
+        if (!TextUtils.isEmpty(where)) {
+            if ("detail".equals(where)) {
+                fragment = fragmentList.get(2);
+                mCar.setChecked(true);
+            }
+        } else {
+            fragment = fragmentList.get(0);
+        }
+
         transaction.replace(R.id.view_pager, fragment);
         transaction.commit();
     }
@@ -67,18 +92,14 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
         fragmentList.add(new OnLineShopFragment());
         fragmentList.add(new OnLineSortFragment());
         fragmentList.add(new OnLineCarFragment());
-        fragmentList.add(new MyFragment());
-//        fragmentList.add(new ExpressFragment());
-//        fragmentList.add(new RecruitFragment());
-//        fragmentList.add(new BidFragment());
-//        fragmentList.add(new CompanyFragment());
+        fragmentList.add(new OnLineMyFragment());
         return fragmentList;
     }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        fm = getSupportFragmentManager();
-        transaction = fm.beginTransaction();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
         switch (i) {
             case R.id.mMain:
                 fragment = fragmentList.get(0);

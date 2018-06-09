@@ -23,6 +23,7 @@ import com.tuoyi.threebusinesscity.bean.SearchGoodsListBean;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -78,7 +79,7 @@ public class SearchGoodsListActivity extends AppCompatActivity {
         }else if (s.equals("10分类")){
             mListType = 3;
             sort_id = getIntent().getExtras().getString("sort_id");
-            initData(sort_id);
+            initData1(sort_id);
         }
         initRefreshView();
     }
@@ -89,7 +90,45 @@ public class SearchGoodsListActivity extends AppCompatActivity {
     }
 
     /* 获取商品列表 */
-    private void initData(String t) {
+    private void initData1(final String t) {
+        OkGo.<String>post("http://sszl.tuoee.com/api/App/get_category_goods")
+                .tag(this)
+                .params("id",t)
+                .params("page",page)
+                .params("num",10)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.d(TAG, "onSuccess2222222: " + response.body());
+                        Gson gson = new Gson();
+                        SearchGoodsListBean bean = gson.fromJson(response.body(), SearchGoodsListBean.class);
+                        if (bean.getCode() == 200) {
+                            mRefreshView.setLoadComplete(false);
+                            if (page == 1){
+                                beanList = bean.getData();
+                            }else {
+                                beanList.addAll(bean.getData());
+                            }
+                            mRefreshView.stopRefresh();
+                            if (beanList != null) {
+                                mRecycler.setLayoutManager(new LinearLayoutManager(SearchGoodsListActivity.this));
+                                Collections.reverse(beanList);
+                                adapter = new SearchGoodsListAdapter(SearchGoodsListActivity.this, beanList);
+                                mRecycler.setAdapter(adapter);
+                            }else {
+                                ToastUtil.show(SearchGoodsListActivity.this,bean.getMessage());
+                            }
+                        } else {
+                            mRefreshView.setLoadComplete(true);
+                            ToastUtil.show(SearchGoodsListActivity.this, bean.getMessage());
+                        }
+
+                    }
+                });
+    }
+
+    /* 获取商品列表 */
+    private void initData(final String t) {
         OkGo.<String>post("http://sszl.tuoee.com/api/App/goods_type")
                 .tag(this)
                 .params("num","10")
@@ -98,7 +137,7 @@ public class SearchGoodsListActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        Log.d(TAG, "onSuccess: " + response.body());
+                        Log.d(TAG, "onSuccess11111: " + response.body());
                         Gson gson = new Gson();
                         SearchGoodsListBean bean = gson.fromJson(response.body(), SearchGoodsListBean.class);
                         if (bean.getCode() == 200) {

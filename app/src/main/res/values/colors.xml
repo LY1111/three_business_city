@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f68d00</color>
+    <color name="colorPrimary">#eb7400</color>
     <color name="colorPrimaryDark">#eb7400</color>
     <color name="colorAccent">#fe9d00</color>
+    
+    <color name="themeColor">#f68d00</color>
+    <color name="controlColor">#eb7400</color>
     <color name="whiteColor">#ffffff</color>
     <color name="whiteTwoColor">#f2f2f4</color>
     <color name="grayColor">#EAEAEA</color>
@@ -12,4 +15,7 @@
     <color name="gray_1">#d8d8d8</color>
     <color name="bg_color">#f4f4f4</color>
     <color name="gray_2">#FF868686</color>
+    <color name="tab_tv_nor">#797979</color>
+    <color name="btn_sign_out">#FE696B</color>
+    <color name="tab_tv_sel">#3399dd</color>
 </resources>

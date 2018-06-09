@@ -15,7 +15,7 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.onLineShop.GoodDetailsActivity;
 import com.tuoyi.threebusinesscity.bean.SearchGoodsListBean;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
-import com.tuoyi.threebusinesscity.util.ToastUtil;
+import com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView;
 
 import java.util.List;
 
@@ -32,6 +32,7 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
     public SearchGoodsListAdapter(Context context, List<SearchGoodsListBean.DataBean> beanList) {
         this.context = context;
         this.beanList = beanList;
+
     }
 
     @Override
@@ -52,7 +53,28 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final SearchGoodsListBean.DataBean bean = beanList.get(position);
         holder.mName.setText(bean.getName());
-        holder.mPrice.setText("￥" + bean.getPrice());
+        if (1==bean.getType()){
+            holder.timeView1.setVisibility(View.GONE);
+            holder.mPrice.setVisibility(View.GONE);
+            holder.integral.setText("积分："+bean.getPay_points());
+        }else if (2==bean.getType()){
+            holder.timeView1.setVisibility(View.GONE);
+            holder.mPrice.setText("￥" + bean.getPrice());
+            holder.integral.setText("+ "+bean.getPay_points()+"积分");
+        }else if (3==bean.getType()){
+            holder.timeView1.setVisibility(View.GONE);
+            holder.integral.setText("可得"+bean.getPay_points()+"积分");
+            holder.mPrice.setText("￥" + bean.getPrice());
+        }else {
+            holder.mPrice.setVisibility(View.GONE);
+            holder.integral.setText("积分："+bean.getPay_points());
+             /* 设置倒计时 单位秒 */
+            int sum = 6000;
+            holder.timeView1.addTime(sum);
+            holder.timeView1.start();
+        }
+
+
         Glide.with(context).load(IMGS + bean.getImage()).into(holder.mImg);
         holder.mDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,11 +93,13 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public View rootView;
-        public ImageView mImg;
-        public TextView mName;
-        public TextView mPrice;
-        public LinearLayout mDetails;
+        public  View                      rootView;
+        public  ImageView                 mImg;
+        public  TextView                  mName;
+        public  TextView                  mPrice;
+        public  LinearLayout              mDetails;
+        public  TextView                  integral;
+        private RushBuyCountDownTimerView timeView1;
 
         public ViewHolder(View rootView) {
             super(rootView);
@@ -83,7 +107,9 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
             this.mImg = (ImageView) rootView.findViewById(R.id.mImg);
             this.mName = (TextView) rootView.findViewById(R.id.mName);
             this.mPrice = (TextView) rootView.findViewById(R.id.mPrice);
+            this.integral = (TextView) rootView.findViewById(R.id.integral);
             this.mDetails = (LinearLayout) rootView.findViewById(R.id.mDetails);
+            this.timeView1=rootView.findViewById(R.id.timeView1);
         }
 
     }

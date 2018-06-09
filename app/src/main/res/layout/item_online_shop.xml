@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mDetail"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/common2dp"
+    android:paddingRight="@dimen/common2dp">
 
     <ImageView
         android:id="@+id/mPic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="@dimen/common10dp"
-        android:scaleType="fitXY"
+        android:layout_width="@dimen/common160dp"
+        android:layout_height="@dimen/common160dp"
+        android:layout_marginBottom="@dimen/common5dp"
+        android:layout_gravity="center"
         android:src="@drawable/text_pic" />
 
     <TextView
@@ -28,8 +29,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <!--<TextView-->
+        <!--android:id="@+id/mPoint"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/shape_main_btn_bg"-->
+        <!--android:paddingBottom="@dimen/common3dp"-->
+        <!--android:paddingLeft="@dimen/common8dp"-->
+        <!--android:paddingRight="@dimen/common8dp"-->
+        <!--android:paddingTop="@dimen/common3dp"-->
+        <!--android:text="积分：199"-->
+        <!--android:textColor="@color/whiteColor"-->
+        <!--android:textSize="@dimen/text_size_12sp" />-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/common3dp"-->
+        <!--android:layout_marginRight="@dimen/common3dp"-->
+        <!--android:text="+"-->
+        <!--android:textColor="@color/colorPrimary" />-->
+
         <TextView
-            android:id="@+id/mPoint"
+            android:id="@+id/mMoney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_main_btn_bg"
@@ -37,24 +59,10 @@
             android:paddingLeft="@dimen/common8dp"
             android:paddingRight="@dimen/common8dp"
             android:paddingTop="@dimen/common3dp"
-            android:text="积分：199"
+            android:text="199 元"
             android:textColor="@color/whiteColor"
-            android:textSize="@dimen/text_size_12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/common3dp"
-            android:layout_marginRight="@dimen/common3dp"
-            android:text="+"
-            android:textColor="@color/colorPrimary" />
-
-        <TextView
-            android:id="@+id/mMoney"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="299"
-            android:textColor="@color/colorPrimary" />
+            android:textSize="@dimen/text_size_12sp"
+            android:layout_marginBottom="@dimen/common10dp"/>
 
     </LinearLayout>
 </LinearLayout>

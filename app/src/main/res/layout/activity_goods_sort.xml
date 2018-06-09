@@ -25,9 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:padding="@dimen/common10dp"/>
+            android:padding="@dimen/common10dp" />
 
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common5dp"
+        android:background="#DCDBDB" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,32 +44,26 @@
             android:id="@+id/lv_menu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:background="#EDECEC" />
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="3.5"
             android:background="@color/whiteColor">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <ListView
-                    android:id="@+id/lv_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_titile"
+            <GridView
+                android:id="@+id/gv_home"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="#DCDBDB"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp" />
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:horizontalSpacing="@dimen/common7dp"
+                android:listSelector="#00000000"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/common2dp"
+                android:numColumns="3"/>
 
         </RelativeLayout>
     </LinearLayout>

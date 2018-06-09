@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -24,10 +25,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.onLineShop.OnLineShopActivity;
+import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
 import com.tuoyi.threebusinesscity.fragment.MessageFragment;
 import com.tuoyi.threebusinesscity.fragment.MyFragment;
@@ -35,6 +38,7 @@ import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
 import com.tuoyi.threebusinesscity.fragment.ShopFragment;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.vondear.rxtools.RxPermissionsTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -286,7 +290,10 @@ public class MainActivity extends AppCompatActivity  {
                         });
                         break;
                     case R.id.main_rb_shop:
-                        JumpUtil.newInstance().jumpRight(MainActivity.this, OnLineShopActivity.class);
+                        LogUtils.e("1111111111111");
+                        //JumpUtil.newInstance().jumpRight(MainActivity.this, OnLineShopActivity.class);
+                        Intent intent=new Intent(MainActivity.this,OnLineShopActivity.class);
+                        startActivityForResult(intent,1);
 //                        initFragment(2);
 //                        Glide.with(MainActivity.this).load(R.mipmap.gouwuche).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
 //                        mainRbSaoTv.setText("购物车");
@@ -322,32 +329,43 @@ public class MainActivity extends AppCompatActivity  {
                         });
                         break;
                     case R.id.main_rb_my:
-                        mainRbMain.setTextColor(getResources().getColor(R.color.darkColor));
-                        mainRbMain.setCompoundDrawables(null,main_a,null,null);
-                        mainRbShop.setTextColor(getResources().getColor(R.color.darkColor));
-                        mainRbShop.setCompoundDrawables(null,shop_a,null,null);
-                        mainRbMessage.setTextColor(getResources().getColor(R.color.darkColor));
-                        mainRbMessage.setCompoundDrawables(null,message_a,null,null);
-                        mainRbMy.setTextColor(getResources().getColor(R.color.colorPrimary));
-                        mainRbMy.setCompoundDrawables(null,my_b,null,null);
-                        initFragment(4);
-                        Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
-                        mainRbSaoTv.setText("扫一扫");
-                        mainRbSao.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                RxActivityTool.skipActivity(MainActivity.this, RegisterActivity.class);
-                                Toast.makeText(MainActivity.this, mainRbSaoTv.getText().toString(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                        if (!TextUtils.isEmpty( UserBean.getToken(MainActivity.this))){
+                            mainRbMain.setTextColor(getResources().getColor(R.color.darkColor));
+                            mainRbMain.setCompoundDrawables(null,main_a,null,null);
+                            mainRbShop.setTextColor(getResources().getColor(R.color.darkColor));
+                            mainRbShop.setCompoundDrawables(null,shop_a,null,null);
+                            mainRbMessage.setTextColor(getResources().getColor(R.color.darkColor));
+                            mainRbMessage.setCompoundDrawables(null,message_a,null,null);
+                            mainRbMy.setTextColor(getResources().getColor(R.color.colorPrimary));
+                            mainRbMy.setCompoundDrawables(null,my_b,null,null);
+                            initFragment(4);
+                            Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
+                            mainRbSaoTv.setText("扫一扫");
+                            mainRbSao.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    RxActivityTool.skipActivity(MainActivity.this, RegisterActivity.class);
+                                    Toast.makeText(MainActivity.this, mainRbSaoTv.getText().toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }else {
+                            RxActivityTool.skipActivityAndFinish(MainActivity.this, LoginActivity.class);
+                        }
+
                         break;
                 }
 
             }
         });
         mainRg.check(R.id.main_rb_main);
+    }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==1){
+                mainRbShop.setChecked(false);
+        }
     }
 
     /**

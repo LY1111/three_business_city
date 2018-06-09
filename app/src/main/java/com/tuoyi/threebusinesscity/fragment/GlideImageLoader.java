@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.tuoyi.threebusinesscity.url.Config;
 import com.youth.banner.loader.ImageLoaderInterface;
 
 import static com.tuoyi.threebusinesscity.url.Config.IMGS;

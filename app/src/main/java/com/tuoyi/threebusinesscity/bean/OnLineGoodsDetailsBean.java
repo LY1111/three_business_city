@@ -367,6 +367,16 @@ public class OnLineGoodsDetailsBean {
                 private String weight;
                 private String weight_prefix;
 
+                public boolean isCheck() {
+                    return isCheck;
+                }
+
+                public void setCheck(boolean check) {
+                    isCheck = check;
+                }
+
+                private boolean isCheck;
+
                 public int getOption_value_id() {
                     return option_value_id;
                 }

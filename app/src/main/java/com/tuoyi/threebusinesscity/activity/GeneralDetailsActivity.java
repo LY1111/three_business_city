@@ -22,7 +22,7 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.GeneralDetailsAdapter;
 import com.tuoyi.threebusinesscity.bean.GeneralDetailsBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
-import com.tuoyi.threebusinesscity.util.ImageUtil;
+import com.tuoyi.threebusinesscity.url.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,6 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.tuoyi.threebusinesscity.url.Config.IMGS;
-import static com.tuoyi.threebusinesscity.url.Config.S;
 
 /**
  * 普通类详情
@@ -77,7 +76,7 @@ public class GeneralDetailsActivity extends AppCompatActivity {
     }
 
     private void initOkGoList() {
-        OkGo.<String>post(S + "api/app/get_business_one")
+        OkGo.<String>post(Config.s + "api/app/get_business_one")
                 .tag(this)
                 .params("id", UserBean.getPosID(this))
                 .params("lng", UserBean.getLng(this))

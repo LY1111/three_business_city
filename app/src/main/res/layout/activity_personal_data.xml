@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f7f7"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="我的资料"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/leftBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="14dp"
+            android:src="@drawable/back"
+            android:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/personalData_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/personalData_image_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:text="头像"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/personalData_image"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:src="@color/colorPrimary"
+            app:civ_border_color="#FFFFFFFF"
+            app:civ_border_width="0dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="姓名"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/personalData_nickName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="姓名"
+            android:textSize="15sp"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="邮箱"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/personalData_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="邮箱"
+            android:textSize="15sp"
+            android:inputType="textWebEmailAddress"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="性别"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/personalData_sex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="性别"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="银行卡"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+      <!--  <TextView
+            android:id="@+id/personalData_birthday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="生日"
+            android:textSize="15sp"
+            android:inputType="datetime"
+            android:maxLength="14"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />-->
+
+        <EditText
+            android:id="@+id/Bank_card"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="银行卡号"
+            android:textSize="15sp"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="所在地"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/personalData_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="所在地"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="手机号码"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/personalData_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="手机号码"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:padding="3dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/personalData_getCode"
+            android:layout_width="88dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/bg_identify_code_normal"
+            android:paddingBottom="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="4dp"
+            android:text="获取验证码"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="验证码"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+
+        <EditText
+            android:id="@+id/personalData_VerificationCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="right|center_vertical"
+            android:hint="验证码"
+            android:inputType="number"
+            android:textSize="15sp"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:padding="3dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="1dp"
+        android:text="签名"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <EditText
+            android:id="@+id/personalData_sign"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="left"
+            android:hint="签名"
+            android:inputType="textMultiLine"
+            android:text=""
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+
+</LinearLayout>

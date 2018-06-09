@@ -20,10 +20,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.amap.api.location.AMapLocation;
-//import com.amap.api.location.AMapLocationClient;
-//import com.amap.api.location.AMapLocationClientOption;
-//import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -39,7 +35,6 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
-import com.tuoyi.threebusinesscity.activity.MainShopDetailsActivity;
 import com.tuoyi.threebusinesscity.adapter.MainBottomShopAdapter;
 import com.tuoyi.threebusinesscity.adapter.MainGridMenuAdapter;
 import com.tuoyi.threebusinesscity.adapter.NoticeMF;
@@ -47,8 +42,8 @@ import com.tuoyi.threebusinesscity.bean.BannerBean;
 import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
 import com.tuoyi.threebusinesscity.bean.MainGridMenuBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
+import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.FullyGridLayoutManager;
-import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.KeyBoardUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -64,7 +59,11 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-import static com.tuoyi.threebusinesscity.url.Config.S;
+//import com.amap.api.location.AMapLocation;
+//import com.amap.api.location.AMapLocationClient;
+//import com.amap.api.location.AMapLocationClientOption;
+//import com.amap.api.location.AMapLocationListener;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -181,7 +180,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     }
 
     private void okGoBanner() {
-        OkGo.<String>post(S + "api/app/link")
+        OkGo.<String>post(Config.s + "api/app/link")
                 .tag(this)
                 .execute(new StringCallback() {
                     @Override
@@ -206,7 +205,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
 
 
     private void initOkGoListTwo(String name) {
-        OkGo.<String>post(S + "api/app/search_business")
+        OkGo.<String>post(Config.s + "api/app/search_business")
                 .tag(this)
                 .params("name", name)
                 .params("page", pagenow)
@@ -230,7 +229,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                             }
                             mRefreshView.stopRefresh();
                         } else {
-//                            Toast.makeText(getContext(), shopBean.getMessage(), Toast.LENGTH_SHORT).show();
+                           Toast.makeText(getContext(), shopBean.getMessage(), Toast.LENGTH_SHORT).show();
                             if (pagenow == 1) {
                                 bottomShopList = new LinkedList<>();
                             }
@@ -243,7 +242,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     }
 
     private void okGoMenuList() {
-        OkGo.<String>post(S + "api/app/get_business_classification")
+        OkGo.<String>post(Config.s + "api/app/get_business_classification")
                 .tag(this)
                 .execute(new StringCallback() {
                     @Override
@@ -542,7 +541,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
     }
 
     private void initOkGoList(int pos) {
-        OkGo.<String>post(S + "api/app/get_business_all")
+        OkGo.<String>post(Config.s + "api/app/get_business_all")
                 .tag(this)
                 .params("id", headGridList.get(pos).getId())
                 .params("page", pagenow)
@@ -570,6 +569,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                             if (pagenow == 1) {
                                 bottomShopList = new LinkedList<>();
                             }
+//                            mRefreshView.stopLoadMore();
                             mRefreshView.setLoadComplete(true);
                         }
 

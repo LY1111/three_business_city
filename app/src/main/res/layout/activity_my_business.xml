@@ -128,7 +128,8 @@
                         android:drawableLeft="@mipmap/ic_login_et_password"
                         android:drawableTint="@color/darkColor"
                         android:hint="请再次输入密码"
-                        android:inputType="textPassword" />
+                        android:inputType="textPassword"
+                        />
                 </LinearLayout>
 
 
@@ -150,7 +151,8 @@
                         style="@style/editTextStyle"
                         android:drawableTint="@color/darkColor"
                         android:hint="请输入推荐人手机号"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        android:textColorHint="@color/gray"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -215,10 +217,10 @@
                     <EditText
                         android:id="@+id/mCardNum"
                         style="@style/editTextStyle"
-                        android:drawableTint="@color/darkColor"
                         android:hint="请输入农行卡号"
                         android:inputType="number"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColorHint="@color/gray"/>
                 </LinearLayout>
 
 
@@ -240,7 +242,8 @@
                         style="@style/editTextStyle"
                         android:drawableTint="@color/darkColor"
                         android:hint="与银行卡开户人姓名一致"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColorHint="@color/gray"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,7 +264,8 @@
                         style="@style/editTextStyle"
                         android:drawableTint="@color/darkColor"
                         android:hint="请输入店铺名称"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:textColorHint="@color/gray"/>
                 </LinearLayout>
 
                 <LinearLayout

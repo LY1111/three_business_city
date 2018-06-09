@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/mHandPick1_pic"
+        android:layout_width="@dimen/common100dp"
+        android:layout_height="@dimen/common100dp"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:id="@+id/mHandPick1_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="360手机 N6 Life 全网通..."
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:maxEms="8"
+        android:textSize="@dimen/text_size_12sp" />
+
+    <TextView
+        android:id="@+id/mHandPick1_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_main_btn_bg"
+        android:paddingBottom="@dimen/common2dp"
+        android:paddingLeft="@dimen/common8dp"
+        android:paddingRight="@dimen/common8dp"
+        android:paddingTop="@dimen/common2dp"
+        android:text="积分：199"
+        android:textColor="@color/whiteColor"
+        android:textSize="@dimen/text_size_12sp" />
+
+
+
+    <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
+        android:id="@+id/timeView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
+
+</LinearLayout>

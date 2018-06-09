@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--selector是按照item顺序来进行判断的，如果有一项符合则退出selector，
+    不再进行下面item项的判断。-->
+
+    <!--当控件不可点击时-->
+    <item android:state_enabled="false"
+        android:drawable="@drawable/shape_gray_radius5"/>
+
+    <!--控件“可点击”-->
+    <item android:state_pressed="false"
+        android:drawable="@drawable/shape_activity_color_radius5"/>
+
+    <!--控件点击时-->
+    <item android:state_pressed="true"
+        android:drawable="@drawable/shape_activity_color_radius5"/>
+</selector>

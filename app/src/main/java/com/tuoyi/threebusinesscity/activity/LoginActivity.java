@@ -17,13 +17,13 @@ import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.LoginBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
+import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.tuoyi.threebusinesscity.url.Config.S;
 
 /**
  * 登录
@@ -62,10 +62,10 @@ public class LoginActivity extends AppCompatActivity {
             case R.id.login_back:
                 break;
             case R.id.login_bt:
-                OkGo.<String>post(S + "api/Member/login")
+                OkGo.<String>post(Config.s + "api/Member/login")
                         .tag(this)
                         .params("telephone", loginPhone.getText().toString().trim())
-                        .params("password", "123456")
+                        .params("password", loginPassword.getText().toString().trim())
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
@@ -75,6 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (loginBean.getCode() == 200) {
                                     UserBean.setToken(LoginActivity.this, loginBean.getData().getToken());
                                     RxActivityTool.skipActivity(LoginActivity.this,MainActivity.class);
+                                    finish();
                                 }
                                 Toast.makeText(LoginActivity.this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
 //
@@ -85,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 RxActivityTool.skipActivity(this,RegisterActivity.class);
                 break;
             case R.id.login_forget:
+                RxActivityTool.skipActivity(this,ForgetPwdActivity.class);
                 break;
         }
     }

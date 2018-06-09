@@ -3,8 +3,10 @@ package com.tuoyi.threebusinesscity.base;
 import android.app.Application;
 import android.support.multidex.MultiDex;
 
+import com.mob.MobSDK;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.vondear.rxtools.RxTool;
 //import com.pgyersdk.crash.PgyCrashManager;
 
 /**
@@ -21,7 +23,7 @@ public class MyApplication extends Application {
         appContext = this;
 //        JPushInterface.setDebugMode(true);//极光推送测试
 //        JPushInterface.init(this);//极光推送
-//        RxTool.init(this);//工具包
+        RxTool.init(this);//工具包
         MultiDex.install(this);//兼容包
 //        PgyCrashManager.register(this);//蒲公英
         Logger.addLogAdapter(new AndroidLogAdapter() {
@@ -30,6 +32,8 @@ public class MyApplication extends Application {
                 return true;
             }
         });//json日志
+        //ShareSDK分享
+        MobSDK.init(this);
     }
 
     /**

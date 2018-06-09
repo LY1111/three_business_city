@@ -49,7 +49,7 @@
             android:id="@+id/mMine"
             style="@style/radioBtn"
             android:drawableTop="@drawable/select_main_menu_d"
-            android:text="我的" />
+            android:text="我的订单" />
 
     </RadioGroup>
 </RelativeLayout>

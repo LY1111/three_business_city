@@ -2,7 +2,6 @@ package com.tuoyi.threebusinesscity.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,10 +21,8 @@ import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.ShareBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
+import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.QRCodeUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,9 +32,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.tuoyi.threebusinesscity.url.Config.S;
 import static com.tuoyi.threebusinesscity.util.MyUtil.saveImageToGallery;
-import static com.tuoyi.threebusinesscity.util.QRCodeUtil.myColor;
 
 /**
  * 分享推荐
@@ -67,7 +62,7 @@ public class ShareActivity extends AppCompatActivity {
 
     //   获取二维码链接
     private void GetQRCodeLink() {
-        OkGo.<String>post(S + "api/AppProve/sharing_links")
+        OkGo.<String>post(Config.s + "api/AppProve/sharing_links")
                 .tag(this)
                 .params("token", UserBean.getToken(this))
                 .execute(new StringCallback() {

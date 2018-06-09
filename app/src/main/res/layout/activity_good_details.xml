@@ -172,12 +172,42 @@
 
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/ll_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/common4dp"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common8dp"
+                    android:layout_marginLeft="@dimen/common10dp"
+                    android:layout_marginTop="@dimen/common8dp"
+                    android:padding="@dimen/common5dp"
+                    android:text="规格"
+                    android:textColor="@color/blackColor"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/common8dp"
+                    android:layout_marginLeft="@dimen/common10dp"
+                    android:layout_marginTop="@dimen/common8dp"
+                    android:padding="@dimen/common5dp"
+                    android:text="选择 颜色 分类 样式..."
+                    android:textColor="@color/blackColor"/>
+            </LinearLayout>
+
             <RadioGroup
                 android:id="@+id/mRg"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/whiteColor"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/common8dp">
 
                 <RadioButton
                     android:id="@+id/mOne"
@@ -189,7 +219,7 @@
                     android:gravity="center"
                     android:text="图文详情"
                     android:textColor="@color/selector_black_theme" />
-
+<!--
                 <RadioButton
                     android:id="@+id/mTwo"
                     android:layout_width="@dimen/common0dp"
@@ -208,15 +238,21 @@
                     android:button="@null"
                     android:gravity="center"
                     android:text="商品评价"
-                    android:textColor="@color/selector_black_theme" />
+                    android:textColor="@color/selector_black_theme" />-->
 
 
             </RadioGroup>
 
-            <FrameLayout
+           <!-- <FrameLayout
                 android:id="@+id/mFrame"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content" />-->
+            <WebView
+                android:id="@+id/wv_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </WebView>
 
         </LinearLayout>
 
@@ -239,13 +275,14 @@
             android:layout_width="@dimen/common0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/themeColor"
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="@color/whiteColor" />
 
         <TextView
             android:id="@+id/mBuy"
+            android:visibility="gone"
             android:layout_width="@dimen/common0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

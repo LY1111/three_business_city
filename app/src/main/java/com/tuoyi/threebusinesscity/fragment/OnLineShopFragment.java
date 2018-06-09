@@ -22,27 +22,33 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
-import com.tuoyi.threebusinesscity.activity.onLineShop.GoodsListActivity;
+import com.tuoyi.threebusinesscity.activity.onLineShop.GoodDetailsActivity;
 import com.tuoyi.threebusinesscity.activity.onLineShop.SearchGoodsListActivity;
+import com.tuoyi.threebusinesscity.adapter.KillAdapter1;
 import com.tuoyi.threebusinesscity.adapter.OnLineShopMenuAdapter;
 import com.tuoyi.threebusinesscity.bean.BannerBean;
+import com.tuoyi.threebusinesscity.bean.KillBean;
+import com.tuoyi.threebusinesscity.bean.OnLineShopAdBean;
 import com.tuoyi.threebusinesscity.bean.OnLineShopListBean;
 import com.tuoyi.threebusinesscity.bean.OnLineShopMenuBean;
 import com.tuoyi.threebusinesscity.util.FullyGridLayoutManager;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.KeyBoardUtils;
-import com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
+import com.tuoyi.threebusinesscity.widget.AutoLinearLayoutManager;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +56,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+
+import static android.widget.LinearLayout.HORIZONTAL;
+import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 
 /**
  * Created by glp on 2018/5/15.
@@ -61,26 +70,26 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     private static final String TAG = "线上商城";
     Unbinder unbinder;
     @BindView(R.id.mLocation_tv)
-    TextView mLocationTv;
+    TextView  mLocationTv;
     @BindView(R.id.mSearch)
-    EditText mSearch;
-    @BindView(R.id.mBanner)
-    Banner mBanner;
+    EditText  mSearch;
+    @BindView(R.id.mBanner1)
+    Banner    mBanner1;
     @BindView(R.id.mImg1)
     ImageView mImg1;
     @BindView(R.id.mImg2)
     ImageView mImg2;
     @BindView(R.id.mImg3)
     ImageView mImg3;
-    @BindView(R.id.mHandPick1_pic)
+  /*  @BindView(R.id.mHandPick1_pic)
     ImageView mHandPick1Pic;
     @BindView(R.id.mHandPick1_text)
-    TextView mHandPick1Text;
+    TextView  mHandPick1Text;
     @BindView(R.id.mHandPick1_point)
-    TextView mHandPick1Point;
-    @BindView(R.id.timeView1)
-    RushBuyCountDownTimerView timeView1;
-    @BindView(R.id.mHandPick2_pic)
+    TextView  mHandPick1Point;*/
+    /* @BindView(R.id.timeView1)
+     RushBuyCountDownTimerView timeView1;*/
+  /*  @BindView(R.id.mHandPick2_pic)
     ImageView mHandPick2Pic;
     @BindView(R.id.mHandPick2_text)
     TextView mHandPick2Text;
@@ -96,20 +105,22 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     ImageView mHandPick4Pic;
     @BindView(R.id.mHandPick4_text)
     TextView mHandPick4Text;
-    @BindView(R.id.mHandPick4_point)
+    @BindView(R.id.mHandPick4_point)*/
     TextView mHandPick4Point;
     @BindView(R.id.mRecycler)
     RecyclerView mRecycler;
     @BindView(R.id.mLocation)
     LinearLayout mLocation;
-    @BindView(R.id.timeView2)
-    RushBuyCountDownTimerView timeView2;
-    @BindView(R.id.timeView3)
-    RushBuyCountDownTimerView timeView3;
-    @BindView(R.id.timeView4)
-    RushBuyCountDownTimerView timeView4;
+    /* @BindView(R.id.timeView2)
+     RushBuyCountDownTimerView timeView2;
+     @BindView(R.id.timeView3)
+     RushBuyCountDownTimerView timeView3;
+     @BindView(R.id.timeView4)
+     RushBuyCountDownTimerView timeView4;*/
     @BindView(R.id.mainf_head_grid_list)
     RecyclerView mainfHeadGridList;
+    @BindView(R.id.integral_recyclerView)
+    RecyclerView integral_recyclerView;
     private View view;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -123,13 +134,17 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     private List<String> images = new ArrayList<>();
 
     private MyAdapter adapter;
-    private List<OnLineShopListBean> beanList = new ArrayList<>();
-    private OnLineShopListBean bean;
-    private OnLineShopMenuAdapter menuAdapter;
+    private List<OnLineShopListBean.DataBean> beanList = new ArrayList<>();
+    private OnLineShopListBean                bean;
+    private OnLineShopMenuAdapter             menuAdapter;
     private List<OnLineShopMenuBean.DataBean> headGridList;
     private int mPosition = 0;
     private int mListType = 0;
     private String sSearch;
+    private String sImg_id;//积分活动点击id
+    private List<OnLineShopAdBean.DataBean> dataBean     = new ArrayList<>();
+    private List<KillBean.DataBean>         killbeanList = new ArrayList<>();
+    private KillAdapter1 mKillAdapter1;
 
     public static OnLineShopFragment newInstance() {
         OnLineShopFragment fragment = new OnLineShopFragment();
@@ -144,8 +159,9 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         }
         unbinder = ButterKnife.bind(this, view);
         mRecycler.setNestedScrollingEnabled(false);
+        integral_recyclerView.setNestedScrollingEnabled(false);
         /* 设置倒计时 单位秒 */
-        int sum = 6000;
+      /*  int sum = 6000;
         timeView1.addTime(sum);
         timeView1.start();
         timeView2.addTime(sum);
@@ -153,7 +169,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         timeView3.addTime(sum);
         timeView3.start();
         timeView4.addTime(sum);
-        timeView4.start();
+        timeView4.start();*/
 
         mSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -164,9 +180,9 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                     if (!TextUtils.isEmpty(sSearch)) {
                         mListType = 2;
                         Bundle bundle = new Bundle();
-                        bundle.putString("search",sSearch);
-                        bundle.putString("s","搜索");
-                        JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
+                        bundle.putString("search", sSearch);
+                        bundle.putString("s", "搜索");
+                        JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                     } else {
                         Toast.makeText(getContext(), "请输入后搜索商品", Toast.LENGTH_SHORT).show();
                     }
@@ -182,21 +198,127 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         initBanner();
         initMenu();
         initData();
+        initAd();
+        initKill();
         return view;
+    }
+
+    /* 积分秒杀前4个 */
+    private void initKill() {
+        OkGo.<String>post("http://sszl.tuoee.com/api/App/get_integral_second_kill")
+                .tag(this)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.i(TAG, "onSuccess积分秒杀: " + response.body());
+                        Gson gson = new Gson();
+                        KillBean bean = gson.fromJson(response.body(), KillBean.class);
+                        if (bean.getCode() == 200) {
+                            killbeanList = bean.getData();
+                           /* Glide.with(getContext()).load(IMGS + killbeanList.get(0).getImage()).into(mHandPick1Pic);
+                            mHandPick1Text.setText(killbeanList.get(0).getName());
+                            mHandPick1Point.setText("积分" + killbeanList.get(0).getPrice());
+
+                            Glide.with(getContext()).load(IMGS + killbeanList.get(1).getImage()).into(mHandPick2Pic);
+                            mHandPick2Text.setText(killbeanList.get(1).getName());
+                            mHandPick2Point.setText("积分" + killbeanList.get(1).getPrice());
+
+                            Glide.with(getContext()).load(IMGS + killbeanList.get(2).getImage()).into(mHandPick3Pic);
+                            mHandPick3Text.setText(killbeanList.get(2).getName());
+                            mHandPick3Point.setText("积分" + killbeanList.get(2).getPrice());
+
+                            Glide.with(getContext()).load(IMGS + killbeanList.get(3).getImage()).into(mHandPick4Pic);
+                            mHandPick4Text.setText(killbeanList.get(3).getName());
+                            mHandPick4Point.setText("积分" + killbeanList.get(3).getPrice());*/
+
+                            AutoLinearLayoutManager manager=new AutoLinearLayoutManager(getActivity(),HORIZONTAL,false);
+                            integral_recyclerView.setLayoutManager(manager);
+                            Collections.reverse(killbeanList);
+                            mKillAdapter1=new KillAdapter1(R.layout.item_receive,killbeanList);
+                            integral_recyclerView.setAdapter(mKillAdapter1);
+                            mKillAdapter1.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("goods_id", killbeanList.get(position).getGoods_id()+"");
+                                    JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
+                                }
+                            });
+                        } else {
+                            ToastUtil.show(getContext(), bean.getMessage());
+                        }
+                    }
+                });
+    }
+
+    /* 获取积分活动-3张图 */
+    private void initAd() {
+        OkGo.<String>post("http://sszl.tuoee.com/api/App/get_ad")
+                .tag(this)
+                .params("num", "10")
+                .params("page", 1)
+                .params("type", 1)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.i(TAG, "onSuccess积分活动: " + response.body());
+                        Gson gson = new Gson();
+                        OnLineShopAdBean bean = gson.fromJson(response.body(), OnLineShopAdBean.class);
+                        if (bean.getCode() == 200) {
+                            dataBean = bean.getData();
+                            Glide.with(getActivity()).load(IMGS + dataBean.get(0).getPicurl()).into(mImg1);
+                            Glide.with(getActivity()).load(IMGS + dataBean.get(1).getPicurl()).into(mImg2);
+                            Glide.with(getActivity()).load(IMGS + dataBean.get(2).getPicurl()).into(mImg3);
+                            initAdClick();
+                        } else {
+                            ToastUtil.show(getContext(), bean.getMessage());
+                        }
+                    }
+                });
+    }
+
+    /* 积分活动点击 跳转到商品详情*/
+    private void initAdClick() {
+        final Bundle bundle = new Bundle();
+        mImg1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: ======"+dataBean.get(0).getValue());
+                sImg_id = dataBean.get(0).getValue();
+                bundle.putString("goods_id", sImg_id);
+                JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
+            }
+        });
+        mImg2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sImg_id = dataBean.get(1).getValue();
+                bundle.putString("goods_id", sImg_id);
+                JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
+            }
+        });
+        mImg3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sImg_id = dataBean.get(2).getValue();
+                bundle.putString("goods_id", sImg_id);
+                JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
+            }
+        });
     }
 
     /* 获取顶部分类 */
     private void initMenu() {
         OkGo.<String>post("http://sszl.tuoee.com/api/App/get_category")
                 .tag(this)
-                .params("num","10")
-                .params("page",1)
+                .params("num", "10")
+                .params("page", 1)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         Log.d(TAG, "onSuccess: " + response.body());
                         Gson gson = new Gson();
-                        OnLineShopMenuBean menuBean = gson.fromJson(response.body(),OnLineShopMenuBean.class);
+                        OnLineShopMenuBean menuBean = gson.fromJson(response.body(), OnLineShopMenuBean.class);
                         headGridList = menuBean.getData();
                         initMenuList();
                     }
@@ -205,30 +327,42 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
 
     /* 添加数据 */
     private void initData() {
-        for (int i = 0; i < 10; i++) {
-            bean = new OnLineShopListBean();
-            bean.setPic(R.mipmap.ic_launcher);
-            bean.setMoney("199");
-            bean.setName("这是一个超级好的商品名");
-            bean.setPoint("积分：123");
-            beanList.add(bean);
-        }
-        adapter = new MyAdapter(beanList);
-        mRecycler.setAdapter(adapter);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
-        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return adapter.isHeader(position) ? layoutManager.getSpanCount() : 1;
-            }
-        });
-        mRecycler.setLayoutManager(layoutManager);
+        OkGo.<String>post("http://sszl.tuoee.com/api/App/get_latest_goods")
+                .tag(this)
+                .params("num", "10")
+                .params("page", "1")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Log.e(TAG, "onSuccess: " + response.body());
+                        Gson gson = new Gson();
+                        OnLineShopListBean goodsList = gson.fromJson(response.body(), OnLineShopListBean.class);
+                        if (goodsList.getCode() == 200) {
+                            beanList = goodsList.getData();
+                            adapter = new MyAdapter(beanList);
+                            mRecycler.setAdapter(adapter);
+                            final GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+                            layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                                @Override
+                                public int getSpanSize(int position) {
+                                    return adapter.isHeader(position) ? layoutManager.getSpanCount() : 1;
+                                }
+                            });
+                            mRecycler.setLayoutManager(layoutManager);
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtil.show(getContext(), goodsList.getMessage());
+                        }
+                    }
+                });
+
     }
 
     /* 顶部广告 */
     private void initMenuList() {
         mainfHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 5));
-        menuAdapter = new OnLineShopMenuAdapter(getContext(),headGridList);
+
+        menuAdapter = new OnLineShopMenuAdapter(getContext(), headGridList);
         mainfHeadGridList.setAdapter(menuAdapter);
         menuAdapter.setOnItemClickListener(new OnLineShopMenuAdapter.MyOnItemClickListener() {
             @Override
@@ -257,8 +391,9 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                                 for (int i = 0; i < bannerBean.getData().size(); i++) {
                                     images.add(data.get(i).getPicurl());
                                 }
+                                initBanner2();
                             }
-                            initBanner2();
+
                         }
                     }
                 });
@@ -269,12 +404,12 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
      */
     private void initBanner2() {
         //设置图片加载器
-        mBanner.setImageLoader(new GlideImageLoader());
+        mBanner1.setImageLoader(new GlideImageLoader());
         //设置图片集合
-        mBanner.setImages(images);
+        mBanner1.setImages(images);
         //banner设置方法全部调用完毕时最后调用
-        mBanner.start();
-        mBanner.setOnBannerListener(new OnBannerListener() {
+        mBanner1.start();
+        mBanner1.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
             }
@@ -410,10 +545,10 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         }
     }
 
-    @OnClick({R.id.mLocation, R.id.mSort1, R.id.mSort2, R.id.mSort3, R.id.mSort4, R.id.mImg1, R.id.mImg2, R.id.mImg3, R.id.mHandPick1, R.id.mHandPick2, R.id.mHandPick3, R.id.mHandPick4})
+    @OnClick({R.id.mLocation, R.id.mSort1, R.id.mSort2, R.id.mSort3, R.id.mSort4})
     public void onViewClicked(View view) {
         Bundle bundle = new Bundle();
-        bundle.putString("s","分类");
+        bundle.putString("s", "分类");
         switch (view.getId()) {
             case R.id.mLocation:
                 mLocation.setEnabled(false);
@@ -425,49 +560,34 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 }
                 break;
             case R.id.mSort1:
-                bundle.putString("type","1");
-                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
+                bundle.putString("type", "1");
+                JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                 break;
             case R.id.mSort2:
-                bundle.putString("type","2");
-                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
+                bundle.putString("type", "2");
+                JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                 break;
             case R.id.mSort3:
-                bundle.putString("type","3");
-                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
+                bundle.putString("type", "3");
+                JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                 break;
             case R.id.mSort4:
-                bundle.putString("type","4");
-                JumpUtil.newInstance().jumpRight(getContext(),SearchGoodsListActivity.class,bundle);
-                break;
-            case R.id.mImg1:
-                break;
-            case R.id.mImg2:
-                break;
-            case R.id.mImg3:
-                break;
-            case R.id.mHandPick1:
-                break;
-            case R.id.mHandPick2:
-                break;
-            case R.id.mHandPick3:
-                break;
-            case R.id.mHandPick4:
+                bundle.putString("type", "4");
+                JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                 break;
         }
     }
 
 
-
     public class MyAdapter extends RecyclerView.Adapter {
         //先定义两个ItemViewType，0代表头，1代表表格中间的部分
         private static final int ITEM_VIEW_TYPE_HEADER = 0;
-        private static final int ITEM_VIEW_TYPE_ITEM = 1;
+        private static final int ITEM_VIEW_TYPE_ITEM   = 1;
         //数据源
-        private List<OnLineShopListBean> dataList;
+        private List<OnLineShopListBean.DataBean> dataList;
 
         //构造函数
-        public MyAdapter(List<OnLineShopListBean> dataList) {
+        public MyAdapter(List<OnLineShopListBean.DataBean> dataList) {
             this.dataList = dataList;
         }
 
@@ -501,14 +621,16 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             } else {
                 //其他条目中的逻辑在此
                 ((BodyViewHolder) viewHolder).getTextView().setText(dataList.get(position - 1).getName());
-                ((BodyViewHolder) viewHolder).getIv().setImageResource(dataList.get(position - 1).getPic());
-                ((BodyViewHolder) viewHolder).getmPoint().setText(dataList.get(position - 1).getPoint());
-                ((BodyViewHolder) viewHolder).getmMoney().setText(dataList.get(position - 1).getMoney());
+                Glide.with(getContext()).load(IMGS + dataList.get(position - 1).getImage()).into(((BodyViewHolder) viewHolder).getIv());
+//                ((BodyViewHolder) viewHolder).getmPoint().setText(dataList.get(position - 1).getPoint());
+                ((BodyViewHolder) viewHolder).getmMoney().setText("¥"+dataList.get(position - 1).getPrice());
                 ((BodyViewHolder) viewHolder).getmDetail().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ToastUtil.show(getContext(), "点击了" + position);
-//                        JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class);
+//                        ToastUtil.show(getContext(), "点击了" + position);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("goods_id", String.valueOf(dataList.get(position - 1).getGoods_id()));
+                        JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
                     }
                 });
             }
@@ -556,17 +678,17 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
          * 给GridView中的条目用的ViewHolder，里面只有一个TextView
          */
         public class BodyViewHolder extends RecyclerView.ViewHolder {
-            private TextView textView;
-            private ImageView iv;
-            private TextView mPoint;
-            private TextView mMoney;
+            private TextView     textView;
+            private ImageView    iv;
+            //            private TextView mPoint;
+            private TextView     mMoney;
             private LinearLayout mDetail;
 
             public BodyViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView.findViewById(R.id.mMoney);
                 iv = itemView.findViewById(R.id.mPic);
-                mPoint = itemView.findViewById(R.id.mPoint);
+//                mPoint = itemView.findViewById(R.id.mPoint);
                 mMoney = itemView.findViewById(R.id.mMoney);
                 mDetail = itemView.findViewById(R.id.mDetail);
             }
@@ -583,9 +705,9 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 return iv;
             }
 
-            public TextView getmPoint() {
-                return mPoint;
-            }
+//            public TextView getmPoint() {
+//                return mPoint;
+//            }
 
             public TextView getmMoney() {
                 return mMoney;

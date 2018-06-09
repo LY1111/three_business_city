@@ -12,7 +12,7 @@ public class SearchGoodsListBean {
      * status : 1
      * code : 200
      * message : 成功
-     * data : [{"goods_id":1,"name":"艺创 青花甜白三才大盖碗功夫茶具敬茶陶瓷泡茶器","price":"49.00","image":"images/osc1/1/1.jpg"},{"goods_id":2,"name":"艺创 青花甜白功夫茶具小品茗茶杯陶瓷茶盏瓷杯主人杯6个","price":"79.00","image":"images/osc1/2/2.jpg"},{"goods_id":3,"name":"艺创 青花甜白功夫茶具配件 公道杯茶海分茶器陶瓷","price":"39.00","image":"images/osc1/3/2.jpg"},{"goods_id":4,"name":"艺创 青花甜白功夫茶具陶瓷配件 茶叶过滤网隔茶渣网","price":"30.00","image":"images/osc1/4/1.jpg"},{"goods_id":6,"name":"艺创 品茗杯陶瓷功夫茶具 定窑白荷花大号茶个人主人杯","price":"39.00","image":"images/osc1/6/1.jpg"},{"goods_id":7,"name":"艺创 个人杯 品茗杯 功夫茶具茶杯 手拉坯柴烧","price":"30.00","image":"images/osc1/7/1.jpg"},{"goods_id":9,"name":"艺创 定窑白瓷手绘胭红整套功夫茶具陶瓷 盖碗 茶杯套组","price":"198.00","image":"images/osc1/9/1.jpg"},{"goods_id":10,"name":"艺创 定窑白瓷手绘山水整套功夫茶具 盖碗 茶杯套组","price":"158.00","image":"images/osc1/10/1.jpg"},{"goods_id":11,"name":"艺创 手工制作粗陶柴烧整套功夫木柄茶具 陶瓷 侧把 壶承礼盒","price":"450.00","image":"images/osc1/11/1.jpg"},{"goods_id":12,"name":"艺创 青花白瓷手绘荷花整套功夫茶具陶瓷 盖碗 茶杯创意礼盒","price":"168.00","image":"images/osc1/12/1.jpg"}]
+     * data : [{"goods_id":4,"name":"艺创 青花甜白功夫茶具陶瓷配件 茶叶过滤网隔茶渣网","price":"30.00","pay_points":5000,"points":50,"seckill_price":"0.00","seckill_pay_points":0,"type":1,"image":"images/osc1/4/1.jpg"},{"goods_id":8,"name":"青瓷手绘荷花陶瓷茶叶罐 储物罐 瓷罐 收纳罐","price":"58.00","pay_points":5000,"points":50,"seckill_price":"0.00","seckill_pay_points":0,"type":1,"image":"images/osc1/8/1.jpg"},{"goods_id":12,"name":"艺创 青花白瓷手绘荷花整套功夫茶具陶瓷 盖碗 茶杯创意礼盒","price":"168.00","pay_points":5000,"points":50,"seckill_price":"60.00","seckill_pay_points":10,"type":1,"image":"images/osc1/12/1.jpg"}]
      */
 
     private int status;
@@ -54,15 +54,25 @@ public class SearchGoodsListBean {
 
     public static class DataBean {
         /**
-         * goods_id : 1
-         * name : 艺创 青花甜白三才大盖碗功夫茶具敬茶陶瓷泡茶器
-         * price : 49.00
-         * image : images/osc1/1/1.jpg
+         * goods_id : 4
+         * name : 艺创 青花甜白功夫茶具陶瓷配件 茶叶过滤网隔茶渣网
+         * price : 30.00
+         * pay_points : 5000
+         * points : 50
+         * seckill_price : 0.00
+         * seckill_pay_points : 0
+         * type : 1
+         * image : images/osc1/4/1.jpg
          */
 
         private int goods_id;
         private String name;
         private String price;
+        private int pay_points;
+        private int points;
+        private String seckill_price;
+        private int seckill_pay_points;
+        private int type;
         private String image;
 
         public int getGoods_id() {
@@ -87,6 +97,46 @@ public class SearchGoodsListBean {
 
         public void setPrice(String price) {
             this.price = price;
+        }
+
+        public int getPay_points() {
+            return pay_points;
+        }
+
+        public void setPay_points(int pay_points) {
+            this.pay_points = pay_points;
+        }
+
+        public int getPoints() {
+            return points;
+        }
+
+        public void setPoints(int points) {
+            this.points = points;
+        }
+
+        public String getSeckill_price() {
+            return seckill_price;
+        }
+
+        public void setSeckill_price(String seckill_price) {
+            this.seckill_price = seckill_price;
+        }
+
+        public int getSeckill_pay_points() {
+            return seckill_pay_points;
+        }
+
+        public void setSeckill_pay_points(int seckill_pay_points) {
+            this.seckill_pay_points = seckill_pay_points;
+        }
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
         }
 
         public String getImage() {

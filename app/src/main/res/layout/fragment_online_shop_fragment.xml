@@ -90,7 +90,7 @@
             android:orientation="vertical">
 
             <com.youth.banner.Banner
-                android:id="@+id/mBanner"
+                android:id="@+id/mBanner1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/common150dp"
                 app:image_scale_type="fit_xy" />
@@ -100,11 +100,12 @@
                 android:layout_height="wrap_content"
                 android:background="@color/whiteColor"
                 android:orientation="vertical"
+                android:paddingBottom="@dimen/common5dp"
                 android:paddingTop="@dimen/common10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/common80dp"
+                    android:layout_height="@dimen/common70dp"
                     android:layout_marginBottom="@dimen/common5dp"
                     android:orientation="horizontal">
 
@@ -113,8 +114,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/common15dp"
-                        android:layout_marginRight="@dimen/common2dp"
+                        android:layout_marginRight="@dimen/common5dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/on1" />
 
@@ -125,6 +127,7 @@
                         android:layout_marginLeft="@dimen/common2dp"
                         android:layout_marginRight="@dimen/common15dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/on2" />
 
@@ -132,7 +135,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/common80dp"
+                    android:layout_height="@dimen/common70dp"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -140,8 +143,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/common15dp"
-                        android:layout_marginRight="@dimen/common2dp"
+                        android:layout_marginRight="@dimen/common5dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/on3" />
 
@@ -152,6 +156,7 @@
                         android:layout_marginLeft="@dimen/common2dp"
                         android:layout_marginRight="@dimen/common15dp"
                         android:layout_weight="1"
+                        android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         android:src="@drawable/on4" />
 
@@ -163,10 +168,10 @@
                 android:id="@+id/mainf_head_grid_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common8dp"
                 android:background="@color/whiteColor"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
-                android:layout_marginTop="@dimen/common8dp"
                 android:scrollbars="none" />
 
             <!--<LinearLayout-->
@@ -321,14 +326,14 @@
 
                     <ImageView
                         android:id="@+id/mImg1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:scaleType="fitXY"
                         android:src="@drawable/text_pic" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/common5dp"
                         android:layout_weight="1"
@@ -340,7 +345,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/common2dp"
                             android:layout_weight="1"
-                            android:scaleType="fitXY"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/text_pic" />
 
                         <ImageView
@@ -349,7 +354,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/common2dp"
                             android:layout_weight="1"
-                            android:scaleType="fitXY"
+                            android:scaleType="centerCrop"
                             android:src="@drawable/text_pic" />
 
                     </LinearLayout>
@@ -363,7 +368,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/common5dp"
                 android:background="@color/whiteColor"
                 android:orientation="vertical">
 
@@ -375,210 +379,15 @@
                     android:text="积分秒杀"
                     android:textColor="@color/colorPrimary" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingBottom="@dimen/common15dp"
-                    android:paddingLeft="@dimen/common15dp"
-                    android:paddingRight="@dimen/common15dp"
-                    android:paddingTop="@dimen/common15dp">
-
-                    <LinearLayout
-                        android:id="@+id/mHandPick1"
-                        android:layout_width="@dimen/common0dp"
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/integral_recyclerView"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:paddingBottom="@dimen/common15dp"
+                        android:paddingLeft="@dimen/common15dp"
+                        android:paddingRight="@dimen/common15dp">
 
-                        <ImageView
-                            android:id="@+id/mHandPick1_pic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/mHandPick1_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="360手机 N6 Life 全网通..."
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <TextView
-                            android:id="@+id/mHandPick1_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_main_btn_bg"
-                            android:paddingBottom="@dimen/common2dp"
-                            android:paddingLeft="@dimen/common8dp"
-                            android:paddingRight="@dimen/common8dp"
-                            android:paddingTop="@dimen/common2dp"
-                            android:text="积分：199"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="@dimen/text_size_12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="秒杀倒计时"
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                            android:id="@+id/timeView1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mHandPick2"
-                        android:layout_width="@dimen/common0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/mHandPick2_pic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/mHandPick2_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="360手机 N6 Life 全网通..."
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <TextView
-                            android:id="@+id/mHandPick2_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_main_btn_bg"
-                            android:paddingBottom="@dimen/common2dp"
-                            android:paddingLeft="@dimen/common8dp"
-                            android:paddingRight="@dimen/common8dp"
-                            android:paddingTop="@dimen/common2dp"
-                            android:text="积分：199"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="@dimen/text_size_12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="秒杀倒计时"
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                            android:id="@+id/timeView2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mHandPick3"
-                        android:layout_width="@dimen/common0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/mHandPick3_pic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/mHandPick3_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="360手机 N6 Life 全网通..."
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <TextView
-                            android:id="@+id/mHandPick3_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_main_btn_bg"
-                            android:paddingBottom="@dimen/common2dp"
-                            android:paddingLeft="@dimen/common8dp"
-                            android:paddingRight="@dimen/common8dp"
-                            android:paddingTop="@dimen/common2dp"
-                            android:text="积分：199"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="@dimen/text_size_12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="秒杀倒计时"
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                            android:id="@+id/timeView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/mHandPick4"
-                        android:layout_width="@dimen/common0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/mHandPick4_pic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_launcher" />
-
-                        <TextView
-                            android:id="@+id/mHandPick4_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="360手机 N6 Life 全网通..."
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <TextView
-                            android:id="@+id/mHandPick4_point"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_main_btn_bg"
-                            android:paddingBottom="@dimen/common2dp"
-                            android:paddingLeft="@dimen/common8dp"
-                            android:paddingRight="@dimen/common8dp"
-                            android:paddingTop="@dimen/common2dp"
-                            android:text="积分：199"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="@dimen/text_size_12sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="秒杀倒计时"
-                            android:textSize="@dimen/text_size_10sp" />
-
-                        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
-                            android:id="@+id/timeView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
@@ -590,11 +399,14 @@
             <!--android:text="最新商品"-->
             <!--android:textColor="@color/colorPrimary" />-->
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/mRecycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/whiteColor" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/mRecycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/whiteColor"
+                    android:paddingBottom="@dimen/common15dp"
+                    android:paddingLeft="@dimen/common15dp"
+                    android:paddingRight="@dimen/common15dp"/>
 
         </LinearLayout>
 

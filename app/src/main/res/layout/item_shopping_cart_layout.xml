@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
     <CheckBox
         android:id="@+id/ck_chose"
-        android:layout_width="60dp"
+        android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
@@ -13,10 +13,11 @@
     <ImageView
         android:id="@+id/iv_show_pic"
         android:layout_width="60dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@id/ck_chose" />
+        android:layout_toRightOf="@id/ck_chose"
+        android:scaleType="centerCrop"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,17 +34,18 @@
             android:textSize="12sp"
             android:textStyle="bold" />
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
+           <!-- <TextView
                 android:id="@+id/tv_commodity_attr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="属性:粉蓝色"
                 android:textSize="12sp"
-                 />
+                 />-->
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -59,6 +61,15 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
             <TextView
+                android:id="@+id/tv_commodity_integral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="积分3900"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="@dimen/dp_10"/>
+            <TextView
                 android:id="@+id/tv_commodity_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +81,7 @@
                 android:layout_width="120dp"
                 android:background="@color/grayColor"
                 android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 >
                 <TextView
                     android:id="@+id/iv_sub"

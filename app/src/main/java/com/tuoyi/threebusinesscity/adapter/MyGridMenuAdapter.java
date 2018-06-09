@@ -10,11 +10,12 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.BusinessLoginActivity;
 import com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity;
-import com.tuoyi.threebusinesscity.activity.MyBusinessActivity;
 import com.tuoyi.threebusinesscity.activity.MyMembersActivity;
 import com.tuoyi.threebusinesscity.activity.MyPromoterActivity;
-import com.tuoyi.threebusinesscity.activity.ShareActivity;
+import com.tuoyi.threebusinesscity.activity.Personal_InformationActivity;
+import com.tuoyi.threebusinesscity.activity.ShareActivity1;
 import com.tuoyi.threebusinesscity.bean.MyGridMenuBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
@@ -57,7 +58,8 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
             public void onClick(View view) {
 //                Toast.makeText(context, "可点击的：" + position + "号子布局", Toast.LENGTH_SHORT).show();
                 switch (position) {
-                    case 0://
+                    case 0://个人信息
+                        RxActivityTool.skipActivity(context, Personal_InformationActivity.class);
                         break;
                     case 1://积分消费记录
                         RxActivityTool.skipActivity(context, IntegralConsumptionRecordsActivity.class);
@@ -65,20 +67,25 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                     case 2://
                         break;
                     case 3://分享推荐
-                        RxActivityTool.skipActivity(context, ShareActivity.class);
+                        //RxActivityTool.skipActivity(context, ShareActivity.class);
+                        RxActivityTool.skipActivity(context, ShareActivity1.class);
                         break;
-                    case 4://我的会员
+                    case 4://我的伙伴
                         RxActivityTool.skipActivity(context, MyMembersActivity.class);
                         break;
                     case 5://
-                        break;
-                    case 6://我是商家
-                        RxActivityTool.skipActivity(context,MyBusinessActivity.class);
-                        break;
-                    case 7://
                         RxActivityTool.skipActivity(context, MyPromoterActivity.class);
                         break;
+                    case 6://我的店铺
+                        break;
+                    case 7://
+                        RxActivityTool.skipActivity(context,BusinessLoginActivity.class);
+                        break;
                     case 8://
+                        break;
+                    case 9://
+                        break;
+                    case 10://
                         break;
                 }
             }

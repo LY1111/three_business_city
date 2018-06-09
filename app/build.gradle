@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.tuoyi.threebusinesscity"
         minSdkVersion 19
@@ -27,59 +28,105 @@ android {
         }
     }
 }
+/* 分享*/
+MobSDK {
+    appKey "d580ad56b4b5"
+    appSecret "7fcae59a62342e7e2759e9e397c82bdd"
+
+    ShareSDK {
+        devInfo {
+            SinaWeibo {
+                 appKey "2731340775"
+                 appSecret "85886a0b52c0ccdd706dba4fc6e45fca"
+                 callbackUri "http://www.sharesdk.cn"
+                 shareByAppClient false
+            }
+            /* Wechat {
+                 appId "wx4868b35061f87885"
+                 appSecret "64020361b8ec4c99936c0e3999a9f249"
+        }*/
+            QQ {
+                appId "1106694046"
+                appKey "SLJo6XdUbZTL2urw"
+                shareByAppClient true
+            }
+
+        }
+    }
+}
+
 /**
  * 基本上我都注释了。没注释的就太简单了
  * */
 //apply plugin: 'com.neenbedankt.android-apt' //添加这行  android studio 3.0.1需要注释掉
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    //轮播图     compile 'com.youth.banner:banner:1.4.10'
-    //图片加载    compile 'com.github.bumptech.glide:glide:3.7.0'
-    //刷新加载    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
-    //消息传递    compile 'org.greenrobot:eventbus:3.0.0'
-    //网络请求    compile 'com.lzy.net:okgo:3.0.4'
-    //json解析   compile 'com.google.code.gson:gson:2.8.1'
-    //日志       compile 'com.orhanobut:logger:2.1.1'
-    //高斯模糊    compile 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
-    //黄油刀      compile 'com.jakewharton:butterknife:8.2.1'
-    //滚动广告条  compile 'com.gongwen:marqueelibrary:1.1.2'
-    //圆形头像    compile 'de.hdodenhof:circleimageview:2.2.0'
-    //秒杀倒计时  compile 'com.github.iwgang:countdownview:2.1.6'
-    //定位功能    compile 'com.amap.api:location:latest.integration'
-    //搜索功能    compile 'com.amap.api:search:latest.integration'
-    //导航功能    compile 'com.amap.api:navi-3dmap:latest.integration'
-    //2D地图    compile 'com.amap.api:map2d:latest.integration'
-    //3D地图    compile 'com.amap.api:3dmap:latest.integration'
-    //二维码     compile 'com.google.zxing:core:3.3.0'
-    //    compile 'com.amap.api:location:latest.integration'
-    //    compile 'com.amap.api:navi-3dmap:latest.integration'
-    compile files('libs/AMap3DMap_6.0.1_AMapNavi_6.0.1_AMapSearch_5.7.0_AMapLocation_3.8.0_20180309.jar')
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.+'
-    compile 'com.youth.banner:banner:1.4.10'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
-    compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.lzy.net:okgo:3.0.4'
-    compile 'com.android.support:animated-vector-drawable:26.0.0-alpha1'
-    compile 'com.google.code.gson:gson:2.8.1'
-    compile 'com.orhanobut:logger:2.1.1'
-    compile 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
-    compile 'com.jakewharton:butterknife:8.2.1'
-    compile 'com.gongwen:marqueelibrary:1.1.2'
-    compile 'de.hdodenhof:circleimageview:2.2.0'
-    compile 'com.android.support:support-v4:26.+'
-    compile 'com.github.iwgang:countdownview:2.1.6'
-    compile 'com.android.support:multidex:1.0.1'
-    compile 'com.google.zxing:core:3.3.0'
-    testCompile 'junit:junit:4.12'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
-    compile 'com.facebook.fresco:fresco:0.11.0'
-    compile 'com.alibaba:fastjson:1.1.46.android'
+    dependencies {
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
+        androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        //轮播图     compile 'com.youth.banner:banner:1.4.10'
+        //图片加载    compile 'com.github.bumptech.glide:glide:3.7.0'
+        //刷新加载    compile 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+        //消息传递    compile 'org.greenrobot:eventbus:3.0.0'
+        //网络请求    compile 'com.lzy.net:okgo:3.0.4'
+        //json解析   compile 'com.google.code.gson:gson:2.8.1'
+        //日志       compile 'com.orhanobut:logger:2.1.1'
+        //高斯模糊    compile 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
+        //黄油刀      compile 'com.jakewharton:butterknife:8.2.1'
+        //滚动广告条  compile 'com.gongwen:marqueelibrary:1.1.2'
+        //圆形头像    compile 'de.hdodenhof:circleimageview:2.2.0'
+        //秒杀倒计时  compile 'com.github.iwgang:countdownview:2.1.6'
+        //定位功能    compile 'com.amap.api:location:latest.integration'
+        //搜索功能    compile 'com.amap.api:search:latest.integration'
+        //导航功能    compile 'com.amap.api:navi-3dmap:latest.integration'
+        //2D地图    compile 'com.amap.api:map2d:latest.integration'
+        //3D地图    compile 'com.amap.api:3dmap:latest.integration'
+        //二维码     compile 'com.google.zxing:core:3.3.0'
+        //    compile 'com.amap.api:location:latest.integration'
+        //    compile 'com.amap.api:navi-3dmap:latest.integration'
+        implementation files('libs/AMap3DMap_6.0.1_AMapNavi_6.0.1_AMapSearch_5.7.0_AMapLocation_3.8.0_20180309.jar')
+        implementation 'com.android.support:appcompat-v7:26.+'
+        implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+        implementation 'com.android.support:design:26.+'
+        implementation 'com.youth.banner:banner:1.4.10'
+        implementation 'com.github.bumptech.glide:glide:3.7.0'
+        implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+        implementation 'org.greenrobot:eventbus:3.0.0'
+        implementation 'com.lzy.net:okgo:3.0.4'
+        implementation 'com.android.support:animated-vector-drawable:26.0.0-alpha1'
+        implementation 'com.google.code.gson:gson:2.8.1'
+        implementation 'com.orhanobut:logger:2.1.1'
+        implementation 'com.github.pinguo-zhouwei:EasyBlur:v1.0.0'
+        implementation 'com.jakewharton:butterknife:8.2.1'
+        implementation 'com.gongwen:marqueelibrary:1.1.2'
+        implementation 'de.hdodenhof:circleimageview:2.2.0'
+        implementation 'com.android.support:support-v4:26.+'
+        implementation 'com.github.iwgang:countdownview:2.1.6'
+        implementation 'com.android.support:multidex:1.0.1'
+        implementation 'com.google.zxing:core:3.3.0'
+        testImplementation 'junit:junit:4.12'
+        implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
+        implementation 'com.facebook.fresco:fresco:0.11.0'
+        implementation 'com.alibaba:fastjson:1.1.46.android'
 //    apt 'com.jakewharton:butterknife-compiler:8.2.1'  //android studio 3.0.1一下使用
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1' //android studio 3.0.1使用
-}
+        annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1' //android studio 3.0.1使用
+        implementation "com.android.support:percent:26.+"      //屏幕适配
+        /*BaseQuickAdapter*/
+        implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.23'
+
+        implementation('com.github.vondear:RxTools:v1.7.8.3') {
+            exclude group: 'com.tencent.mm.opensdk'
+        }
+
+        implementation 'com.yalantis:ucrop:2.2.0'
+
+        implementation('cn.qqtheme.framework:WheelPicker:1.5.5') {
+            exclude group: 'com.android.support'
+        }
+        /*省市县三级联动*/
+        implementation 'com.contrarywind:Android-PickerView:4.1.4'
+
+        implementation 'com.hyman:flowlayout-lib:1.1.2'
+
+
+    }

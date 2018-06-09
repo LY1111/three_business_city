@@ -48,11 +48,14 @@
         <!-- 高德地图 -->
 
         <service android:name="com.amap.api.location.APSService" />
-
-        <!-- 孟-高德key -->
+        <!--&lt;!&ndash; 孟-高德key;
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="46f8eb2a7e8698bb1cde403921a2ae06" />
+            android:value="46f8eb2a7e8698bb1cde403921a2ae06" /-->
+        <!-- 李-高德key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="6332eb7cc715e7f7aebea25f1653aa74" />
         <!-- 公-高德key -->
         <!-- <meta-data -->
         <!-- android:name="com.amap.api.v2.apikey" -->
@@ -62,7 +65,7 @@
         <!-- android:value="d2e59d2f22f52b406990500bdf9d6c3e" /> -->
         <!-- =========================================================== -->
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.SplashActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
@@ -80,7 +83,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
@@ -152,10 +155,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
-            android:name=".activity.onLineShop.GoodsSortActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
             android:name=".activity.ShoppingCartActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
@@ -177,6 +176,37 @@
         <activity android:name=".activity.onLineShop.GoodsListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".activity.Personal_InformationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.ForgetPwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.MyLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.AddMyLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.Confirmation_OrderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.BusinessLoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".activity.ShareActivity1"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

@@ -14,6 +14,7 @@ import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.MainBottomShopAdapter;
 import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
+import com.tuoyi.threebusinesscity.url.Config;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,8 +22,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.tuoyi.threebusinesscity.url.Config.S;
 
 public class MainShopDetailsActivity extends AppCompatActivity {
 
@@ -48,7 +47,7 @@ public class MainShopDetailsActivity extends AppCompatActivity {
         initOkGoList(id);
     }
     private void initOkGoList(int pos) {
-        OkGo.<String>post(S + "api/app/get_business_all")
+        OkGo.<String>post(Config.s + "api/app/get_business_all")
                 .tag(this)
                 .params("id", pos)
                 .params("page", pagenow)

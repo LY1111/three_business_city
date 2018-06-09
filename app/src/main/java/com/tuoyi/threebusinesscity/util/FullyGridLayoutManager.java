@@ -119,6 +119,6 @@ public class FullyGridLayoutManager extends GridLayoutManager {
     }
     @Override//禁止滑动
     public boolean canScrollVertically() {
-        return false;
+        return true;
     }
 }

@@ -103,4 +103,16 @@
         <item name="android:textColor">@color/selector_bottom_textview</item>
         <item name="android:drawablePadding">@dimen/common3dp</item>
     </style>
+
+    <!--忘记密码底部对话框-->
+    <style name="BottomDialog" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!--忘记密码底部对话框动画-->
+    <style name="BottomDialog.Animation" parent="Animation.AppCompat.Dialog">
+        <item name="android:windowEnterAnimation">@anim/tranlate_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/tranlate_dialog_on</item>
+    </style>
 </resources>

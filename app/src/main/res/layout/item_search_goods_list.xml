@@ -17,7 +17,7 @@
         android:src="@drawable/text_pic" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/common10dp"
         android:orientation="vertical">
@@ -31,14 +31,38 @@
             android:gravity="center_vertical"
             android:textColor="@color/darkColor"
             android:textSize="@dimen/text_size_16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/mPrice"
+
+            <TextView
+                android:id="@+id/mPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥200"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:layout_marginRight="@dimen/common20dp"/>
+
+            <TextView
+                android:id="@+id/integral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary" />
+
+
+        </LinearLayout>
+
+        <com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView
+            android:id="@+id/timeView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="￥200"
-            android:gravity="center_vertical"
-            android:textColor="@color/colorPrimary" />
+            android:layout_weight="0.5">
+
+        </com.tuoyi.threebusinesscity.util.RushBuyCountDownTimerView>
+
     </LinearLayout>
 </LinearLayout>

@@ -3,9 +3,14 @@ package com.tuoyi.threebusinesscity.activity;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+
+import cn.qqtheme.framework.util.LogUtils;
 
 /**
  * 启动页
@@ -33,6 +38,11 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void toMain() {
-        RxActivityTool.skipActivityAndFinish(this, LoginActivity.class);
+        if (!TextUtils.isEmpty( UserBean.getToken(this))){
+            RxActivityTool.skipActivityAndFinish(this, MainActivity.class);
+        }else {
+            RxActivityTool.skipActivityAndFinish(this, LoginActivity.class);
+        }
+
     }
 }
