@@ -23,6 +23,7 @@ import com.tuoyi.threebusinesscity.adapter.GeneralDetailsAdapter;
 import com.tuoyi.threebusinesscity.bean.GeneralDetailsBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 
 /**
- * 普通类详情
+ * 商家详情
  */
 public class GeneralDetailsActivity extends AppCompatActivity {
 
@@ -122,6 +123,7 @@ public class GeneralDetailsActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.general_sao_btn:
+                RxActivityTool.skipActivity(this,PaymentActivity.class);
                 break;
         }
     }

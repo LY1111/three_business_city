@@ -282,7 +282,7 @@
                     android:paddingLeft="@dimen/common6dp"
                     android:paddingRight="@dimen/common6dp"
                     android:paddingTop="@dimen/common4dp"
-                    android:text="扫一扫付款"
+                    android:text="输入付款"
                     android:textColor="@color/whiteColor"
                     android:textSize="13sp" />
 

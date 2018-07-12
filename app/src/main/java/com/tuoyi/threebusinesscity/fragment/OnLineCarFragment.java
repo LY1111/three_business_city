@@ -63,6 +63,10 @@ public class OnLineCarFragment extends android.support.v4.app.Fragment implement
     private List<OptionListBean> optionListBeans = new ArrayList<>();
     private int car_id;
 
+    public static OnLineCarFragment newInstance() {
+        OnLineCarFragment fragment = new OnLineCarFragment();
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -99,13 +103,13 @@ public class OnLineCarFragment extends android.support.v4.app.Fragment implement
                 if (dataBean.size() != 0) {
                     if (ckAll.isChecked()) {
                         for (int i = 0; i < dataBean.size(); i++) {
-                            //shoppingCartBeanList.get(i).setChoosed(true);
+
                             dataBean.get(i).setChoosed(true);
                         }
                         shoppingCartAdapter.notifyDataSetChanged();
                     } else {
                         for (int i = 0; i < dataBean.size(); i++) {
-                            //shoppingCartBeanList.get(i).setChoosed(false);
+
                             dataBean.get(i).setChoosed(false);
                         }
                         shoppingCartAdapter.notifyDataSetChanged();
@@ -230,14 +234,7 @@ public class OnLineCarFragment extends android.support.v4.app.Fragment implement
      *
      * @return
      */
-   /* private boolean isAllCheck() {
 
-        for (ShoppingCartBean group : shoppingCartBeanList) {
-            if (!group.isChoosed())
-                return false;
-        }
-        return true;
-    }*/
     private boolean isAllCheck() {
 
         for (ShoppingCartBean.DataBean.GoodsBean group : dataBean) {

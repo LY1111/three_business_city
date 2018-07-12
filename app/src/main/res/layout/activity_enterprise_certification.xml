@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="企业认证"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/leftBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="14dp"
+            android:src="@drawable/back"
+            android:tint="@color/white" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"
+        android:layout_marginTop="@dimen/common20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp"
+       >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="企业名称"
+            android:textSize="@dimen/common15dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/tv_enterpriseName"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:hint="请输入企业名称"
+            android:inputType="text"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="法人姓名"
+            android:textSize="@dimen/common15dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/tv_Name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:hint="请输入法人姓名"
+            android:inputType="text"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="法人手机号"
+            android:textSize="@dimen/common15dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/tv_phoneNum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:hint="请输入法人手机号"
+            android:inputType="number"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="企业对公账户"
+            android:textSize="@dimen/common15dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/tv_account"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:hint="请输入企业对公账户"
+            android:inputType="number"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="开户银行名称"
+            android:textSize="@dimen/common15dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/tv_bankname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:hint="请输入开户银行名称"
+            android:inputType="text"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="法人身份证号码"
+            android:textSize="@dimen/common15dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/tv_cardNo"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:hint="请输入法人身份证号码"
+            android:inputType="number"
+            android:digits="0123456789xyzXYZ"
+            android:background="@null"
+            android:textSize="@dimen/sp_14"
+            android:imeOptions="actionDone"
+            android:singleLine="true"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common1dp"
+        android:background="@color/gray1"/>
+
+    <TextView
+        android:id="@+id/tv_sub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:padding="@dimen/dp_10"
+        android:gravity="center"
+        android:layout_marginRight="@dimen/common50dp"
+        android:layout_marginLeft="@dimen/common50dp"
+        android:layout_marginTop="@dimen/common50dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

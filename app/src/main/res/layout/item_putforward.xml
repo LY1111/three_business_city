@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/common50dp"
+    android:layout_centerVertical="true">
+
+    <TextView
+        android:id="@+id/tv_cardName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="农业银行"
+        android:padding="@dimen/dp_10"
+        android:textSize="@dimen/sp_14"
+        android:layout_centerVertical="true"/>
+
+
+    <TextView
+        android:id="@+id/tv_cardNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(6469)"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginRight="@dimen/dp_40"
+        android:layout_alignBottom="@id/tv_cardName"
+        android:layout_toRightOf="@id/tv_cardName"
+        android:padding="@dimen/dp_10"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray1"
+
+        android:layout_alignParentBottom="true"/>
+
+    <ImageView
+        android:id="@+id/img_checked"
+        android:layout_width="@dimen/common30dp"
+        android:layout_height="@dimen/common30dp"
+        android:padding="@dimen/dp_10"
+        android:src="@mipmap/unchecked"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_centerVertical="true"/>
+
+</RelativeLayout>

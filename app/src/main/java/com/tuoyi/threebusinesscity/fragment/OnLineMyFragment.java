@@ -40,6 +40,11 @@ public class OnLineMyFragment extends Fragment {
     private MyPagerAdapter contentAdapter;
 
 
+    public static OnLineMyFragment newInstance() {
+        OnLineMyFragment fragment = new OnLineMyFragment();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

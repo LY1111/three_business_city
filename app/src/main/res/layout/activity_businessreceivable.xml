@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/leftBack"
+            android:layout_width="@dimen/common40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:padding="@dimen/common10dp"/>
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="收款码"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/gray1"
+        android:text="     向客户收款"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorPrimary"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:src="@mipmap/erweima"
+        android:padding="@dimen/common80dp"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="    扫一扫上面的二维码图案，向我付款。"
+        android:textSize="@dimen/text_size_16sp"
+        android:gravity="center"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40">
+        
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="保留图片"
+            android:padding="15sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/colorAccent"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="25dp"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="分享二维码"
+            android:textColor="@color/colorAccent"
+            android:padding="15sp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_gravity="center"/>
+        
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/colorPrimary"/>
+
+</LinearLayout>

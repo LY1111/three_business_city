@@ -19,6 +19,7 @@ import com.tuoyi.threebusinesscity.bean.AdressListBen;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,7 +40,14 @@ public class MyLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mylocation);
         ButterKnife.bind(this);
+        RxActivityTool.addActivity(this);
         where=getIntent().getStringExtra("where");
+        getLocation();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getLocation();
     }
 
@@ -87,7 +95,8 @@ public class MyLocationActivity extends AppCompatActivity {
                                 }
                             });*/
 
-                           //删除地址
+                           //暂时没有删除地址接口
+                           /*//删除地址
                             mAddressAdapter.setDeleteClickListener(new AddressListAdapter.DeleteInterface() {
                                 @Override
                                 public void delete(int position) {
@@ -95,7 +104,7 @@ public class MyLocationActivity extends AppCompatActivity {
                                     adressListBen.getData().remove(position);
                                     mAddressAdapter.notifyDataSetChanged();
                                 }
-                            });
+                            });*/
 
                             //编辑地址
                             mAddressAdapter.setEditClickListener(new AddressListAdapter.EditInterface() {
@@ -118,7 +127,7 @@ public class MyLocationActivity extends AppCompatActivity {
                 JumpUtil.newInstance().jumpRight(this, AddMyLocationActivity.class);
                 break;
             case R.id.leftBack:
-                finish();
+                RxActivityTool.finishActivity(this);
                 break;
         }
     }

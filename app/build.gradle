@@ -15,6 +15,7 @@ android {
         renderscriptTargetApi 26
         renderscriptSupportModeEnabled true
         multiDexEnabled true
+
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "arm64-v8a", "x86_64"
@@ -84,7 +85,7 @@ MobSDK {
         //二维码     compile 'com.google.zxing:core:3.3.0'
         //    compile 'com.amap.api:location:latest.integration'
         //    compile 'com.amap.api:navi-3dmap:latest.integration'
-        implementation files('libs/AMap3DMap_6.0.1_AMapNavi_6.0.1_AMapSearch_5.7.0_AMapLocation_3.8.0_20180309.jar')
+        //implementation files('libs/AMap3DMap_6.0.1_AMapNavi_6.0.1_AMapSearch_5.7.0_AMapLocation_3.8.0_20180309.jar')
         implementation 'com.android.support:appcompat-v7:26.+'
         implementation 'com.android.support.constraint:constraint-layout:1.0.2'
         implementation 'com.android.support:design:26.+'
@@ -116,6 +117,7 @@ MobSDK {
 
         implementation('com.github.vondear:RxTools:v1.7.8.3') {
             exclude group: 'com.tencent.mm.opensdk'
+            exclude group: 'libammsdk'
         }
 
         implementation 'com.yalantis:ucrop:2.2.0'
@@ -128,5 +130,11 @@ MobSDK {
 
         implementation 'com.hyman:flowlayout-lib:1.1.2'
 
+
+        implementation 'com.amap.api:3dmap:6.2.0'
+        implementation 'com.amap.api:search:6.1.0'
+        implementation 'com.amap.api:location:4.0.1'
+
+        implementation 'com.yanzhenjie:recyclerview-swipe:1.1.4'
 
     }

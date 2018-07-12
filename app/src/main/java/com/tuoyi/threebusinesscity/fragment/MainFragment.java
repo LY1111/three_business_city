@@ -362,7 +362,8 @@ public class MainFragment extends Fragment implements AMapLocationListener {
         mainfHeadGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 5));
         gridMenuadapter = new MainGridMenuAdapter(headGridList);
         mainfHeadGridList.setAdapter(gridMenuadapter);
-        gridMenuadapter.setOnItemClickListener(new MainGridMenuAdapter.MyOnItemClickListener() {
+        gridMenuadapter.setOnItemClickListener(
+                new MainGridMenuAdapter.MyOnItemClickListener() {
             @Override
             public void OnItemClickListener(int position) {
 //                Bundle bundle = new Bundle();
@@ -628,5 +629,10 @@ public class MainFragment extends Fragment implements AMapLocationListener {
                 }
             }
         });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

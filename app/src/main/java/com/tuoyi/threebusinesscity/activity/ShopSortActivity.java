@@ -31,7 +31,7 @@ public class ShopSortActivity extends AppCompatActivity {
     ListView mList;
 
     private List<ShopSortBean.DataBean> beanList = new ArrayList<>();
-    private String sort, sort_id;
+    private int  sort_id;
     private MyAdapter adapter;
 
     @Override
@@ -39,6 +39,7 @@ public class ShopSortActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_sort);
         ButterKnife.bind(this);
+        sort_id=getIntent().getIntExtra("pos",0);
         getData();
     }
 
@@ -84,13 +85,16 @@ public class ShopSortActivity extends AppCompatActivity {
             }else {
                 holder = (ViewHolder) view.getTag();
             }
+            if (beanList.get(i).getId()==sort_id){
+                holder.mItem.setTextColor(getResources().getColor(R.color.colorAccent));
+            }
             holder.mItem.setText(beanList.get(i).getName());
             holder.mItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putString("sort",beanList.get(i).getName());
-                    bundle.putString("sort_id", String.valueOf(beanList.get(i).getId()));
+                    bundle.putInt("sort_id", beanList.get(i).getId());
                     JumpUtil.newInstance().finishRightTrans(ShopSortActivity.this,bundle,002);
                 }
             });

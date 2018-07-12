@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/leftBack"
+            android:layout_width="@dimen/common40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:padding="@dimen/common10dp"/>
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="支付"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/ed_mPutMoney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入金额："
+        android:textSize="@dimen/sp_16"
+        android:padding="@dimen/common20dp"
+        android:inputType="numberDecimal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="选择支付方式"
+        android:textColor="@color/background_content"
+        android:textSize="@dimen/sp_12" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pay_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/tv_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common20dp"
+        android:layout_marginRight="@dimen/common20dp"
+        android:layout_marginTop="@dimen/common100dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="支付"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="遇到支付问题请联系客服"
+        android:textSize="@dimen/dp_10" />
+
+</LinearLayout>

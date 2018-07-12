@@ -30,6 +30,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.onLineShop.OnLineShopActivity;
+import com.tuoyi.threebusinesscity.activity.onLineShop.OnLineShopActivity1;
+import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
 import com.tuoyi.threebusinesscity.fragment.MessageFragment;
@@ -39,6 +41,8 @@ import com.tuoyi.threebusinesscity.fragment.ShopFragment;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 import com.vondear.rxtools.RxPermissionsTool;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity  {
     private MessageFragment mMessageFragment;
     private MyFragment mMyFragment;
     private OnLineShopFragment onLineShopFragment;
+    private int tab;
 
     /**
      * 需要进行检测的权限数组
@@ -266,7 +271,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 switch (checkedId) {
                     case R.id.main_rb_main:
-
+                        tab=1;
                         mainRbMain.setTextColor(getResources().getColor(R.color.colorPrimary));
                         mainRbMain.setCompoundDrawables(null,main_b,null,null);
 
@@ -284,16 +289,17 @@ public class MainActivity extends AppCompatActivity  {
                         mainRbSao.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                RxActivityTool.skipActivity(MainActivity.this, RegisterActivity.class);
+                                //RxActivityTool.skipActivity(MainActivity.this, RegisterActivity.class);
                                 Toast.makeText(MainActivity.this, mainRbSaoTv.getText().toString(), Toast.LENGTH_SHORT).show();
                             }
                         });
                         break;
                     case R.id.main_rb_shop:
-                        LogUtils.e("1111111111111");
-                        //JumpUtil.newInstance().jumpRight(MainActivity.this, OnLineShopActivity.class);
-                        Intent intent=new Intent(MainActivity.this,OnLineShopActivity.class);
-                        startActivityForResult(intent,1);
+//                        JumpUtil.newInstance().jumpRight(MainActivity.this, OnLineShopActivity.class);
+//                        Intent intent=new Intent(MainActivity.this,OnLineShopActivity.class);
+//                        startActivityForResult(intent,1);
+                        RxActivityTool.skipActivity(MainActivity.this, OnLineShopActivity.class);
+                        mainRg.check(R.id.main_rb_main);
 //                        initFragment(2);
 //                        Glide.with(MainActivity.this).load(R.mipmap.gouwuche).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
 //                        mainRbSaoTv.setText("购物车");
@@ -360,13 +366,14 @@ public class MainActivity extends AppCompatActivity  {
         mainRg.check(R.id.main_rb_main);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1){
-                mainRbShop.setChecked(false);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode== 1){
+////                mainRbShop.setChecked(false);
+//            mainRg.check(R.id.main_rb_main);
+//        }
+//    }
 
     /**
      * 加载Fragment方法

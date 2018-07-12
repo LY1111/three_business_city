@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,36 +39,23 @@ import cn.qqtheme.framework.util.LogUtils;
  * 确认订单
  */
 public class Confirmation_OrderActivity extends AppCompatActivity {
-    @BindView(R.id.leftBack)
-    ImageView leftBack;
-    @BindView(R.id.tab)
-    RelativeLayout tab;
-    @BindView(R.id.et_Remarks)
-    EditText etRemarks;
-    @BindView(R.id.tv_total)
-    TextView tvTotal;
-    @BindView(R.id.tv_sub)
-    TextView tvSub;
-    @BindView(R.id.tv_address_name)
-    TextView tvAddressName;
-    @BindView(R.id.tv_address_phone)
-    TextView tvAddressPhone;
-    @BindView(R.id.tv_address_addresss)
-    TextView tvAddressAddresss;
-    @BindView(R.id.integral)
-    TextView integral;
-    @BindView(R.id.list_details)
-    ListView list_details;
-    @BindView(R.id.iv_gogogo)
-    ImageView iv_gogogo;
-    @BindView(R.id.ll_right)
-    LinearLayout ll_right;
-    @BindView(R.id.ll_address_2)
-    LinearLayout ll_address_2;
-    @BindView(R.id.ll_address_1)
-    LinearLayout ll_address_1;
 
-    private ListDetailsAdapter adapter;
+
+    @BindView(R.id.leftBack) ImageView leftBack;
+    @BindView(R.id.tab) RelativeLayout tab;
+    @BindView(R.id.tubiao) ImageView tubiao;
+    @BindView(R.id.tv_address_name) TextView tvAddressName;
+    @BindView(R.id.tv_address_phone) TextView tvAddressPhone;
+    @BindView(R.id.tv_address_addresss) TextView tvAddressAddresss;
+    @BindView(R.id.ll_address_1) LinearLayout llAddress1;
+    @BindView(R.id.ll_address_2) LinearLayout llAddress2;
+    @BindView(R.id.iv_gogogo) ImageView ivGogogo
+    ;@BindView(R.id.ll_right) RelativeLayout llRight;
+    @BindView(R.id.list_details) com.tuoyi.threebusinesscity.widget.NoScrollListView listDetails;
+    @BindView(R.id.et_Remarks) EditText etRemarks
+    ;@BindView(R.id.tv_total) TextView tvTotal;
+    @BindView(R.id.integral) TextView integral;
+    @BindView(R.id.tv_sub) TextView tvSub;private ListDetailsAdapter adapter;
     private List<ShoppingCartBean.DataBean.GoodsBean> goodsBean=new ArrayList<>();
     private List<OptionListBean> optionBean=new ArrayList<>();
     private double ShowIntegral; //总积分
@@ -78,6 +64,7 @@ public class Confirmation_OrderActivity extends AppCompatActivity {
     private String relCarts;      //购物车ID
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation_order);
         ButterKnife.bind(this);
@@ -90,9 +77,9 @@ public class Confirmation_OrderActivity extends AppCompatActivity {
 
         String carts = "";
         for (int i = 0; i < goodsBean.size(); i++) {
-//            if (goodsBean.get(i).getSelectType()) {
+
                 carts = carts + goodsBean.get(i).getCart_id() + ",";
-//            }
+
         }
         if (carts.length() > 0) {
             relCarts  = carts.substring(0, carts.length() - 1);
@@ -150,15 +137,15 @@ public class Confirmation_OrderActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         AdressListBen adressListBen = gson.fromJson(response.body(), AdressListBen.class);
                         if (adressListBen.getCode() == 200&&adressListBen.getData().size()>0) {
-                            ll_address_1.setVisibility(View.VISIBLE);
-                            ll_address_2.setVisibility(View.GONE);
+                            llAddress1.setVisibility(View.VISIBLE);
+                            llAddress2.setVisibility(View.GONE);
                             address_id=adressListBen.getData().get(0).getAddress_id();
                             tvAddressName.setText(adressListBen.getData().get(0).getName());
                             tvAddressPhone.setText(adressListBen.getData().get(0).getTelephone());
                             tvAddressAddresss.setText(adressListBen.getData().get(0).getAddress());
                         }else {
-                            ll_address_2.setVisibility(View.VISIBLE);
-                            ll_address_1.setVisibility(View.GONE);
+                            llAddress2.setVisibility(View.VISIBLE);
+                            llAddress1.setVisibility(View.GONE);
                         }
                        // Toast.makeText(Confirmation_OrderActivity.this, adressListBen.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -192,6 +179,6 @@ public class Confirmation_OrderActivity extends AppCompatActivity {
     //商品详情
     public void cOmmodityDetails(){
         adapter=new ListDetailsAdapter(Confirmation_OrderActivity.this,goodsBean,optionBean);
-        list_details.setAdapter(adapter);
+        listDetails.setAdapter(adapter);
     }
 }

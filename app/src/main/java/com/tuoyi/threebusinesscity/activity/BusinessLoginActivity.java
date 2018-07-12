@@ -7,8 +7,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
+import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.bean.BusinessLoginBean;
+import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import butterknife.BindView;
@@ -31,29 +39,26 @@ public class BusinessLoginActivity extends AppCompatActivity {
     EditText loginPassword;
     @BindView(R.id.login_bt)
     Button loginBt;
-    @BindView(R.id.login_register)
-    TextView loginRegister;
+    @BindView(R.id.business_register)
+    TextView businessRegister;
     @BindView(R.id.login_forget)
     TextView loginForget;
-    @BindView(R.id.login_wechat)
-    ImageView loginWechat;
-    @BindView(R.id.login_qq)
-    ImageView loginQq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_login);
         ButterKnife.bind(this);
+        RxActivityTool.addActivity(this);
     }
 
-    @OnClick({R.id.login_back, R.id.login_bt, R.id.login_register, R.id.login_forget})
+    @OnClick({R.id.login_back, R.id.login_bt, R.id.business_register, R.id.login_forget})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.login_back:
                 break;
             case R.id.login_bt:
-               /* OkGo.<String>post(Config.s + "api/Member/login")
+                OkGo.<String>post("http://sszl.tuoee.com/api/member/business_login")
                         .tag(this)
                         .params("telephone", loginPhone.getText().toString().trim())
                         .params("password", loginPassword.getText().toString().trim())
@@ -62,18 +67,19 @@ public class BusinessLoginActivity extends AppCompatActivity {
                             public void onSuccess(Response<String> response) {
                                 Logger.json(response.body());
                                 Gson gson = new Gson();
-                                LoginBean loginBean = gson.fromJson(response.body(), LoginBean.class);
+                                BusinessLoginBean loginBean = gson.fromJson(response.body(), BusinessLoginBean.class);
                                 if (loginBean.getCode() == 200) {
-                                    UserBean.setToken(BusinessLoginActivity.this, loginBean.getData().getToken());
-                                    RxActivityTool.skipActivity(BusinessLoginActivity.this,MainActivity.class);
-                                    finish();
+                                    UserBean.setBusineToken(BusinessLoginActivity.this, loginBean.getData().getBusiness_token());
+
+                                    RxActivityTool.skipActivity(BusinessLoginActivity.this,CoOperatorActivity.class);
+                                    RxActivityTool.finishActivity(BusinessLoginActivity.this);
                                 }
                                 Toast.makeText(BusinessLoginActivity.this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
 //
                             }
-                        });*/
+                        });
                 break;
-            case R.id.login_register:
+            case R.id.business_register:
                 RxActivityTool.skipActivity(this,MyBusinessActivity.class);
                 break;
             case R.id.login_forget:

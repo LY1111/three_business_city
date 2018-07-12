@@ -11,13 +11,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.GeneralDetailsActivity;
-import com.tuoyi.threebusinesscity.activity.MainActivity;
-import com.tuoyi.threebusinesscity.activity.SupermarketCateringDetailsActivity;
 import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 import butterknife.BindView;

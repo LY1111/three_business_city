@@ -13,10 +13,16 @@ import android.widget.RadioGroup;
 import com.andview.refreshview.utils.LogUtils;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.ViewPagerAdapter;
+import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.fragment.OnLineCarFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineMyFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineSortFragment;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +55,28 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_line_shop);
         ButterKnife.bind(this);
-        where = getIntent().getStringExtra("where");
+        RxActivityTool.addActivity(this);
+        EventBus.getDefault().register(this);
+        initView();
+        LogUtils.e("onCreate");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LogUtils.e("onResume");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LogUtils.e("onStart");
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+        LogUtils.e("Event");
+        where=(messageEvent.getMessage());
         initView();
     }
 
@@ -61,8 +87,9 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
     public void onBackPressed() {
         super.onBackPressed();
         LogUtils.e("111111111111");
-        setResult(RESULT_OK);
-        finish();
+//        setResult(RESULT_OK);
+//        finish();
+        RxActivityTool.finishActivity(this);
     }
 
 
@@ -74,14 +101,14 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
 
-        if (!TextUtils.isEmpty(where)) {
-            if ("detail".equals(where)) {
+       // if (!TextUtils.isEmpty(where)) {
+            if ("GoodDetailsActivity".equals(where)) {
                 fragment = fragmentList.get(2);
-                mCar.setChecked(true);
+                //mCar.setChecked(true);
+            }else {
+                fragment = fragmentList.get(0);
             }
-        } else {
-            fragment = fragmentList.get(0);
-        }
+        //}
 
         transaction.replace(R.id.view_pager, fragment);
         transaction.commit();
@@ -119,5 +146,13 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
                 break;
         }
         transaction.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }

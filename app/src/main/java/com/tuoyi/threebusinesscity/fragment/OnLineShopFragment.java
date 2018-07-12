@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -70,57 +71,26 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     private static final String TAG = "线上商城";
     Unbinder unbinder;
     @BindView(R.id.mLocation_tv)
-    TextView  mLocationTv;
+    TextView mLocationTv;
+    @BindView(R.id.mLocation)
+    LinearLayout mLocation;
     @BindView(R.id.mSearch)
-    EditText  mSearch;
+    EditText mSearch;
     @BindView(R.id.mBanner1)
-    Banner    mBanner1;
+    Banner mBanner1;
+    @BindView(R.id.mainf_head_grid_list)
+    RecyclerView mainfHeadGridList;
     @BindView(R.id.mImg1)
     ImageView mImg1;
     @BindView(R.id.mImg2)
     ImageView mImg2;
     @BindView(R.id.mImg3)
     ImageView mImg3;
-  /*  @BindView(R.id.mHandPick1_pic)
-    ImageView mHandPick1Pic;
-    @BindView(R.id.mHandPick1_text)
-    TextView  mHandPick1Text;
-    @BindView(R.id.mHandPick1_point)
-    TextView  mHandPick1Point;*/
-    /* @BindView(R.id.timeView1)
-     RushBuyCountDownTimerView timeView1;*/
-  /*  @BindView(R.id.mHandPick2_pic)
-    ImageView mHandPick2Pic;
-    @BindView(R.id.mHandPick2_text)
-    TextView mHandPick2Text;
-    @BindView(R.id.mHandPick2_point)
-    TextView mHandPick2Point;
-    @BindView(R.id.mHandPick3_pic)
-    ImageView mHandPick3Pic;
-    @BindView(R.id.mHandPick3_text)
-    TextView mHandPick3Text;
-    @BindView(R.id.mHandPick3_point)
-    TextView mHandPick3Point;
-    @BindView(R.id.mHandPick4_pic)
-    ImageView mHandPick4Pic;
-    @BindView(R.id.mHandPick4_text)
-    TextView mHandPick4Text;
-    @BindView(R.id.mHandPick4_point)*/
-    TextView mHandPick4Point;
-    @BindView(R.id.mRecycler)
-    RecyclerView mRecycler;
-    @BindView(R.id.mLocation)
-    LinearLayout mLocation;
-    /* @BindView(R.id.timeView2)
-     RushBuyCountDownTimerView timeView2;
-     @BindView(R.id.timeView3)
-     RushBuyCountDownTimerView timeView3;
-     @BindView(R.id.timeView4)
-     RushBuyCountDownTimerView timeView4;*/
-    @BindView(R.id.mainf_head_grid_list)
-    RecyclerView mainfHeadGridList;
     @BindView(R.id.integral_recyclerView)
-    RecyclerView integral_recyclerView;
+    RecyclerView integralRecyclerView;
+    @BindView(R.id.LatestGoods_Recyclerview)
+    RecyclerView LatestGoodsRecyclerview;
+
     private View view;
     //声明AMapLocationClient类对象
     public AMapLocationClient mLocationClient = null;
@@ -135,15 +105,15 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
 
     private MyAdapter adapter;
     private List<OnLineShopListBean.DataBean> beanList = new ArrayList<>();
-    private OnLineShopListBean                bean;
-    private OnLineShopMenuAdapter             menuAdapter;
+    private OnLineShopListBean bean;
+    private OnLineShopMenuAdapter menuAdapter;
     private List<OnLineShopMenuBean.DataBean> headGridList;
     private int mPosition = 0;
     private int mListType = 0;
     private String sSearch;
     private String sImg_id;//积分活动点击id
-    private List<OnLineShopAdBean.DataBean> dataBean     = new ArrayList<>();
-    private List<KillBean.DataBean>         killbeanList = new ArrayList<>();
+    private List<OnLineShopAdBean.DataBean> dataBean = new ArrayList<>();
+    private List<KillBean.DataBean> killbeanList = new ArrayList<>();
     private KillAdapter1 mKillAdapter1;
 
     public static OnLineShopFragment newInstance() {
@@ -158,8 +128,8 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             view = inflater.inflate(R.layout.fragment_online_shop_fragment, null);
         }
         unbinder = ButterKnife.bind(this, view);
-        mRecycler.setNestedScrollingEnabled(false);
-        integral_recyclerView.setNestedScrollingEnabled(false);
+        LatestGoodsRecyclerview.setNestedScrollingEnabled(false);
+        integralRecyclerView.setNestedScrollingEnabled(false);
         /* 设置倒计时 单位秒 */
       /*  int sum = 6000;
         timeView1.addTime(sum);
@@ -203,6 +173,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         return view;
     }
 
+
     /* 积分秒杀前4个 */
     private void initKill() {
         OkGo.<String>post("http://sszl.tuoee.com/api/App/get_integral_second_kill")
@@ -231,16 +202,17 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                             mHandPick4Text.setText(killbeanList.get(3).getName());
                             mHandPick4Point.setText("积分" + killbeanList.get(3).getPrice());*/
 
-                            AutoLinearLayoutManager manager=new AutoLinearLayoutManager(getActivity(),HORIZONTAL,false);
-                            integral_recyclerView.setLayoutManager(manager);
+                            LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+                            manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                            integralRecyclerView.setLayoutManager(manager);
                             Collections.reverse(killbeanList);
-                            mKillAdapter1=new KillAdapter1(R.layout.item_receive,killbeanList);
-                            integral_recyclerView.setAdapter(mKillAdapter1);
+                            mKillAdapter1 = new KillAdapter1(R.layout.item_receive, killbeanList);
+                            integralRecyclerView.setAdapter(mKillAdapter1);
                             mKillAdapter1.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                                     Bundle bundle = new Bundle();
-                                    bundle.putString("goods_id", killbeanList.get(position).getGoods_id()+"");
+                                    bundle.putString("goods_id", killbeanList.get(position).getGoods_id() + "");
                                     JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
                                 }
                             });
@@ -283,7 +255,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         mImg1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: ======"+dataBean.get(0).getValue());
+                Log.d(TAG, "onClick: ======" + dataBean.get(0).getValue());
                 sImg_id = dataBean.get(0).getValue();
                 bundle.putString("goods_id", sImg_id);
                 JumpUtil.newInstance().jumpRight(getContext(), GoodDetailsActivity.class, bundle);
@@ -340,7 +312,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                         if (goodsList.getCode() == 200) {
                             beanList = goodsList.getData();
                             adapter = new MyAdapter(beanList);
-                            mRecycler.setAdapter(adapter);
+                            LatestGoodsRecyclerview.setAdapter(adapter);
                             final GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
                             layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                                 @Override
@@ -348,7 +320,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                                     return adapter.isHeader(position) ? layoutManager.getSpanCount() : 1;
                                 }
                             });
-                            mRecycler.setLayoutManager(layoutManager);
+                            LatestGoodsRecyclerview.setLayoutManager(layoutManager);
                             adapter.notifyDataSetChanged();
                         } else {
                             ToastUtil.show(getContext(), goodsList.getMessage());
@@ -582,7 +554,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     public class MyAdapter extends RecyclerView.Adapter {
         //先定义两个ItemViewType，0代表头，1代表表格中间的部分
         private static final int ITEM_VIEW_TYPE_HEADER = 0;
-        private static final int ITEM_VIEW_TYPE_ITEM   = 1;
+        private static final int ITEM_VIEW_TYPE_ITEM = 1;
         //数据源
         private List<OnLineShopListBean.DataBean> dataList;
 
@@ -623,7 +595,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                 ((BodyViewHolder) viewHolder).getTextView().setText(dataList.get(position - 1).getName());
                 Glide.with(getContext()).load(IMGS + dataList.get(position - 1).getImage()).into(((BodyViewHolder) viewHolder).getIv());
 //                ((BodyViewHolder) viewHolder).getmPoint().setText(dataList.get(position - 1).getPoint());
-                ((BodyViewHolder) viewHolder).getmMoney().setText("¥"+dataList.get(position - 1).getPrice());
+                ((BodyViewHolder) viewHolder).getmMoney().setText("¥" + dataList.get(position - 1).getPrice());
                 ((BodyViewHolder) viewHolder).getmDetail().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -678,10 +650,10 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
          * 给GridView中的条目用的ViewHolder，里面只有一个TextView
          */
         public class BodyViewHolder extends RecyclerView.ViewHolder {
-            private TextView     textView;
-            private ImageView    iv;
+            private TextView textView;
+            private ImageView iv;
             //            private TextView mPoint;
-            private TextView     mMoney;
+            private TextView mMoney;
             private LinearLayout mDetail;
 
             public BodyViewHolder(View itemView) {

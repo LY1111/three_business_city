@@ -50,7 +50,7 @@
     <com.amap.api.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="220dp" />
+        android:layout_height="260dp" />
 
     <com.tuoyi.threebusinesscity.util.SegmentedGroup
         xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"

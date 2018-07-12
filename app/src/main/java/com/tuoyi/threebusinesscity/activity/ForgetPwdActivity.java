@@ -41,34 +41,34 @@ import butterknife.OnClick;
 public class ForgetPwdActivity extends AppCompatActivity {
 
 
-    @BindView(R.id.login_back)
-    ImageView      mLoginBack;
+    @BindView(R.id.leftBack)
+    ImageView mLoginBack;
     @BindView(R.id.login_title)
-    TextView       mLoginTitle;
+    TextView mLoginTitle;
     @BindView(R.id.tv_star)
-    TextView       mTvStar;
+    TextView mTvStar;
     @BindView(R.id.tv_phone_num)
-    TextView       mTvPhoneNum;
+    TextView mTvPhoneNum;
     @BindView(R.id.et_phone_num)
-    EditText       mEtPhoneNum;
+    EditText mEtPhoneNum;
     @BindView(R.id.iv_phone_num_error)
-    ImageView      mIvPhoneNumError;
+    ImageView mIvPhoneNumError;
     @BindView(R.id.rl)
     RelativeLayout mRl;
     @BindView(R.id.tv_phone_num_error)
-    TextView       mTvPhoneNumError;
+    TextView mTvPhoneNumError;
     @BindView(R.id.tv_star2)
-    TextView       mTvStar2;
+    TextView mTvStar2;
     @BindView(R.id.tv_VerificationCode)
-    TextView       mTvVerificationCode;
+    TextView mTvVerificationCode;
     @BindView(R.id.et_verification_code)
-    EditText       mEtVerificationCode;
+    EditText mEtVerificationCode;
     @BindView(R.id.btn_get_yzm)
-    Button         mBtnGetYzm;
+    Button mBtnGetYzm;
     @BindView(R.id.et_pwd)
-    EditText       mEtPwd;
+    EditText mEtPwd;
     @BindView(R.id.btn_quit)
-    Button         mBtnQuit;
+    Button mBtnQuit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -102,7 +102,7 @@ public class ForgetPwdActivity extends AppCompatActivity {
         });
     }
 
-    @OnClick({R.id.btn_get_yzm, R.id.btn_quit})
+    @OnClick({R.id.btn_get_yzm, R.id.btn_quit, R.id.leftBack})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_get_yzm:
@@ -122,6 +122,9 @@ public class ForgetPwdActivity extends AppCompatActivity {
                 if (isPhoneNmb() && isVerificationCode() && isPwdValid()) {
                     ChangePWD();
                 }
+                break;
+            case R.id.leftBack:
+                finish();
                 break;
         }
     }

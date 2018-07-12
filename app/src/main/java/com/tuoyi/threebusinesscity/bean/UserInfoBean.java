@@ -8,16 +8,17 @@ package com.tuoyi.threebusinesscity.bean;
 
 public class UserInfoBean {
 
+
     /**
      * status : 0
      * code : 200
      * message : 成功
-     * data : {"email":"","sex":0,"birthday":"0000-00-00 00:00:00","autograph":"","username":"","userpic":"","total_bonus":"0.00","points":"0.00"}
+     * data : {"email":"qwertt.com","sex":0,"autograph":"喉咙弟弟的歌啪啪啪","username":"李岩555","userpic":"cache/images/ckeditor/20180613/2018061310052534-461x461.jpeg","bank_card":"","total_bonus":"999999.99","points":"999999.99","electronic_signing":"1","is_real_name":"0"}
      */
 
     private int status;
-    private int      code;
-    private String   message;
+    private int code;
+    private String message;
     private DataBean data;
 
     public int getStatus() {
@@ -54,24 +55,28 @@ public class UserInfoBean {
 
     public static class DataBean {
         /**
-         * email :
+         * email : qwertt.com
          * sex : 0
-         * birthday : 0000-00-00 00:00:00
-         * autograph :
-         * username :
-         * userpic :
-         * total_bonus : 0.00
-         * points : 0.00
+         * autograph : 喉咙弟弟的歌啪啪啪
+         * username : 李岩555
+         * userpic : cache/images/ckeditor/20180613/2018061310052534-461x461.jpeg
+         * bank_card :
+         * total_bonus : 999999.99
+         * points : 999999.99
+         * electronic_signing : 1
+         * is_real_name : 0
          */
 
         private String email;
-        private int    sex;
-        private String birthday;
+        private int sex;
         private String autograph;
         private String username;
         private String userpic;
+        private String bank_card;
         private String total_bonus;
         private String points;
+        private String electronic_signing;
+        private String is_real_name;
 
         public String getEmail() {
             return email;
@@ -87,14 +92,6 @@ public class UserInfoBean {
 
         public void setSex(int sex) {
             this.sex = sex;
-        }
-
-        public String getBirthday() {
-            return birthday;
-        }
-
-        public void setBirthday(String birthday) {
-            this.birthday = birthday;
         }
 
         public String getAutograph() {
@@ -121,6 +118,14 @@ public class UserInfoBean {
             this.userpic = userpic;
         }
 
+        public String getBank_card() {
+            return bank_card;
+        }
+
+        public void setBank_card(String bank_card) {
+            this.bank_card = bank_card;
+        }
+
         public String getTotal_bonus() {
             return total_bonus;
         }
@@ -135,6 +140,22 @@ public class UserInfoBean {
 
         public void setPoints(String points) {
             this.points = points;
+        }
+
+        public String getElectronic_signing() {
+            return electronic_signing;
+        }
+
+        public void setElectronic_signing(String electronic_signing) {
+            this.electronic_signing = electronic_signing;
+        }
+
+        public String getIs_real_name() {
+            return is_real_name;
+        }
+
+        public void setIs_real_name(String is_real_name) {
+            this.is_real_name = is_real_name;
         }
     }
 }

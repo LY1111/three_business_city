@@ -9,7 +9,7 @@
 
     <!--控件“可点击”-->
     <item android:state_pressed="false"
-        android:drawable="@drawable/shape_activity_color_radius5"/>
+        android:drawable="@drawable/shape_activity_color_radius5" />
 
     <!--控件点击时-->
     <item android:state_pressed="true"

@@ -25,13 +25,19 @@ import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.ListTypeAdapter1;
 import com.tuoyi.threebusinesscity.bean.AddCarBean;
+import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.bean.OnLineGoodsDetailsBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.fragment.GlideImageLoader;
 import com.tuoyi.threebusinesscity.util.CommonUtils;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.youth.banner.Banner;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -187,9 +193,8 @@ public class GoodDetailsActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.mCar:
-                Bundle bundle = new Bundle();
-                bundle.putString("where", "detail");
-                JumpUtil.newInstance().jumpRight(this, OnLineShopActivity.class, bundle);
+                EventBus.getDefault().post(new MessageEvent("GoodDetailsActivity"));
+                RxActivityTool.skipActivity(this, OnLineShopActivity.class);
                 break;
             case R.id.mAddCar:
                 if (!TextUtils.isEmpty(mGoodsId)) {
@@ -205,6 +210,9 @@ public class GoodDetailsActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
 
     /**
      * 组装加入购物车接口的option参数

@@ -105,7 +105,8 @@
             android:background="@color/white"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10">
+            android:layout_marginBottom="@dimen/dp_10"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="20dp"
@@ -132,7 +133,8 @@
             android:background="@color/white"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_10">
+            android:layout_marginBottom="@dimen/dp_10"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="20dp"

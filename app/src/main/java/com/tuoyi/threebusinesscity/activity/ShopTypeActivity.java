@@ -3,8 +3,13 @@ package com.tuoyi.threebusinesscity.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -16,17 +21,13 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.ShopTypeAdapter;
 import com.tuoyi.threebusinesscity.bean.ShopTypeBean;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
-import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ShopTypeActivity extends AppCompatActivity {
 
@@ -41,14 +42,16 @@ public class ShopTypeActivity extends AppCompatActivity {
     private List<String> type_ids = new ArrayList<>();
     private LinkedHashMap<Integer, Boolean> map = new LinkedHashMap <>();
 
-    private String type_id;
-    private String type;
+    private int type_id;
+    private MyAdapter adapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_type);
         ButterKnife.bind(this);
+        type_id=getIntent().getIntExtra("pos",0);
+        Log.e("wwwwwwwwww", "商家类型qqqqqqqqqqq: "+type_id );
         getData();
     }
 
@@ -62,14 +65,17 @@ public class ShopTypeActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         ShopTypeBean bean = gson.fromJson(response.body(), ShopTypeBean.class);
                         if (bean.getCode() == 200) {
-                            beanList = bean.getData();
-                            Log.d(TAG, "handleMessage: " + beanList);
+                           beanList = bean.getData();
+                           /*  Log.d(TAG, "handleMessage: " + beanList);
                             for (int i = 0; i < beanList.size(); i++) {
                                 type_ids.add(String.valueOf(beanList.get(i).getId()));
                             }
                             adapter = new ShopTypeAdapter(ShopTypeActivity.this, beanList);
 
-                            mList.setAdapter(adapter);
+                            mList.setAdapter(adapter);*/
+
+                            adapter1=new MyAdapter();
+                            mList.setAdapter(adapter1);
                         } else {
                             Toast.makeText(ShopTypeActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -77,7 +83,63 @@ public class ShopTypeActivity extends AppCompatActivity {
                 });
     }
 
-    @OnClick(R.id.mOk)
+    private class MyAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return beanList.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return beanList.get(i);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return beanList != null ? beanList.size() : 0;
+        }
+
+        @Override
+        public View getView(final int i, View view, ViewGroup viewGroup) {
+           MyAdapter.ViewHolder holder = null;
+            if (view == null) {
+                view = LayoutInflater.from(ShopTypeActivity.this).inflate(R.layout.item_shop_sort, null);
+                holder = new MyAdapter.ViewHolder(view);
+                view.setTag(holder);
+            }else {
+                holder = (MyAdapter.ViewHolder) view.getTag();
+            }
+
+            if (beanList.get(i).getId()==type_id){
+                holder.mItem.setTextColor(getResources().getColor(R.color.colorAccent));
+            }
+            holder.mItem.setText(beanList.get(i).getName());
+            holder.mItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("type",beanList.get(i).getName());
+                    bundle.putInt("type_id", beanList.get(i).getId());
+                    JumpUtil.newInstance().finishRightTrans(ShopTypeActivity.this,bundle,001);
+                }
+            });
+            return view;
+        }
+
+        class ViewHolder {
+            public View rootView;
+            public TextView mItem;
+
+            public ViewHolder(View rootView) {
+                this.rootView = rootView;
+                this.mItem = (TextView) rootView.findViewById(R.id.mItem);
+            }
+
+        }
+    }
+
+    /*@OnClick(R.id.mOk)
     public void onViewClicked() {
         type_id = null;
         type = null;
@@ -104,5 +166,5 @@ public class ShopTypeActivity extends AppCompatActivity {
         bundle.putString("type_id",type_id);
         JumpUtil.newInstance().finishRightTrans(this,bundle,001);
 //        RxActivityTool.skipActivityAndFinish(ShopTypeActivity.this,MyBusinessActivity.class,bundle);
-    }
+    }*/
 }

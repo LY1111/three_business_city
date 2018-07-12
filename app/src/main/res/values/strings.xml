@@ -10,4 +10,11 @@
     <string name="gpsNotifyMsg">当前应用需要打开定位功能。\n\n请点击\"设置\"-\"定位服务\"-打开定位功能。</string>
     <string name="setting">设置</string>
     <string name="cancel">取消</string>
+
+
+    <string-array name="type">
+                 <item>个人</item>
+                 <item>企业</item>
+
+             </string-array>
 </resources>

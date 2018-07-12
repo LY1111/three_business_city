@@ -58,9 +58,9 @@
             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:scaleX="0.6"
-            android:scaleY="0.6"
             android:text="全选"
+            android:textSize="@dimen/sp_16"
+            android:layout_marginLeft="@dimen/common10dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/blackColor" />
         <LinearLayout

@@ -51,6 +51,12 @@ public class OnLineSortFragment extends Fragment {
     private ClassificationListAdapter listAdapter;
     private ClassificationGridAdapter gridAdapter;
 
+
+    public static OnLineSortFragment newInstance() {
+        OnLineSortFragment fragment = new OnLineSortFragment();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

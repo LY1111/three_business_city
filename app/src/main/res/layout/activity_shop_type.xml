@@ -43,6 +43,7 @@
 
     <Button
         android:id="@+id/mOk"
+        android:visibility="gone"
         android:text="确定"
         android:textColor="@color/whiteColor"
         android:textSize="@dimen/text_size_16sp"

@@ -174,133 +174,6 @@
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/whiteColor"-->
-            <!--android:orientation="vertical"-->
-            <!--android:paddingBottom="@dimen/common10dp"-->
-            <!--android:paddingTop="@dimen/common10dp">-->
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingLeft="@dimen/common15dp"-->
-            <!--android:layout_marginRight="@dimen/common15dp"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mBaby"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/baby"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="母婴用品" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mElectric"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/electric"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="家用电器" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mBeauty"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/beauty"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="美妆护理" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mFood"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/food"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="食品特产" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mComputer"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/computer"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="电脑办公" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="@dimen/common10dp"-->
-            <!--android:paddingLeft="@dimen/common15dp"-->
-            <!--android:layout_marginRight="@dimen/common15dp"-->
-            <!--android:orientation="horizontal">-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mPhone"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/phone"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="手机数码" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mBook"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/book"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="图书音像" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mJewelry"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/jewelry"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="珠宝首饰" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mClothes"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/clothes"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="服装服饰" />-->
-
-            <!--<TextView-->
-            <!--android:id="@+id/mFurniture"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:drawablePadding="@dimen/common5dp"-->
-            <!--android:drawableTop="@drawable/furniture"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:text="家具家居" />-->
-            <!--</LinearLayout>-->
-
-            <!--</LinearLayout>-->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -379,34 +252,27 @@
                     android:text="积分秒杀"
                     android:textColor="@color/colorPrimary" />
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/integral_recyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/common15dp"
-                        android:paddingLeft="@dimen/common15dp"
-                        android:paddingRight="@dimen/common15dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/integral_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/common15dp"
+                    android:paddingLeft="@dimen/common15dp"
+                    android:paddingRight="@dimen/common15dp">
 
-                    </android.support.v7.widget.RecyclerView>
+                </android.support.v7.widget.RecyclerView>
 
             </LinearLayout>
 
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="45dp"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:paddingLeft="@dimen/common15dp"-->
-            <!--android:text="最新商品"-->
-            <!--android:textColor="@color/colorPrimary" />-->
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mRecycler"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/whiteColor"
-                    android:paddingBottom="@dimen/common15dp"
-                    android:paddingLeft="@dimen/common15dp"
-                    android:paddingRight="@dimen/common15dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/LatestGoods_Recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/whiteColor"
+                android:paddingBottom="@dimen/common15dp"
+                android:paddingLeft="@dimen/common15dp"
+                android:paddingRight="@dimen/common15dp" />
 
         </LinearLayout>
 

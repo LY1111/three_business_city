@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,14 +22,19 @@ import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.mob.wrappers.AnalySDKWrapper;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.bean.BaseBean;
 import com.tuoyi.threebusinesscity.bean.UploadImageBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.bean.UserInfoBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.CountDownTimerUtils;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.vondear.rxtools.RxPhotoTool;
 import com.vondear.rxtools.view.RxToast;
+import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
@@ -53,48 +61,57 @@ import static com.vondear.rxtools.view.dialog.RxDialogChooseImage.LayoutType.TIT
 public class Personal_InformationActivity extends AppCompatActivity {
 
     @BindView(R.id.leftBack)
-    ImageView       leftBack;
+    ImageView leftBack;
     @BindView(R.id.personalData_save)
-    TextView        mSave;
+    TextView mSave;
     @BindView(R.id.personalData_image)
     CircleImageView mImage;
     @BindView(R.id.personalData_nickName)
-    EditText        mNickName;
+    EditText mNickName;
     @BindView(R.id.personalData_email)
-    EditText        mEmail;
+    EditText mEmail;
     @BindView(R.id.personalData_sex)
-    TextView        mSex;
-
+    TextView mSex;
     @BindView(R.id.personalData_address)
-    EditText        mAddress;
+    EditText mAddress;
     @BindView(R.id.personalData_phone)
-    EditText        mPhone;
+    EditText mPhone;
     @BindView(R.id.personalData_VerificationCode)
-    EditText        mVerificationCode;
+    EditText mVerificationCode;
     @BindView(R.id.personalData_getCode)
-    TextView        mGetCode;
+    TextView mGetCode;
+    @BindView(R.id.tv_authentication)
+    TextView tv_authentication;
+    @BindView(R.id.tv_agreement)
+    TextView tv_agreement;
     @BindView(R.id.personalData_sign)
-    EditText        mSign;
-    @BindView(R.id.Bank_card)
-    EditText        bank_card;
+    EditText mSign;
+    @BindView(R.id.ll_bankCard)
+    LinearLayout ll_bankCard;
     private String[] mSexStr = {"保密", "男", "女"};
-    private String   mCode   = "";
-    private String   mImgUrl = "";
-    private int      mSexint = 0;
+    private String mCode = "";
+    private String mImgUrl = "";
+    private int mSexint = 0;
     private Uri resultUri;
-    private String mBirthday1="";
+    private String mBirthday1 = "";
     private static final String IMAGE_UNSPECIFIED = "image/*";
-    private final        int    IMAGE_CODE        = 0; // 这里的IMAGE_CODE是自己任意定义的
+    private final int IMAGE_CODE = 0; // 这里的IMAGE_CODE是自己任意定义的
     //private File file;
+    private String contract;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_data);
         ButterKnife.bind(this);
-        initGetUerInfo();
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initGetUerInfo();
+    }
 
     //从Uri中加载图片 并将其转化成File文件返回
     private File roadImageView(Uri uri, ImageView imageView) {
@@ -122,6 +139,7 @@ public class Personal_InformationActivity extends AppCompatActivity {
                     /* data.getExtras().get("data");*/
 //                    RxPhotoTool.cropImage(ActivityUser.this, RxPhotoTool.imageUriFromCamera);// 裁剪图片
                     initUCrop(RxPhotoTool.imageUriFromCamera);
+
                 }
 
                 break;
@@ -137,7 +155,7 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
                     File file = roadImageView(resultUri, mImage);
-                    LogUtils.e("adassdada"+file);
+                    LogUtils.e("adassdada" + file);
                     initUploadImage(file);
                     RxToast.success("剪辑成功");
 //                    RxSPTool.putContent(this, "AVATAR", resultUri.toString());
@@ -163,6 +181,8 @@ public class Personal_InformationActivity extends AppCompatActivity {
         String imageName = timeFormatter.format(new Date(time));
 
         Uri destinationUri = Uri.fromFile(new File(getCacheDir(), imageName + ".jpeg"));
+
+        Log.e("initUCrop: ", destinationUri + "");
 
         UCrop.Options options = new UCrop.Options();
         //设置裁剪图片可操作的手势
@@ -196,95 +216,25 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 .withAspectRatio(1, 1)
                 .withMaxResultSize(1000, 1000)
                 .withOptions(options)
-                .start(this);
+                .start(Personal_InformationActivity.this);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         initMySelfImg(requestCode, resultCode, data);
-
-//        Bitmap bm = null;
-//
-//        // 外界的程序访问ContentProvider所提供数据 可以通过ContentResolver接口
-//
-//        ContentResolver resolver = getContentResolver();
-//
-//        if (requestCode == IMAGE_CODE) {
-//
-//            try {
-//
-//                Uri originalUri = data.getData(); // 获得图片的uri
-//
-//                bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);
-//
-////                imageView.setImageBitmap(ThumbnailUtils.extractThumbnail(bm, 100, 100));  //使用系统的一个工具类，参数列表为 Bitmap Width,Height  这里使用压缩后显示，否则在华为手机上ImageView 没有显示
-//                // 显得到bitmap图片
-//                // imageView.setImageBitmap(bm);
-//
-//                String[] proj = { MediaStore.Images.Media.DATA };
-//
-//                // 好像是android多媒体数据库的封装接口，具体的看Android文档
-//                Cursor cursor = managedQuery(originalUri, proj, null, null, null);
-//
-//                // 按我个人理解 这个是获得用户选择的图片的索引值
-//                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-//                // 将光标移至开头 ，这个很重要，不小心很容易引起越界
-//                cursor.moveToFirst();
-//                // 最后根据索引值获取图片路径
-//                String path = cursor.getString(column_index);
-////                tv.setText(path);
-//
-//                RxToast.showToast(path);
-////
-//                RequestOptions options = new RequestOptions()
-//                        .placeholder(R.drawable.s_img)// 正在加载中的图片
-//                        .error(R.drawable.s_img) // 加载失败的图片
-//                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE); // 磁盘缓存策略
-//                Glide.with(this).
-//                        load(path).
-//                        thumbnail(0.5f).
-//                        apply(options).
-//                        into(mImage);
-//                roadImageView(originalUri,mImage);
-//            } catch (IOException e) {
-//                Log.e("TAG-->Error", e.toString());
-//
-//            }
-//
-//            finally {
-//                return;
-//            }
-//        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
 
-//    private void setImage1() {
-//        Intent intent = new Intent(Intent.ACTION_PICK, null);
-//        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_UNSPECIFIED);
-//        startActivityForResult(intent, IMAGE_CODE);
-//    }
-//
-//    private void setImage() {
-//        // TODO Auto-generated method stub
-//        // 使用intent调用系统提供的相册功能，使用startActivityForResult是为了获取用户选择的图片
-//
-//        Intent getAlbum = new Intent(Intent.ACTION_GET_CONTENT);
-//
-//        getAlbum.setType(IMAGE_UNSPECIFIED);
-//
-//        startActivityForResult(getAlbum, IMAGE_CODE);
-//
-//    }
-
-    @OnClick({R.id.leftBack, R.id.personalData_sex,  R.id.personalData_save, R.id.personalData_getCode, R.id.personalData_image_rl})
+    @OnClick({R.id.leftBack, R.id.personalData_sex, R.id.personalData_save, R.id.personalData_getCode, R.id.personalData_image_rl, R.id.tv_authentication,R.id.tv_agreement
+    ,R.id.ll_bankCard})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.leftBack:
-               finish();
+                finish();
                 break;
             case R.id.personalData_sex:
-               final OptionPicker picker1 = new OptionPicker(this, mSexStr);
+                final OptionPicker picker1 = new OptionPicker(this, mSexStr);
                 picker1.setSubmitText("确定");
                 picker1.setCancelText("取消");
                 picker1.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
@@ -298,28 +248,10 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 });
                 picker1.show();
                 break;
-           /* case R.id.personalData_birthday:
-                final DateTimePicker datePicker = new DateTimePicker(this, DateTimePicker.NONE);
-                datePicker.setTextColor(0xFF000000);
-                datePicker.setDividerColor(0xFFFFFFFF);
-                datePicker.setSubmitText("确定");
-                datePicker.setDateRangeStart(1947, 10, 1);
-                datePicker.setDateRangeEnd(2121, 10, 1);
-                datePicker.setCancelText("取消");
-                datePicker.setOnDateTimePickListener(new DateTimePicker.OnYearMonthDayTimePickListener() {
-                    @Override
-                    public void onDateTimePicked(String year, String month, String day, String hour, String minute) {
-                        mBirthday.setText(year + "-" + month + "-" + day);
-                        mBirthday1=year + "-" + month + "-" + day;
-                        datePicker.dismiss();
-                    }
-                });
-                datePicker.show();
 
-                break;*/
             case R.id.personalData_save:
 
-                    initUpdateInfo();
+                initUpdateInfo();
 
                 break;
             case R.id.personalData_image_rl:
@@ -334,11 +266,89 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 } else {
                     CountDownTimerUtils utils = new CountDownTimerUtils(mGetCode, 60000, 1000);
                     utils.start();
-                   // initGetCode(mPhone.getText().toString().trim());
+                    // initGetCode(mPhone.getText().toString().trim());
+                }
+
+                break;
+            case R.id.tv_authentication:
+                authentication();   //实名认证
+                break;
+            case R.id.ll_bankCard:      //银行卡列表
+                Bundle bundle1=new Bundle();
+                bundle1.putString("where","Personal_InformationActivity");
+                RxActivityTool.skipActivity(this, BankCardActivity.class,bundle1);
+                break;
+            case R.id.tv_agreement:
+                if ("1".equals(contract)){
+                    Bundle bundle=new Bundle();
+                    bundle.putString("where","Personal_InformationActivity");
+                    RxActivityTool.skipActivity(this,ContractActivity.class,bundle);   //签约
+                }else {
+                    ToastUtil.show(this, "请实名认证后，在进行签约");
                 }
 
                 break;
         }
+    }
+
+    private void authentication() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog dialog = builder.create();
+
+        View view = View.inflate(this, R.layout.dialog_authentication, null);
+        dialog.setView(view, 0, 0, 0, 0);// 设置边距为0,保证在2.x的版本上运行没问题
+
+        final EditText etPassword = (EditText) view
+                .findViewById(R.id.et_password);
+        final EditText etName = (EditText) view
+                .findViewById(R.id.et_name);
+
+        Button btnOK = (Button) view.findViewById(R.id.btn_ok);
+        Button btnCancel = (Button) view.findViewById(R.id.btn_cancel);
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String password = etPassword.getText().toString().trim();
+                String name = etName.getText().toString().trim();
+                // password!=null && !password.equals("")
+                if (!TextUtils.isEmpty(password)) {
+                    OkGo.<String>post(Config.s + "api/AppProve/real_name_authentication")
+                            .tag(this)
+                            .params("name", name)
+                            .params("identityNo", password)
+                            .params("token",  UserBean.getToken(Personal_InformationActivity.this))
+                            .execute(new StringCallback() {
+                                @Override
+                                public void onSuccess(Response<String> response) {
+                                    Gson gson = new Gson();
+                                    BaseBean bean = gson.fromJson(response.body(), BaseBean.class);
+                                    if (bean.getCode()==200){
+                                        ToastUtil.show(Personal_InformationActivity.this, bean.getMessage());
+                                        initGetUerInfo();
+                                        dialog.dismiss();
+                                    }else {
+                                        ToastUtil.show(Personal_InformationActivity.this, bean.getMessage());
+                                    }
+                                }
+                            });
+                } else {
+                    Toast.makeText(Personal_InformationActivity.this, "身份证号内容不能为空!",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();// 隐藏dialog
+            }
+        });
+
+        dialog.show();
     }
 
     private void initUploadImage(File phoneStr) {
@@ -348,13 +358,13 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        LogUtils.e("2222222"+response.body());
+                        LogUtils.e("2222222" + response.body());
                         Gson gson = new Gson();
                         UploadImageBean bean = gson.fromJson(response.body(), UploadImageBean.class);
                         if (bean.getCode() == 200) {
                             mImgUrl = bean.getData().getImage_url();
                         }
-                        Toast.makeText(Personal_InformationActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(Personal_InformationActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -363,73 +373,93 @@ public class Personal_InformationActivity extends AppCompatActivity {
     private void initGetUerInfo() {
         OkGo.<String>post(Config.s + "api/AppProve/member_info")
                 .tag(this)
-                .params("token",UserBean.getToken(Personal_InformationActivity.this) )
+                .params("token", UserBean.getToken(Personal_InformationActivity.this))
                 .params("type", "0")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        LogUtils.e("111111111111"+response.body());
-                        Gson gson = new Gson();
-                        UserInfoBean mUserInfo = gson.fromJson(response.body(), UserInfoBean.class);
-                       if (mUserInfo.getCode() == 200) {
-                           mImgUrl = mUserInfo.getData().getUserpic();
-                           Glide.with(Personal_InformationActivity.this).
-                                   load(Config.s+mUserInfo.getData().getUserpic()).
-                                   thumbnail(0.5f).
-                                   into(mImage);
-                           mNickName.setText(mUserInfo.getData().getUsername());
-                           mEmail.setText(mUserInfo.getData().getEmail());
-                           Log.e("111111111111", "qqqqqq"+mUserInfo.getData().getSex());
-                           if (1==(mUserInfo.getData().getSex())){
-                               mSex.setText("男");
-                           } else if  (2==(mUserInfo.getData().getSex())){
-                               mSex.setText("女");
-                           }else if (0==(mUserInfo.getData().getSex())){
-                               mSex.setText("保密");
-                           }
-                          // mBirthday.setText(mUserInfo.getData().getBirthday());
-                           mSign.setText(mUserInfo.getData().getAutograph());
-                        }
-                        Toast.makeText(Personal_InformationActivity.this, mUserInfo.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-    private void initUpdateInfo() {
-        Log.e("333333",mImgUrl);
-        OkGo.<String>post(Config.s + "api/AppProve/member_info")
-                .tag(this)
-                .params("token",UserBean.getToken(Personal_InformationActivity.this) )
-                .params("type", "1")
-                .params("username", mNickName.getText().toString().trim())
-                .params("userpic", mImgUrl)
-                .params("email", mEmail.getText().toString().trim())
-                .params("sex", mSexint)
-                .params("bank_card", bank_card.getText().toString().trim())
-                .params("autograph", mSign.getText().toString().trim())
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        LogUtils.e("22222222"+response.body());
+                        LogUtils.e("111111111111" + response.body());
                         Gson gson = new Gson();
                         UserInfoBean mUserInfo = gson.fromJson(response.body(), UserInfoBean.class);
                         if (mUserInfo.getCode() == 200) {
                             mImgUrl = mUserInfo.getData().getUserpic();
                             Glide.with(Personal_InformationActivity.this).
-                                    load(Config.s+mUserInfo.getData().getUserpic()).
+                                    load(Config.IMGS + mUserInfo.getData().getUserpic()).
                                     thumbnail(0.5f).
                                     into(mImage);
                             mNickName.setText(mUserInfo.getData().getUsername());
                             mEmail.setText(mUserInfo.getData().getEmail());
-                            if (1==(mUserInfo.getData().getSex())){
+                            Log.e("111111111111", "qqqqqq" + mUserInfo.getData().getSex());
+                            if (1 == (mUserInfo.getData().getSex())) {
                                 mSex.setText("男");
-                            } else if  (2==(mUserInfo.getData().getSex())){
+                            } else if (2 == (mUserInfo.getData().getSex())) {
                                 mSex.setText("女");
-                            }else if (0==(mUserInfo.getData().getSex())){
+                            } else if (0 == (mUserInfo.getData().getSex())) {
                                 mSex.setText("保密");
                             }
-                           // mBirthday.setText(mUserInfo.getData().getBirthday());
+                            // mBirthday.setText(mUserInfo.getData().getBirthday());
+                            mSign.setText(mUserInfo.getData().getAutograph());
+                            //是否认证
+                            contract=mUserInfo.getData().getIs_real_name();
+                            if ("0".equals(mUserInfo.getData().getIs_real_name())) {
+                                tv_authentication.setBackgroundResource(R.drawable.bg_identify_code_normal);
+                                tv_authentication.setEnabled(true);
+                                tv_authentication.setText("去认证");
+                            } else if ("1".equals(mUserInfo.getData().getIs_real_name())) {
+                                tv_authentication.setBackgroundResource(R.drawable.bg_identify_code_press);
+                                tv_authentication.setEnabled(false);
+                                tv_authentication.setText("已认证");
+                            }
+                            if ("0".equals(mUserInfo.getData().getElectronic_signing())) {
+                                tv_agreement.setBackgroundResource(R.drawable.bg_identify_code_normal);
+                                tv_agreement.setEnabled(true);
+                                tv_agreement.setText("去签约");
+                            } else if ("1".equals(mUserInfo.getData().getIs_real_name())) {
+                                tv_agreement.setBackgroundResource(R.drawable.bg_identify_code_press);
+                                tv_agreement.setEnabled(false);
+                                tv_agreement.setText("已签约");
+                            }
+                        }
+                        //Toast.makeText(Personal_InformationActivity.this, mUserInfo.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void initUpdateInfo() {
+        Log.e("333333", mImgUrl);
+        OkGo.<String>post(Config.s + "api/AppProve/member_info")
+                .tag(this)
+                .params("token", UserBean.getToken(Personal_InformationActivity.this))
+                .params("type", "1")
+                .params("username", mNickName.getText().toString().trim())
+                .params("userpic", mImgUrl)
+                .params("email", mEmail.getText().toString().trim())
+                .params("sex", mSexint)
+                .params("bank_card", "")
+                .params("autograph", mSign.getText().toString().trim())
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        LogUtils.e("22222222" + response.body());
+                        Gson gson = new Gson();
+                        UserInfoBean mUserInfo = gson.fromJson(response.body(), UserInfoBean.class);
+                        if (mUserInfo.getCode() == 200) {
+                            mImgUrl = mUserInfo.getData().getUserpic();
+                            Glide.with(Personal_InformationActivity.this).
+                                    load(Config.IMGS + mUserInfo.getData().getUserpic()).
+                                    thumbnail(0.5f).
+                                    into(mImage);
+                            mNickName.setText(mUserInfo.getData().getUsername());
+                            mEmail.setText(mUserInfo.getData().getEmail());
+                            if (1 == (mUserInfo.getData().getSex())) {
+                                mSex.setText("男");
+                            } else if (2 == (mUserInfo.getData().getSex())) {
+                                mSex.setText("女");
+                            } else if (0 == (mUserInfo.getData().getSex())) {
+                                mSex.setText("保密");
+                            }
+                            // mBirthday.setText(mUserInfo.getData().getBirthday());
                             mSign.setText(mUserInfo.getData().getAutograph());
 
                         }

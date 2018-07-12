@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="添加银行卡"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/leftBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="14dp"
+            android:src="@drawable/back"
+            android:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/personalData_save"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/common10dp">
+        <EditText
+            android:id="@+id/et_cardnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="@dimen/common10dp"
+            android:hint="输入银行卡账号"
+            android:textSize="@dimen/sp_16"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/common10dp">
+        <EditText
+            android:id="@+id/et_cardphnum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="@dimen/common10dp"
+            android:hint="输入银行卡预留手机号"
+            android:textSize="@dimen/sp_16"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_addcard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common30dp"
+        android:layout_marginRight="@dimen/common30dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="添加"
+        android:textColor="@color/white"
+        android:layout_below="@id/card_recyclerview"
+        android:layout_marginTop="@dimen/common40dp"/>
+
+</LinearLayout>

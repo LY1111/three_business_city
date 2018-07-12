@@ -46,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/ll_right"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -54,31 +54,26 @@
                     android:background="@color/whiteColor"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:id="@+id/ll_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:id="@+id/tubiao"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/common10dp"
                             android:src="@mipmap/ic_adress"
-                            android:tint="@color/black" />
+                            android:tint="@color/black"
+                            android:layout_centerVertical="true"/>
 
                         <LinearLayout
                             android:id="@+id/ll_address_1"
-                            android:visibility="gone"
-                            android:layout_width="0dp"
-                            android:layout_weight="8"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingBottom="@dimen/common10dp"
                             android:paddingLeft="@dimen/common10dp"
-                            android:paddingTop="@dimen/common10dp">
+                            android:paddingTop="@dimen/common10dp"
+                            android:layout_toRightOf="@id/tubiao"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -111,8 +106,8 @@
 
                         <LinearLayout
                             android:id="@+id/ll_address_2"
-                            android:layout_width="0dp"
-                            android:layout_weight="8"
+                            android:layout_toRightOf="@id/tubiao"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingBottom="@dimen/common10dp"
@@ -128,18 +123,17 @@
 
                         </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/iv_gogogo"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="30dp"
-                            android:layout_marginLeft="@dimen/common10dp"
-                            android:src="@mipmap/right_back"
-                            android:tint="@color/black" />
+                    <ImageView
+                        android:id="@+id/iv_gogogo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/common20dp"
+                        android:src="@mipmap/right_back"
+                        android:tint="@color/black" />
 
-                    </LinearLayout>
-
-                </LinearLayout>
+                </RelativeLayout>
 
                 <com.tuoyi.threebusinesscity.widget.NoScrollListView
                     android:id="@+id/list_details"

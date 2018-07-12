@@ -38,14 +38,14 @@
                     android:orientation="vertical"
                     android:paddingLeft="118dp">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/userName"
+                            android:id="@+id/tv_userName"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
@@ -53,60 +53,49 @@
                             android:textSize="15sp" />
 
                         <TextView
+                            android:id="@+id/mainm_withdrawals_btn"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:padding="8dp"
-                            android:text="编辑"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:background="@drawable/selector_mainm_btn"
+                            android:paddingTop="@dimen/common5dp"
+                            android:paddingBottom="@dimen/common5dp"
+                            android:paddingLeft="@dimen/common20dp"
+                            android:paddingRight="@dimen/common20dp"
+                            android:text="提现"
+                            android:textColor="@color/whiteColor"
+                            android:textSize="12sp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"/>
 
-                    <LinearLayout
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="13dp"
-                            android:layout_height="13dp"
-                            android:layout_gravity="center"
-                            android:src="@mipmap/ic_launcher_round" />
-
                         <TextView
                             android:id="@+id/userQuotient"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center|left"
-                            android:text="三商豆：3000"
+                            android:gravity="center"
                             android:textColor="@color/whiteColor"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/userMoney"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_margin="2dp"
-                            android:gravity="center|left"
+                            android:gravity="center"
                             android:padding="4dp"
                             android:textColor="@color/whiteColor"
-                            android:textSize="10sp" />
+                            android:textSize="12sp"
+                            android:layout_marginRight="@dimen/common20dp"
+                            android:layout_alignParentRight="true" />
 
-                        <TextView
-                            android:id="@+id/mainm_withdrawals_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/selector_mainm_btn"
-                            android:gravity="center|left"
-                            android:padding="2dp"
-                            android:text="提现"
-                            android:textColor="@color/whiteColor"
-                            android:textSize="10sp" />
-                    </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <de.hdodenhof.circleimageview.CircleImageView

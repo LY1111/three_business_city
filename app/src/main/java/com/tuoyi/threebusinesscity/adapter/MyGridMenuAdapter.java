@@ -2,6 +2,7 @@ package com.tuoyi.threebusinesscity.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.BusinessLoginActivity;
+import com.tuoyi.threebusinesscity.activity.CoOperatorActivity;
 import com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity;
 import com.tuoyi.threebusinesscity.activity.MyMembersActivity;
 import com.tuoyi.threebusinesscity.activity.MyPromoterActivity;
 import com.tuoyi.threebusinesscity.activity.Personal_InformationActivity;
+import com.tuoyi.threebusinesscity.activity.PutForwardActivity;
 import com.tuoyi.threebusinesscity.activity.ShareActivity1;
 import com.tuoyi.threebusinesscity.bean.MyGridMenuBean;
+import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.util.List;
@@ -78,15 +82,19 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                         break;
                     case 6://我的店铺
                         break;
-                    case 7://
-                        RxActivityTool.skipActivity(context,BusinessLoginActivity.class);
+                    case 7://商家登陆
+                        if (TextUtils.isEmpty(UserBean.getBusineToken(context))){
+                            RxActivityTool.skipActivity(context,BusinessLoginActivity.class);
+                        }else {
+                            RxActivityTool.skipActivity(context,CoOperatorActivity.class);
+                        }
+
                         break;
                     case 8://
                         break;
                     case 9://
                         break;
-                    case 10://
-                        break;
+
                 }
             }
         });

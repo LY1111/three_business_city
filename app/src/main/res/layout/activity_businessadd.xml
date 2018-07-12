@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/leftBack"
+            android:layout_width="@dimen/common40dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back"
+            android:padding="@dimen/common10dp"/>
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="商品录入"
+            android:textColor="@color/whiteColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保存"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16sp"
+            android:padding="@dimen/common10dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/common10dp"
+        android:background="@color/white"
+        android:layout_margin="@dimen/common10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="上传商品展示图"
+            android:textSize="@dimen/text_size_14sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/darkColor"
+            android:layout_weight="1"/>
+        <ImageView
+            android:id="@+id/iv_Hygiene"
+            android:layout_width="@dimen/common100dp"
+            android:layout_height="@dimen/common100dp"
+            android:src="@mipmap/addpic"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_GoodsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/common10dp"
+        android:layout_marginLeft="@dimen/common10dp"
+        android:layout_marginBottom="@dimen/common10dp"
+        android:background="@color/white"
+        android:padding="@dimen/common15dp"
+        android:hint="请输入商品标题(30个字符以内)"
+        android:textSize="@dimen/text_size_14sp"
+        android:textColorHint="@color/gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/common10dp"
+        android:layout_marginRight="@dimen/common10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+
+            android:text="销售价格"
+            android:textColor="@color/background_dark"
+            android:background="@color/white"
+            android:padding="@dimen/common15dp"
+            android:textSize="@dimen/text_size_14sp"/>
+
+        <EditText
+            android:id="@+id/et_price"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/common15dp"
+            android:hint="出售的交易实际价格（必填）"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColorHint="@color/gray"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/common10dp"
+        android:layout_marginRight="@dimen/common10dp"
+        android:layout_marginTop="@dimen/common10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="商品排序"
+            android:textColor="@color/background_dark"
+            android:background="@color/white"
+            android:padding="@dimen/common15dp"
+            android:textSize="@dimen/text_size_14sp"/>
+
+        <EditText
+            android:id="@+id/et_number"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="@dimen/common15dp"
+            android:hint="请输入商品编号"
+            android:inputType="number"
+            android:textSize="@dimen/text_size_14sp"
+            android:textColorHint="@color/gray"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/common10dp"
+        android:layout_marginRight="@dimen/common10dp"
+        android:layout_marginTop="@dimen/common10dp"
+        android:orientation="horizontal"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="商品是否上架"
+            android:textColor="@color/background_dark"
+            android:padding="@dimen/common15dp"
+            android:textSize="@dimen/text_size_14sp"/>
+
+       <RadioGroup
+           android:id="@+id/radiogroup"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"
+           android:layout_weight="1"
+           android:orientation="horizontal"
+           android:gravity="center_vertical"
+           android:layout_marginRight="@dimen/common10dp">
+
+           <RadioButton
+               android:id="@+id/rb_yes"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="是"
+               android:checked="true"/>
+           <RadioButton
+               android:id="@+id/rb_no"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="否"
+               android:layout_marginLeft="@dimen/common20dp"/>
+       </RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_describe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/common10dp"
+        android:background="@color/white"
+        android:padding="@dimen/common15dp"
+        android:hint="请输入商品描述"
+        android:textSize="@dimen/text_size_14sp"
+        android:textColorHint="@color/gray"/>
+
+</LinearLayout>

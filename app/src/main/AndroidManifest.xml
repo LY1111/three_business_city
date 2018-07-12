@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tuoyi.threebusinesscity">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -55,7 +56,7 @@
         <!-- 李-高德key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="6332eb7cc715e7f7aebea25f1653aa74" />
+            android:value="f5cd324fbd4d000517d1d89550c6c0ba" />
         <!-- 公-高德key -->
         <!-- <meta-data -->
         <!-- android:name="com.amap.api.v2.apikey" -->
@@ -74,139 +75,236 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            tools:replace="android:authorities"
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <!--主程序  登陆-->
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--主程序  注册-->
         <activity
             android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--主程序  MainActivity-->
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.SupermarketCateringDetailsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.HotelDetailsActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 商家信息-->
         <activity
             android:name=".activity.GeneralDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--绑定手机号-->
         <activity
             android:name=".activity.BindingCellPhoneActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--我推广的商家-->
         <activity
             android:name=".activity.MyPromoterActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--我的会员-->
         <activity
             android:name=".activity.MyMembersActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--消费记录-->
         <activity
             android:name=".activity.IntegralConsumptionRecordsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.MyCouponActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--我推广的商家-->
         <activity
             android:name=".activity.AddAddressActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.PersonalActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+
         <activity
             android:name=".activity.OrderDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--分享二维码-->
         <activity
             android:name=".activity.ShareActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--获取相册相机引用-->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--合作商店铺  注册-->
         <activity
             android:name=".activity.MyBusinessActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--合作商店铺  商家类型-->
         <activity
             android:name=".activity.ShopTypeActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--合作商店铺  商家分类-->
         <activity
             android:name=".activity.ShopSortActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--三商商城  我的地址列表-->
         <activity
             android:name=".activity.MapAddressActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.CompLoginActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity
-            android:name=".activity.ShoppingCartActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--三商商城  商品详情-->
         <activity
             android:name=".activity.onLineShop.GoodDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--首页底部 店家列表-->
         <activity
             android:name=".activity.MainShopDetailsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--三商商城 主Activity-->
         <activity
             android:name=".activity.onLineShop.OnLineShopActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:launchMode="singleTask"/>
+        <activity
+            android:name=".activity.onLineShop.OnLineShopActivity1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:launchMode="singleTask"/>
+        <!--三商商城 商品列表-->
         <activity android:name=".activity.onLineShop.SearchGoodsListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--商品列表-->
         <activity android:name=".activity.onLineShop.GoodsListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <!--个人信息-->
         <activity android:name=".activity.Personal_InformationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
-        <activity
-            android:name="com.yalantis.ucrop.UCropActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--忘记密码-->
         <activity
             android:name=".activity.ForgetPwdActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--三商商城  我的地址列表-->
         <activity
             android:name=".activity.MyLocationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--三商商城  添加地址-->
         <activity
             android:name=".activity.AddMyLocationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--三商商城  确认订单-->
         <activity
             android:name=".activity.Confirmation_OrderActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  登陆-->
         <activity
             android:name=".activity.BusinessLoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--分享推荐-->
         <activity
             android:name=".activity.ShareActivity1"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商主页面-->
+        <activity
+            android:name=".activity.CoOperatorActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  店铺设置-->
+        <activity
+            android:name=".activity.business.BusinessSetActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  账单流水-->
+        <activity
+            android:name=".activity.business.BusinessBillActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  商品管理-->
+        <activity
+            android:name=".activity.business.BusinessAdministrationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  收款码-->
+        <activity
+            android:name=".activity.business.BusinessReceivableActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  促销活动-->
+        <activity
+            android:name=".activity.business.BusinessPromotionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  添加商品-->
+        <activity
+            android:name=".activity.business.BusinessAddGoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--合作商店铺  编辑商品-->
+        <activity
+            android:name=".activity.business.ModifyGoodsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--三商第三方签约-->
+        <activity
+            android:name=".activity.ContractActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--首页店铺内支付-->
+        <activity
+            android:name=".activity.PaymentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--个人信息，银行卡列表-->
+        <activity
+            android:name=".activity.BankCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--个人信息，添加银行卡-->
+        <activity
+            android:name=".activity.AddBankCardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--个人信息，提现-->
+        <activity
+            android:name=".activity.PutForwardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--企业认证-->
+        <activity
+            android:name=".activity.EnterpriseCertificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--商铺提现-->
+        <activity
+            android:name=".activity.ShopsPutForwardActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>

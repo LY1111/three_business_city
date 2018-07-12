@@ -308,21 +308,6 @@ public class AddMyLocationActivity extends AppCompatActivity {
 
     }
 
-   /* public ArrayList<JsonBean> parseData(String result) {//Gson 解析
-        ArrayList<JsonBean> detail = new ArrayList<>();
-        try {
-            JSONArray data = new JSONArray(result);
-            Gson gson = new Gson();
-            for (int i = 0; i < data.length(); i++) {
-                JsonBean entity = gson.fromJson(data.optJSONObject(i).toString(), JsonBean.class);
-                detail.add(entity);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            handler.sendEmptyMessage(MSG_LOAD_FAILED);
-        }
-        return detail;
-    }*/
     public ArrayList<Json1Bean> parseData1(String result) {//Gson 解析
         ArrayList<Json1Bean> detail = new ArrayList<>();
         try {

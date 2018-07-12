@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -56,9 +57,9 @@ import java.util.List;
 
 /* 企业设置 - 地图选择地点 */
 public class MapAddressActivity extends AppCompatActivity implements LocationSource,
-        AMapLocationListener, GeocodeSearch.OnGeocodeSearchListener, PoiSearch.OnPoiSearchListener{
+        AMapLocationListener, GeocodeSearch.OnGeocodeSearchListener, PoiSearch.OnPoiSearchListener {
 
-    private static final String TAG = "地图选点" ;
+    private static final String TAG = "地图选点";
     private ListView listView;
     private SegmentedGroup mSegmentedGroup;
     private AutoCompleteTextView searchText;
@@ -68,7 +69,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
     private AMapLocationClient mlocationClient;
     private AMapLocationClientOption mLocationOption;
 
-    private String[] items = {"住宅区", "学校", "楼宇", "商场" };
+    private String[] items = {"住宅区", "学校", "楼宇", "商场"};
 
     private Marker locationMarker;
 
@@ -122,16 +123,16 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 searchType = items[0];
                 switch (checkedId) {
-                    case R.id.radio0 :
+                    case R.id.radio0:
                         searchType = items[0];
                         break;
-                    case R.id.radio1 :
+                    case R.id.radio1:
                         searchType = items[1];
                         break;
-                    case R.id.radio2 :
+                    case R.id.radio2:
                         searchType = items[2];
                         break;
-                    case R.id.radio3 :
+                    case R.id.radio3:
                         searchType = items[3];
                         break;
                 }
@@ -192,6 +193,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
             setUpMap();
         }
 
+        //获取当前图层层数
         aMap.setOnCameraChangeListener(new AMap.OnCameraChangeListener() {
             @Override
             public void onCameraChange(CameraPosition cameraPosition) {
@@ -213,7 +215,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
         aMap.setOnMapLoadedListener(new AMap.OnMapLoadedListener() {
             @Override
             public void onMapLoaded() {
-                addMarkerInScreenCenter(null);
+                // addMarkerInScreenCenter(null);
             }
         });
     }
@@ -225,11 +227,12 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.strokeColor(R.color.colorPrimary);
         myLocationStyle.radiusFillColor(R.color.colorPrimary);
-        aMap.getUiSettings().setZoomControlsEnabled(false);
+        aMap.getUiSettings().setZoomControlsEnabled(false);     //s缩放控件
         aMap.setLocationSource(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
+        aMap.setMyLocationStyle(myLocationStyle);
     }
 
     /**
@@ -267,7 +270,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
-        if(null != mlocationClient){
+        if (null != mlocationClient) {
             mlocationClient.onDestroy();
         }
     }
@@ -281,7 +284,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
         if (mListener != null && amapLocation != null) {
             if (amapLocation != null
                     && amapLocation.getErrorCode() == 0) {
-                mListener.onLocationChanged(amapLocation);
+                mListener.onLocationChanged(amapLocation);         //显示定位蓝点
 
                 LatLng curLatlng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
 
@@ -294,8 +297,8 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
                 searchText.setText("");
 
             } else {
-                String errText = "定位失败," + amapLocation.getErrorCode()+ ": " + amapLocation.getErrorInfo();
-                Log.e("AmapErr",errText);
+                String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
+                Log.e("AmapErr", errText);
             }
         }
     }
@@ -345,7 +348,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
 //        Log.i("MY", "geoAddress"+ searchLatlonPoint.toString());
         showDialog();
         searchText.setText("");
-        if (searchLatlonPoint != null){
+        if (searchLatlonPoint != null) {
             RegeocodeQuery query = new RegeocodeQuery(searchLatlonPoint, 200, GeocodeSearch.AMAP);// 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
             geocoderSearch.getFromLocationAsyn(query);
         }
@@ -395,7 +398,8 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
 
     /**
      * POI搜索结果回调
-     * @param poiResult 搜索结果
+     *
+     * @param poiResult  搜索结果
      * @param resultCode 错误码
      */
     @Override
@@ -418,6 +422,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
 
     /**
      * 更新列表中的item
+     *
      * @param poiItems
      */
     private void updateListview(List<PoiItem> poiItems) {
@@ -439,7 +444,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
     AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (position != searchResultAdapter.getSelectedPosition()) {
+           // if (position != searchResultAdapter.getSelectedPosition()) {
                 PoiItem poiItem = (PoiItem) searchResultAdapter.getItem(position);
                 LatLng curLatlng = new LatLng(poiItem.getLatLonPoint().getLatitude(), poiItem.getLatLonPoint().getLongitude());
                 isItemClickAction = true;
@@ -449,25 +454,26 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
 
                 Log.i(TAG, "onItemClick地址下: " + poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet());
                 Log.d(TAG, "onItemClick地址title:" + poiItem.getTitle());
-                Log.w(TAG, "onItemClick地址经纬: " + poiItem.getLatLonPoint().getLatitude() + "---" + poiItem.getLatLonPoint().getLongitude() );
-                Log.e(TAG, "onItemClick地址县: " + poiItem.getAdName() );
+                Log.w(TAG, "onItemClick地址经纬: " + poiItem.getLatLonPoint().getLatitude() + "---" + poiItem.getLatLonPoint().getLongitude());
+                Log.e(TAG, "onItemClick地址县: " + poiItem.getAdName());
 //                ToastUtil.show(MapAddressActivity.this,poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet() + poiItem.getTitle());
                 String address = "";
                 Bundle bundle = new Bundle();
-                if (!poiItem.getCityName().isEmpty() && !poiItem.getAdName().isEmpty()){
-                    address = poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet()  +  poiItem.getTitle();
-                }else {
+                //if (!poiItem.getCityName().isEmpty() && !poiItem.getAdName().isEmpty()) {
+                if (!TextUtils.isEmpty(poiItem.getCityName())&& !TextUtils.isEmpty(poiItem.getAdName())) {
+                    address = poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet() + poiItem.getTitle();
+                } else {
                     address = poiItem.getSnippet() + poiItem.getTitle();
                 }
-                bundle.putString("address" , address);
+                bundle.putString("address", address);
                 bundle.putString("纬度", String.valueOf(poiItem.getLatLonPoint().getLatitude()));
                 bundle.putString("经度", String.valueOf(poiItem.getLatLonPoint().getLongitude()));
-                bundle.putString("省",poiItem.getProvinceName());
-                bundle.putString("市",poiItem.getCityName());
-                bundle.putString("县",poiItem.getAdName());
-                JumpUtil.newInstance().finishRightTrans(MapAddressActivity.this,bundle,003);
+                bundle.putString("省", poiItem.getProvinceName());
+                bundle.putString("市", poiItem.getCityName());
+                bundle.putString("县", poiItem.getAdName());
+                JumpUtil.newInstance().finishRightTrans(MapAddressActivity.this, bundle, 003);
             }
-        }
+       //}
     };
 
     public void showDialog() {
@@ -489,10 +495,10 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
         LatLng latLng = aMap.getCameraPosition().target;
         Point screenPosition = aMap.getProjection().toScreenLocation(latLng);
         locationMarker = aMap.addMarker(new MarkerOptions()
-                .anchor(0.5f,1.0f)
+                .anchor(0.5f, 1.0f)
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.loc)));
         //设置Marker在屏幕上,不跟随地图移动
-        locationMarker.setPositionByPixels(screenPosition.x,screenPosition.y);
+        locationMarker.setPositionByPixels(screenPosition.x, screenPosition.y);
         locationMarker.setZIndex(1);
 
     }
@@ -502,11 +508,11 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
      */
     public void startJumpAnimation() {
 
-        if (locationMarker != null ) {
+        if (locationMarker != null) {
             //根据屏幕距离计算需要移动的目标点
             final LatLng latLng = locationMarker.getPosition();
-            Point point =  aMap.getProjection().toScreenLocation(latLng);
-            point.y -= dip2px(this,125);
+            Point point = aMap.getProjection().toScreenLocation(latLng);
+            point.y -= dip2px(this, 125);
             LatLng target = aMap.getProjection()
                     .fromScreenLocation(point);
             //使用TranslateAnimation,填写一个需要移动的目标点
@@ -515,10 +521,10 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
                 @Override
                 public float getInterpolation(float input) {
                     // 模拟重加速度的interpolator
-                    if(input <= 0.5) {
+                    if (input <= 0.5) {
                         return (float) (0.5f - 2 * (0.5 - input) * (0.5 - input));
                     } else {
-                        return (float) (0.5f - Math.sqrt((input - 0.5f)*(1.5f - input)));
+                        return (float) (0.5f - Math.sqrt((input - 0.5f) * (1.5f - input)));
                     }
                 }
             });
@@ -530,7 +536,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
             locationMarker.startAnimation();
 
         } else {
-            Log.e("ama","screenMarker is null");
+            Log.e("ama", "screenMarker is null");
         }
     }
 
@@ -560,13 +566,14 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
                     searchText.showDropDown();
                 }
             } else {
-                Toast.makeText(MapAddressActivity.this, "erroCode " + rCode , Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapAddressActivity.this, "erroCode " + rCode, Toast.LENGTH_SHORT).show();
             }
         }
     };
 
     private boolean isInputKeySearch;
     private String inputSearchKey;
+
     private void searchPoi(Tip result) {
         isInputKeySearch = true;
         inputSearchKey = result.getName();//getAddress(); // + result.getRegeocodeAddress().getCity() + result.getRegeocodeAddress().getDistrict() + result.getRegeocodeAddress().getTownship();
@@ -586,7 +593,7 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
 
     private void hideSoftKey(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(view,InputMethodManager.SHOW_FORCED);
+        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 

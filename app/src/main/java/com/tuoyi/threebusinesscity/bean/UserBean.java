@@ -35,6 +35,14 @@ public class UserBean {
         RxSPTool.putString(context, "Token", Token);
     }
 
+    //设置合作商Token
+    public static void setBusineToken(Context context, String Token) {
+        RxSPTool.putString(context, "BusineToken", Token);
+    }
+    //获取合作商会员Token
+    public static String getBusineToken(Context context) {
+        return RxSPTool.getString(context, "BusineToken");
+    }
     //获取会员Lat
     public static String getLat(Context context) {
         return RxSPTool.getString(context, "Lat");
