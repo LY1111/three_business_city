@@ -9,7 +9,11 @@ import android.widget.TextView;
 
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.IntegralConsumptionRecordsBean;
+import com.vondear.rxtools.RxDataTool;
+import com.vondear.rxtools.RxTimeTool;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,9 +28,9 @@ import butterknife.ButterKnife;
 public class IntegralConsumptionRecordsAdapter extends RecyclerView.Adapter<IntegralConsumptionRecordsAdapter.ViewHolder> {
 
     private Context context;
-    private List<IntegralConsumptionRecordsBean> mdatas;
+    private List<IntegralConsumptionRecordsBean.DataBean> mdatas;
 
-    public IntegralConsumptionRecordsAdapter(List<IntegralConsumptionRecordsBean> items) {
+    public IntegralConsumptionRecordsAdapter(List<IntegralConsumptionRecordsBean.DataBean> items) {
         mdatas = items;
     }
 
@@ -41,7 +45,11 @@ public class IntegralConsumptionRecordsAdapter extends RecyclerView.Adapter<Inte
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
-        holder.mTvIntegral.setText(String.valueOf(holder.mItem.getIntegral()));
+       // holder.mTvIntegral.setText(String.valueOf(holder.mItem.getIntegral()));
+        holder.mTvName.setText(holder.mItem.getBusiness_shop_name());
+        holder.mTvMoney.setText("消费金额：￥"+holder.mItem.getMoney());
+        holder.mTvTime.setText(stampToDate(holder.mItem.getOrder_time()+""));
+
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,7 +76,7 @@ public class IntegralConsumptionRecordsAdapter extends RecyclerView.Adapter<Inte
         TextView mTvIntegral;
         @BindView(R.id.item_integral_consumptionRecords_tv_time)
         TextView mTvTime;
-        public IntegralConsumptionRecordsBean mItem;
+        public IntegralConsumptionRecordsBean.DataBean mItem;
         public final View mView;
 
         public ViewHolder(View view) {
@@ -77,6 +85,21 @@ public class IntegralConsumptionRecordsAdapter extends RecyclerView.Adapter<Inte
             ButterKnife.bind(this, view);
 
         }
+    }
+
+    /*
+
+     * 将时间戳转换为时间
+
+     */
+    public static String stampToDate(String s){
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = new Long(s+"000");
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
+
     }
 
 }

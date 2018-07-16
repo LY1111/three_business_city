@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -36,6 +37,7 @@ import com.vondear.rxtools.view.RxToast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -44,7 +46,7 @@ import butterknife.OnClick;
 public class CoOperatorActivity extends AppCompatActivity {
 
     @BindView(R.id.img_head)
-    ImageView imgHead;
+    CircleImageView imgHead;
     @BindView(R.id.tv_name)
     TextView tvName;
     @BindView(R.id.tv_jinpai)
@@ -149,8 +151,11 @@ public class CoOperatorActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         BusinessMsgBean msgBean = gson.fromJson(response.body(), BusinessMsgBean.class);
                         if (msgBean.getCode() == 200) {
-                            Glide.with(CoOperatorActivity.this).load(Config.IMGS+msgBean.getData().getImage()).placeholder(R.mipmap.tucengsan).into(imgHead);
+                            sign_out.setText("退出");
+                            Glide.with(CoOperatorActivity.this).load(Config.IMGS+msgBean.getData().getImage())/*.placeholder(R.mipmap.tucengsan).error(R.mipmap.tucengsan)*/
+                                    .into(imgHead);
                             tvName.setText(msgBean.getData().getShop_name());
+                            LogUtils.e(msgBean.getData().getTotal_bonus()+"adadadada");
                             money=msgBean.getData().getTotal_bonus()+"";
                             tvTurnover.setText(money);
                             business_type=msgBean.getData().getBusiness_type();
@@ -191,6 +196,7 @@ public class CoOperatorActivity extends AppCompatActivity {
                             }
 
                         }else if (msgBean.getCode() == 400){
+                            sign_out.setText("登陆");
                             RxToast.error(msgBean.getMessage());
                         }
                     }

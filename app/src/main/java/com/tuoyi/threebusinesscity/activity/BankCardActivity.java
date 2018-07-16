@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andview.refreshview.utils.LogUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -20,10 +21,12 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.BankCardListAdapter;
 import com.tuoyi.threebusinesscity.bean.AddBankCarkBean;
 import com.tuoyi.threebusinesscity.bean.BankCarkListBean;
+import com.tuoyi.threebusinesscity.bean.BaseBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 import com.tuoyi.threebusinesscity.util.RxBarTool;
+import com.vondear.rxtools.view.RxToast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +38,6 @@ import butterknife.OnClick;
 public class BankCardActivity extends AppCompatActivity {
     @BindView(R.id.leftBack)
     ImageView leftBack;
-    @BindView(R.id.personalData_save)
-    TextView personalDataSave;
     @BindView(R.id.card_recyclerview)
     RecyclerView cardRecyclerview;
     @BindView(R.id.tv_addcard)
@@ -88,6 +89,19 @@ public class BankCardActivity extends AppCompatActivity {
         cardRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter=new BankCardListAdapter(R.layout.item_bankcard,listBeans);
         cardRecyclerview.setAdapter(adapter);
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+                if ("Personal_InformationActivity".equals(where)){
+                    deleteBankCard(listBeans.get(position).getBankCardNo());
+                }else {
+                    deleteBankCard1(listBeans.get(position).getBankCardNo());
+                }
+                listBeans.remove(position);
+                adapter.setNewData(listBeans);
+            }
+        });
     }
 
     private void getBankCardList(){
@@ -105,7 +119,6 @@ public class BankCardActivity extends AppCompatActivity {
                             listBeans.addAll(msgBean.getData());
                             adapter.setNewData(listBeans);
                         } else {
-
                             Toast.makeText(BankCardActivity.this, msgBean.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -130,6 +143,48 @@ public class BankCardActivity extends AppCompatActivity {
                         } else {
 
                             Toast.makeText(BankCardActivity.this, msgBean.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    //解绑银行卡
+    private void deleteBankCard(String cardNo) {
+        OkGo.<String>post(Config.s + "api/AppProve/untie_bank_card")
+                .tag(this)
+                .params("token", UserBean.getToken(this))
+                .params("cardNo",cardNo )
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Logger.json(response.body());
+                        Gson gson = new Gson();
+                        BaseBean msgBean = gson.fromJson(response.body(), BaseBean.class);
+                        if (msgBean.getCode() == 200) {
+                            RxToast.success(msgBean.getMessage());
+                        } else {
+                            RxToast.error(msgBean.getMessage());
+                        }
+                    }
+                });
+    }
+
+    //解绑银行卡
+    private void deleteBankCard1(String cardNo) {
+        OkGo.<String>post(Config.s + "api/AppBusinessProve/untie_bank_card")
+                .tag(this)
+                .params("business_token", UserBean.getBusineToken(this))
+                .params("cardNo",cardNo )
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Logger.json(response.body());
+                        Gson gson = new Gson();
+                        BaseBean msgBean = gson.fromJson(response.body(), BaseBean.class);
+                        if (msgBean.getCode() == 200) {
+                            RxToast.success(msgBean.getMessage());
+                        } else {
+                            RxToast.error(msgBean.getMessage());
                         }
                     }
                 });

@@ -1,6 +1,7 @@
 package com.tuoyi.threebusinesscity.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.PaymentActivity;
 import com.tuoyi.threebusinesscity.bean.GeneralDetailsBean;
+import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
 import java.util.List;
 
@@ -62,8 +65,9 @@ public class GeneralDetailsAdapter extends RecyclerView.Adapter<GeneralDetailsAd
             public void onClick(View view) {
                 Toast.makeText(context, "点击付款："+holder.mItem.getGoods_id(), Toast.LENGTH_SHORT).show();
                 holder.mItem.getGoods_id();
-//                UserBean.setPosID(context,String.valueOf(holder.mItem.getUid()));
-//                RxActivityTool.skipActivity(context, GeneralDetailsActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("where",holder.mItem.getPrice());
+                RxActivityTool.skipActivity(context, PaymentActivity.class,bundle);
             }
         });
 

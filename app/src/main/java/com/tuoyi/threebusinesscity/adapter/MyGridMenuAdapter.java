@@ -14,6 +14,7 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.BusinessLoginActivity;
 import com.tuoyi.threebusinesscity.activity.CoOperatorActivity;
 import com.tuoyi.threebusinesscity.activity.IntegralConsumptionRecordsActivity;
+import com.tuoyi.threebusinesscity.activity.MyIncomeActivity;
 import com.tuoyi.threebusinesscity.activity.MyMembersActivity;
 import com.tuoyi.threebusinesscity.activity.MyPromoterActivity;
 import com.tuoyi.threebusinesscity.activity.Personal_InformationActivity;
@@ -68,7 +69,8 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                     case 1://积分消费记录
                         RxActivityTool.skipActivity(context, IntegralConsumptionRecordsActivity.class);
                         break;
-                    case 2://
+                    case 2://我的收入
+                        RxActivityTool.skipActivity(context, MyIncomeActivity.class);
                         break;
                     case 3://分享推荐
                         //RxActivityTool.skipActivity(context, ShareActivity.class);

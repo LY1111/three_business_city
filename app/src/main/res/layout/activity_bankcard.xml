@@ -26,40 +26,26 @@
             android:tint="@color/white" />
 
         <TextView
-            android:id="@+id/personalData_save"
+            android:id="@+id/tv_addcard"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:padding="16dp"
             android:textColor="@color/white"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:text="添加"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/card_recyclerview"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </android.support.v7.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/tv_addcard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/common30dp"
-            android:layout_marginRight="@dimen/common30dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:padding="@dimen/dp_10"
-            android:text="添加银行卡"
-            android:textColor="@color/white"
-            android:layout_below="@id/card_recyclerview"
-            android:layout_marginTop="@dimen/common40dp"/>
-    </RelativeLayout>
+
 
 
 </LinearLayout>

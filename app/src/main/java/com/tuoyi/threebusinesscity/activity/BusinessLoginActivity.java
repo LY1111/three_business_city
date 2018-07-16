@@ -18,6 +18,7 @@ import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.BusinessLoginBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.vondear.rxtools.RxBarTool;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +49,7 @@ public class BusinessLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_login);
+        RxBarTool.setStatusBarColor(this, R.color.colorPrimary);
         ButterKnife.bind(this);
         RxActivityTool.addActivity(this);
     }

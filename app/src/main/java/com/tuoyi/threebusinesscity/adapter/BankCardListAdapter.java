@@ -20,6 +20,7 @@ public class BankCardListAdapter extends BaseQuickAdapter<BankCarkListBean.DataB
     @Override
     protected void convert(BaseViewHolder helper, BankCarkListBean.DataBean item) {
         helper.setText(R.id.tv_bankcard,"***************"+item.getBankCardNo().substring(15));
-        helper.setText(R.id.tv_cardName,item.getBankName());
+        helper.setText(R.id.tv_cardName,item.getBankName())
+        .addOnClickListener(R.id.tv_delete);
     }
 }

@@ -304,6 +304,17 @@
             android:name=".activity.ShopsPutForwardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--提现记录-->
+        <activity
+            android:name=".activity.PresentRecordListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <!--我的收入-->
+        <activity
+            android:name=".activity.MyIncomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
 
     </application>
 

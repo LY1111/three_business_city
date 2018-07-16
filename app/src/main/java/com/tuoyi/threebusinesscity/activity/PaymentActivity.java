@@ -1,5 +1,7 @@
 package com.tuoyi.threebusinesscity.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,7 @@ import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.SmallBPayAdapter;
+import com.tuoyi.threebusinesscity.bean.BusinessPaymentBean;
 import com.tuoyi.threebusinesscity.bean.GeneralDetailsBean;
 import com.tuoyi.threebusinesscity.bean.PayNowBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
@@ -46,6 +49,7 @@ public class PaymentActivity extends AppCompatActivity {
     private List<PayNowBean> payNowBeanList = new ArrayList<>();
     private SmallBPayAdapter adapter;
     private int num = 2;
+    private String where;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +59,11 @@ public class PaymentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initData();
         initRecyclerView();
+        Bundle bundle=getIntent().getExtras();
+        where=bundle.getString("where");
+        if (!"GeneralDetailsActivity".equals(where)){
+            mPutMoney.setText(where);
+        }
 
     }
 
@@ -92,10 +101,10 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void initOkGoList() {
+    private void initOkGoList(String money) {
         OkGo.<String>post(Config.s + "api/AppProve/business_payment")
                 .tag(this)
-                .params("amount", Integer.parseInt(mPutMoney.getText().toString().trim()) * 100)
+                .params("amount", money)
                 .params("business_id", "88")
                 .params("token", UserBean.getToken(this))
                 .execute(new StringCallback() {
@@ -103,9 +112,13 @@ public class PaymentActivity extends AppCompatActivity {
                     public void onSuccess(Response<String> response) {
                         Logger.json(response.body());
                         Gson gson = new Gson();
-                        GeneralDetailsBean bean = gson.fromJson(response.body(), GeneralDetailsBean.class);
+                        BusinessPaymentBean bean = gson.fromJson(response.body(), BusinessPaymentBean.class);
                         if (bean.getCode() == 200) {
                             Toast.makeText(PaymentActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
+                            Uri uri = Uri.parse(bean.getData().getPayInfo());
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(PaymentActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -120,7 +133,11 @@ public class PaymentActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.tv_pay:
-                initOkGoList();
+                if ("GeneralDetailsActivity".equals(where)){
+                    initOkGoList(mPutMoney.getText().toString().trim());
+                }else {
+                    initOkGoList(where);
+                }
                 break;
         }
     }

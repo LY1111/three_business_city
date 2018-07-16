@@ -26,7 +26,9 @@ import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 import com.tuoyi.threebusinesscity.util.UriTofilePath;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.RxPhotoTool;
+import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
 
 import org.json.JSONException;
@@ -71,6 +73,7 @@ public class BusinessAddGoodsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_businessadd);
+        RxBarTool.setStatusBarColor(this, R.color.colorPrimary);
         ButterKnife.bind(this);
         RxActivityTool.addActivity(this);
 
@@ -102,9 +105,11 @@ public class BusinessAddGoodsActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         UploadImageBean bean = gson.fromJson(response.body(), UploadImageBean.class);
                         if (bean.getCode() == 200) {
+                            RxToast.success( bean.getMessage());
                             mImgUrl = bean.getData().getImage_url();
+                        }else {
+                            RxToast.error( bean.getMessage());
                         }
-                        Toast.makeText(BusinessAddGoodsActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -129,7 +134,7 @@ public class BusinessAddGoodsActivity extends AppCompatActivity {
                             String message = jsonObject.getString("message");
 
                             if (jsonObject.getString("code").equals("200")) {
-                                Toast.makeText(BusinessAddGoodsActivity.this, message, Toast.LENGTH_SHORT).show();
+                                RxToast.success(message);
                                 setResult(2);
                                 RxActivityTool.finishActivity(BusinessAddGoodsActivity.this);
                             } else if (jsonObject.getString("code").equals("400")) {

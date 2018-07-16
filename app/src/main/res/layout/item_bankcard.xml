@@ -1,39 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:contentView="@+id/content"
+    app:rightMenuView="@+id/right"
+    android:layout_marginTop="1dp">
 
-    <TextView
-        android:id="@+id/tv_cardName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="农业银行"
-        android:layout_marginTop="@dimen/common10dp"
-        android:layout_marginLeft="@dimen/common10dp"
-        android:textSize="@dimen/sp_14"/>
-
-    <TextView
-        android:id="@+id/tv_bankcard"
-        android:layout_below="@id/tv_cardName"
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/common10dp"
-        android:textSize="@dimen/sp_16"
-        android:text="6228480286927636469"/>
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="5dp">
+        <TextView
+            android:id="@+id/tv_cardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="农业银行"
+            android:layout_marginTop="@dimen/common10dp"
+            android:layout_marginLeft="@dimen/common10dp"
+            android:textSize="@dimen/sp_14"/>
 
-    <TextView
+        <TextView
+            android:id="@+id/tv_bankcard"
+            android:layout_below="@id/tv_cardName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/common10dp"
+            android:textSize="@dimen/sp_16"
+            android:text="6228480286927636469"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="储蓄卡"
+            android:textSize="@dimen/sp_12"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_40"
+            android:layout_alignBottom="@id/tv_cardName"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/right"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="储蓄卡"
-        android:textSize="@dimen/sp_12"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dp_40"
-        android:layout_alignBottom="@id/tv_cardName"/>
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_red_light"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="删除"
+            android:layout_gravity="center"
+            android:textColor="@color/white"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray1"
-        android:layout_below="@id/tv_bankcard"/>
+    </LinearLayout>
 
-</RelativeLayout>
+
+</com.guanaj.easyswipemenulibrary.EasySwipeMenuLayout>

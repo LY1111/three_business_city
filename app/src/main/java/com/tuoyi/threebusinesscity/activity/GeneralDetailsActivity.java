@@ -123,7 +123,9 @@ public class GeneralDetailsActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.general_sao_btn:
-                RxActivityTool.skipActivity(this,PaymentActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putString("where","GeneralDetailsActivity");
+                RxActivityTool.skipActivity(this,PaymentActivity.class,bundle);
                 break;
         }
     }

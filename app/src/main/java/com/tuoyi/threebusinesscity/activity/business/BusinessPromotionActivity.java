@@ -25,6 +25,7 @@ public class BusinessPromotionActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_businesspromotion);
+        RxActivityTool.addActivity(this);
         ButterKnife.bind(this);
         RxBarTool.setStatusBarColor(this, R.color.colorPrimary);
     }

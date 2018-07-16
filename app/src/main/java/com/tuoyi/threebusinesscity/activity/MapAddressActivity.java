@@ -2,6 +2,7 @@ package com.tuoyi.threebusinesscity.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -225,9 +226,11 @@ public class MapAddressActivity extends AppCompatActivity implements LocationSou
      */
     private void setUpMap() {
         MyLocationStyle myLocationStyle = new MyLocationStyle();
-        myLocationStyle.strokeColor(R.color.colorPrimary);
-        myLocationStyle.radiusFillColor(R.color.colorPrimary);
-        aMap.getUiSettings().setZoomControlsEnabled(false);     //s缩放控件
+//        myLocationStyle.strokeColor(R.color.colorPrimary);
+//        myLocationStyle.radiusFillColor(R.color.colorPrimary);
+        myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));// 自定义精度范围的圆形边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));//圆圈的颜色,设为透明的时候就可以去掉园区区域了
+        aMap.getUiSettings().setZoomControlsEnabled(true);     //s缩放控件
         aMap.setLocationSource(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false

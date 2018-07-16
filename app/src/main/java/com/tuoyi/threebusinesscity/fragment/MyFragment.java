@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import com.tuoyi.threebusinesscity.bean.UserInformationBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.FullyGridLayoutManager;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.tuoyi.threebusinesscity.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -100,7 +102,7 @@ public class MyFragment extends Fragment {
         initView();
         initMenuList();
         initMarqueeView();
-        GetUserInfo();
+        //GetUserInfo();
     }
 
     private void initView() {
@@ -127,11 +129,13 @@ public class MyFragment extends Fragment {
                             Glide.with(getContext()).load(Config.IMGS + bean.getData().getUserpic())
                                     .error(R.drawable.demo_img)//图片加载失败后，显示的图片
                                     .into(mainmProfileImage);
+                            btnQuit.setText("退出");
                         } else if (bean.getCode() == 400) {
-                            Toast.makeText(getContext(), bean.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), bean.getMessage(), Toast.LENGTH_SHORT).show();
                             tvUserName.setText("未登录");
                             UserBean.removeToken(getActivity());
                             mainmWithdrawalsBtn.setVisibility(View.GONE);
+                            btnQuit.setText("登陆");
                         }
                     }
                 });
@@ -167,6 +171,7 @@ public class MyFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mainmMarqueeView.startFlipping();
+        GetUserInfo();
     }
 
     @Override

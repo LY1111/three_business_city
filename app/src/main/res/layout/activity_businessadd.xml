@@ -104,7 +104,7 @@
             android:hint="出售的交易实际价格（必填）"
             android:textSize="@dimen/text_size_14sp"
             android:textColorHint="@color/gray"
-            android:inputType="number"/>
+            android:inputType="number|numberDecimal"/>
     </LinearLayout>
 
     <LinearLayout

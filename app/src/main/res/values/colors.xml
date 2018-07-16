@@ -18,4 +18,6 @@
     <color name="tab_tv_nor">#797979</color>
     <color name="btn_sign_out">#FE696B</color>
     <color name="tab_tv_sel">#3399dd</color>
+    <color name="loading_bg">#58dddddd</color>
+    <color name="background_content">#ff454344</color>
 </resources>

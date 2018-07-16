@@ -7,7 +7,7 @@ public class BusinessMsgBean {
      * status : 1
      * code : 200
      * message : 成功
-     * data : {"shop_name":"李岩测试","province":"山东省","autograph":"济南市","city":"天桥区","username":"李岩","longitude":"117.00904","latitude":"36.67548","image":"","background_image":"","commission_id":1,"commission_name":"A型","classification_id":30,"classification_name":"美食餐饮","total_bonus":0,"business_type":"3","electronic_signing":"0","is_real_name":"0","enterprise_audit":"0"}
+     * data : {"shop_name":"真实测试一","province":"山东省","autograph":"天桥区","city":"济南市","username":"荆新民","longitude":"117.009695","latitude":"36.673917","image":"cache/images/ckeditor/20180712/2018071254539797-630x630.jpeg","background_image":"cache/images/ckeditor/20180712/2018071210199501-630x630.jpeg","commission_id":1,"commission_name":"A型","classification_id":30,"classification_name":"美食餐饮","total_bonus":0.23,"business_type":"2","electronic_signing":"1","is_real_name":"0","enterprise_audit":"1"}
      */
 
     private int status;
@@ -49,24 +49,24 @@ public class BusinessMsgBean {
 
     public static class DataBean {
         /**
-         * shop_name : 李岩测试
+         * shop_name : 真实测试一
          * province : 山东省
-         * autograph : 济南市
-         * city : 天桥区
-         * username : 李岩
-         * longitude : 117.00904
-         * latitude : 36.67548
-         * image :
-         * background_image :
+         * autograph : 天桥区
+         * city : 济南市
+         * username : 荆新民
+         * longitude : 117.009695
+         * latitude : 36.673917
+         * image : cache/images/ckeditor/20180712/2018071254539797-630x630.jpeg
+         * background_image : cache/images/ckeditor/20180712/2018071210199501-630x630.jpeg
          * commission_id : 1
          * commission_name : A型
          * classification_id : 30
          * classification_name : 美食餐饮
-         * total_bonus : 0
-         * business_type : 3
-         * electronic_signing : 0
+         * total_bonus : 0.23
+         * business_type : 2
+         * electronic_signing : 1
          * is_real_name : 0
-         * enterprise_audit : 0
+         * enterprise_audit : 1
          */
 
         private String shop_name;
@@ -82,7 +82,7 @@ public class BusinessMsgBean {
         private String commission_name;
         private int classification_id;
         private String classification_name;
-        private int total_bonus;
+        private double total_bonus;
         private String business_type;
         private String electronic_signing;
         private String is_real_name;
@@ -192,11 +192,11 @@ public class BusinessMsgBean {
             this.classification_name = classification_name;
         }
 
-        public int getTotal_bonus() {
+        public double getTotal_bonus() {
             return total_bonus;
         }
 
-        public void setTotal_bonus(int total_bonus) {
+        public void setTotal_bonus(double total_bonus) {
             this.total_bonus = total_bonus;
         }
 

@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,10 +26,15 @@ import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
+import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.bean.BaseBean;
 import com.tuoyi.threebusinesscity.bean.UploadImageBean;
 import com.tuoyi.threebusinesscity.url.Config;
+import com.tuoyi.threebusinesscity.util.CommonUtils;
+import com.tuoyi.threebusinesscity.util.CountDownTimerUtils;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
+import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.vondear.rxtools.RxPhotoTool;
 import com.vondear.rxtools.view.RxToast;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
@@ -92,9 +100,11 @@ public class MyBusinessActivity extends AppCompatActivity {
     ImageView leftBack;
     @BindView(R.id.spinner)
     Spinner mSpinner;
+    @BindView(R.id.btn_get_yzm)
+    Button btnGetYzm;
     private String type, sort;
     private int type_id, sort_id;
-    private int type1=3;        //type1=3 个人  type1=2  企业
+    private int type1 = 3;        //type1=3 个人  type1=2  企业
     private String lon, lat, address, sheng, shi, xian;
 
     private String mImgUrl = "";
@@ -109,33 +119,39 @@ public class MyBusinessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_business);
         ButterKnife.bind(this);
-         dialogChooseImage = new RxDialogChooseImage(this, TITLE);
+        dialogChooseImage = new RxDialogChooseImage(this, TITLE);
 
-         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-             @Override
-             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                 if (position==0){
-                     type1=3;
-                 }else if (position==1){
-                     type1=2;
-                 }
-                 LogUtils.e(position+"======="+type1);
-             }
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    type1 = 3;
+                } else if (position == 1) {
+                    type1 = 2;
+                }
+                LogUtils.e(position + "=======" + type1);
+            }
 
-             @Override
-             public void onNothingSelected(AdapterView<?> parent) {
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-             }
-         });
+            }
+        });
+
+        initViewsAndEvents();
     }
 
-    @OnClick({/*R.id.mGetCode,*/ R.id.ll_class, R.id.ll_sort, R.id.rl_location, R.id.mBtn, R.id.mLogin, R.id.iv_Hygiene, R.id.iv_ID2,
+    @OnClick({R.id.btn_get_yzm, R.id.ll_class, R.id.ll_sort, R.id.rl_location, R.id.mBtn, R.id.mLogin, R.id.iv_Hygiene, R.id.iv_ID2,
             R.id.leftBack})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-           /* case R.id.mGetCode:
+            case R.id.btn_get_yzm:
                 //获取验证码
-                break;*/
+                CountDownTimerUtils countDownTimerUtils = new CountDownTimerUtils(btnGetYzm, 60000, 1000);
+                countDownTimerUtils.start();
+
+                getRandomNum();
+                break;
             case R.id.ll_class:
                 //商家类型
                 JumpUtil.newInstance().jumpRight(this, ShopTypeActivity.class, 001);
@@ -171,7 +187,29 @@ public class MyBusinessActivity extends AppCompatActivity {
                 break;
         }
     }
+    private void initViewsAndEvents() {
+        etPhonenum.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                LogUtils.e(i+"");
+                if (i > 9) {
+                    btnGetYzm.setEnabled(true);
+                } else {
+                    btnGetYzm.setEnabled(false);
+                }
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
     private void register() {
         OkGo.<String>post("http://sszl.tuoee.com/api/member/business_register")
                 .params("business_type", type1)
@@ -190,6 +228,7 @@ public class MyBusinessActivity extends AppCompatActivity {
                 .params("district", xian)
                 .params("business_license", mImgUrl)
                 .params("doorhead_photo", mImgUrlB)
+                .params("verification_code", etPassword2.getText().toString())
 
 
                 .execute(new StringCallback() {
@@ -225,12 +264,12 @@ public class MyBusinessActivity extends AppCompatActivity {
             switch (requestCode) {
                 case 001:
                     type = bundle.getString("type");
-                    type_id = bundle.getInt("type_id",0);
+                    type_id = bundle.getInt("type_id", 0);
                     mType.setText(type);
                     break;
                 case 002:
                     sort = bundle.getString("sort");
-                    sort_id = bundle.getInt("sort_id",0);
+                    sort_id = bundle.getInt("sort_id", 0);
                     mSort.setText(sort);
                     break;
                 case 003:
@@ -243,7 +282,7 @@ public class MyBusinessActivity extends AppCompatActivity {
                     tvLication.setText(address);
                     break;
             }
-       }
+        }
     }
 
     private void initUploadImage(File phoneStr) {
@@ -257,20 +296,59 @@ public class MyBusinessActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         UploadImageBean bean = gson.fromJson(response.body(), UploadImageBean.class);
                         if (bean.getCode() == 200) {
-                            switch (i){
+                            switch (i) {
                                 case 1:
                                     mImgUrl = bean.getData().getImage_url();
-                                    Log.e("22222222",mImgUrl);
+                                    Log.e("22222222", mImgUrl);
                                     break;
                                 case 2:
                                     mImgUrlB = bean.getData().getImage_url();
-                                    Log.e("333333333",mImgUrl);
+                                    Log.e("333333333", mImgUrl);
                                     break;
                             }
                         }
                         RxToast.success(bean.getMessage());
                     }
                 });
+    }
+
+    /**
+     * 获取验证码
+     */
+    private void getRandomNum() {
+        if (isPhoneNmb()) {
+            OkGo.<String>post(Config.s + "api/App/verification_code")
+                    .tag(this)
+                    .params("phone", getPhoneNum().trim())
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(Response<String> response) {
+                            Logger.json(response.body());
+                            Gson gson = new Gson();
+                            BaseBean loginBean = gson.fromJson(response.body(), BaseBean.class);
+                            if (loginBean.getCode() == 200) {
+                            }
+                            Toast.makeText(MyBusinessActivity.this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+    }
+
+    public String getPhoneNum() {
+        return etPhonenum.getText().toString();
+    }
+
+    private boolean isPhoneNmb() {
+        if (TextUtils.isEmpty(getPhoneNum().trim())) {
+            ToastUtil.show(MyBusinessActivity.this, "请输入手机号");
+            return false;
+        }
+//        if (!CommonUtils.isMobilePhone(getPhoneNum())) {
+//            ToastUtil.show(MyBusinessActivity.this, "请输入正确手机号");
+//            return false;
+//        }
+        return true;
     }
 
 
@@ -297,7 +375,7 @@ public class MyBusinessActivity extends AppCompatActivity {
                 break;
             case RxPhotoTool.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
-                     //data.getExtras().get("data");
+                    //data.getExtras().get("data");
 //                    RxPhotoTool.cropImage(ActivityUser.this, RxPhotoTool.imageUriFromCamera);// 裁剪图片
                     initUCrop(RxPhotoTool.imageUriFromCamera);
                 }
@@ -306,13 +384,13 @@ public class MyBusinessActivity extends AppCompatActivity {
             case RxPhotoTool.CROP_IMAGE://普通裁剪后的处理
                 resultUri = RxPhotoTool.cropImageUri;
                 File tempFile = null;
-                LogUtils.e("adassdada1111111111"+i);
-                if (i==1){
+                LogUtils.e("adassdada1111111111" + i);
+                if (i == 1) {
                     tempFile = roadImageView(resultUri, ivID2);
-                }else if (i==2){
+                } else if (i == 2) {
                     tempFile = roadImageView(resultUri, ivHygiene);
                 }
-                LogUtils.e("adassdada1111111111"+tempFile);
+                LogUtils.e("adassdada1111111111" + tempFile);
                 initUploadImage(tempFile);
                 //RxToast.success("剪辑成功");
 //                RequestUpdateAvatar(new File(RxPhotoTool.getRealFilePath(this, RxPhotoTool.cropImageUri)));
@@ -323,13 +401,13 @@ public class MyBusinessActivity extends AppCompatActivity {
                     resultUri = UCrop.getOutput(data);
                     //File file = roadImageView(resultUri, mImage);
                     File tempFile1 = null;
-                    LogUtils.e("adassdada1111111111"+i);
-                    if (i==1){
+                    LogUtils.e("adassdada1111111111" + i);
+                    if (i == 1) {
                         tempFile1 = roadImageView(resultUri, ivID2);
-                    }else if (i==2){
+                    } else if (i == 2) {
                         tempFile1 = roadImageView(resultUri, ivHygiene);
                     }
-                    LogUtils.e("adassdada"+tempFile1);
+                    LogUtils.e("adassdada" + tempFile1);
                     initUploadImage(tempFile1);
                     //RxToast.success("剪辑成功");
 //                    RxSPTool.putContent(this, "AVATAR", resultUri.toString());

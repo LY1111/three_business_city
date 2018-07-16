@@ -183,9 +183,9 @@
                 android:layout_marginRight="50dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/shape_btn_sign_out_radius5"
-                android:text="退出"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:text="登陆"/>
         </LinearLayout>
     </ScrollView>
 
