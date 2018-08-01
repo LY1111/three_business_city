@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.andview.refreshview.XRefreshView
-        android:id="@+id/mainf_XRefreshView"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smartrefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/mainf_head_grid_list"
@@ -18,7 +18,8 @@
             android:overScrollMode="never"
             android:scrollbars="none" />
 
-    </com.andview.refreshview.XRefreshView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 
     <LinearLayout
         android:id="@+id/ll_empty"

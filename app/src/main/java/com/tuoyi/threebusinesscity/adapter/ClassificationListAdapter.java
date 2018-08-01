@@ -37,9 +37,7 @@ public class ClassificationListAdapter extends BaseAdapter {
 
     public ClassificationListAdapter(Context context, List<ShopClassificationInformationBean.DataBean> datas) {
         this.context=context;
-        inflater = LayoutInflater.from(context);
         this.datas = datas;
-
     }
 
     @Override
@@ -63,7 +61,7 @@ public class ClassificationListAdapter extends BaseAdapter {
         ViewHolder holder;
         View view = convertView;
         if (view == null) {
-            view = inflater.inflate(R.layout.item_classiftion, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.item_classiftion, parent, false);
             holder = new ViewHolder();
             holder.tvName = view.findViewById(R.id.tv_name);
             holder.itemlayoutb = view.findViewById(R.id.itemlayoutb);

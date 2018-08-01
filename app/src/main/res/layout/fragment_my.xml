@@ -104,10 +104,7 @@
                     android:layout_height="96dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginStart="17dp"
+                    android:layout_margin="@dimen/common16dp"
                     android:src="@drawable/demo_img"
                     app:civ_border_color="#FFFFFFFF"
                     app:civ_border_width="2dp" />

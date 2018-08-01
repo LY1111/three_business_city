@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
 //                    Thread.sleep(300);
 //                    Message msg = checkhandler.obtainMessage();
 //                    checkhandler.sendMessage(msg);
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                     toMain();
                 } catch (Exception e) {
                     // TODO Auto-generated catch block

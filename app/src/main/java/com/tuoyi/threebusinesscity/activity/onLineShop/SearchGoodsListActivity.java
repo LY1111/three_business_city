@@ -91,7 +91,7 @@ public class SearchGoodsListActivity extends AppCompatActivity {
 
     /* 获取商品列表 */
     private void initData1(final String t) {
-        OkGo.<String>post("http://sszl.tuoee.com/api/App/get_category_goods")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/App/get_category_goods")
                 .tag(this)
                 .params("id",t)
                 .params("page",page)
@@ -129,7 +129,7 @@ public class SearchGoodsListActivity extends AppCompatActivity {
 
     /* 获取商品列表 */
     private void initData(final String t) {
-        OkGo.<String>post("http://sszl.tuoee.com/api/App/goods_type")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/App/goods_type")
                 .tag(this)
                 .params("num","10")
                 .params("page",page)
@@ -166,7 +166,7 @@ public class SearchGoodsListActivity extends AppCompatActivity {
 
     /* 搜索商品 */
     private void initSearch(String sSearch) {
-        OkGo.<String>post("http://sszl.tuoee.com/api/App/search_goods")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/App/search_goods")
                 .tag(this)
                 .params("name", sSearch)
                 .params("page", 1)

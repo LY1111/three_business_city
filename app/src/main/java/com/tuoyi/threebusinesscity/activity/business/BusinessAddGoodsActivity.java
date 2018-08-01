@@ -67,7 +67,7 @@ public class BusinessAddGoodsActivity extends AppCompatActivity {
     RadioGroup radiogroup;
     private String mImgUrl;
 
-    private int j;
+    private int j=1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,12 +82,12 @@ public class BusinessAddGoodsActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
                     case R.id.rb_yes:
-                        j=checkedId;
-                        Log.e("11111111",checkedId+"");
+                        j=1;
+                        LogUtils.e(checkedId+"");
                         break;
                     case R.id.rb_no:
-                        j=checkedId;
-                        Log.e("11111111",checkedId+"");
+                        j=0;
+                        LogUtils.e(checkedId+"");
                         break;
                 }
             }

@@ -64,32 +64,32 @@ public class ShoppingCartBean {
          * total_all_points : 200
          */
 
-        private int total_all_price;
-        private int total_all_pay_points;
-        private int total_all_points;
+        private double total_all_price;
+        private double total_all_pay_points;
+        private double total_all_points;
         private List<GoodsBean> goods;
 
-        public int getTotal_all_price() {
+        public double getTotal_all_price() {
             return total_all_price;
         }
 
-        public void setTotal_all_price(int total_all_price) {
+        public void setTotal_all_price(double total_all_price) {
             this.total_all_price = total_all_price;
         }
 
-        public int getTotal_all_pay_points() {
+        public double getTotal_all_pay_points() {
             return total_all_pay_points;
         }
 
-        public void setTotal_all_pay_points(int total_all_pay_points) {
+        public void setTotal_all_pay_points(double total_all_pay_points) {
             this.total_all_pay_points = total_all_pay_points;
         }
 
-        public int getTotal_all_points() {
+        public double getTotal_all_points() {
             return total_all_points;
         }
 
-        public void setTotal_all_points(int total_all_points) {
+        public void setTotal_all_points(double total_all_points) {
             this.total_all_points = total_all_points;
         }
 
@@ -173,13 +173,13 @@ public class ShoppingCartBean {
             private int quantity;
             private int minimum;
             private int subtract;
-            private int price;
-            private int total;
+            private double price;
+            private double total;
             private int pay_points;
-            private int total_pay_points;
-            private int total_return_points;
-            private int points;
-            private int weight;
+            private double total_pay_points;
+            private double total_return_points;
+            private double points;
+            private double weight;
             private int weight_class_id;
             private String length;
             private String width;
@@ -212,13 +212,13 @@ public class ShoppingCartBean {
                 quantity = in.readInt();
                 minimum = in.readInt();
                 subtract = in.readInt();
-                price = in.readInt();
-                total = in.readInt();
+                price = in.readDouble();
+                total = in.readDouble();
                 pay_points = in.readInt();
-                total_pay_points = in.readInt();
-                total_return_points = in.readInt();
-                points = in.readInt();
-                weight = in.readInt();
+                total_pay_points = in.readDouble();
+                total_return_points = in.readDouble();
+                points = in.readDouble();
+                weight = in.readDouble();
                 weight_class_id = in.readInt();
                 length = in.readString();
                 width = in.readString();
@@ -331,19 +331,19 @@ public class ShoppingCartBean {
                 this.subtract = subtract;
             }
 
-            public int getPrice() {
+            public double getPrice() {
                 return price;
             }
 
-            public void setPrice(int price) {
+            public void setPrice(double price) {
                 this.price = price;
             }
 
-            public int getTotal() {
+            public double getTotal() {
                 return total;
             }
 
-            public void setTotal(int total) {
+            public void setTotal(double total) {
                 this.total = total;
             }
 
@@ -355,31 +355,31 @@ public class ShoppingCartBean {
                 this.pay_points = pay_points;
             }
 
-            public int getTotal_pay_points() {
+            public double getTotal_pay_points() {
                 return total_pay_points;
             }
 
-            public void setTotal_pay_points(int total_pay_points) {
+            public void setTotal_pay_points(double total_pay_points) {
                 this.total_pay_points = total_pay_points;
             }
 
-            public int getTotal_return_points() {
+            public double getTotal_return_points() {
                 return total_return_points;
             }
 
-            public void setTotal_return_points(int total_return_points) {
+            public void setTotal_return_points(double total_return_points) {
                 this.total_return_points = total_return_points;
             }
 
-            public int getPoints() {
+            public double getPoints() {
                 return points;
             }
 
-            public void setPoints(int points) {
+            public void setPoints(double points) {
                 this.points = points;
             }
 
-            public int getWeight() {
+            public double getWeight() {
                 return weight;
             }
 
@@ -475,13 +475,13 @@ public class ShoppingCartBean {
                 dest.writeInt(quantity);
                 dest.writeInt(minimum);
                 dest.writeInt(subtract);
-                dest.writeInt(price);
-                dest.writeInt(total);
+                dest.writeDouble(price);
+                dest.writeDouble(total);
                 dest.writeInt(pay_points);
-                dest.writeInt(total_pay_points);
-                dest.writeInt(total_return_points);
-                dest.writeInt(points);
-                dest.writeInt(weight);
+                dest.writeDouble(total_pay_points);
+                dest.writeDouble(total_return_points);
+                dest.writeDouble(points);
+                dest.writeDouble(weight);
                 dest.writeInt(weight_class_id);
                 dest.writeString(length);
                 dest.writeString(width);

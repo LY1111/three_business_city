@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,11 +29,12 @@ import static com.tuoyi.threebusinesscity.url.Config.IMGS;
 public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsListAdapter.ViewHolder> {
     private Context context;
     private List<SearchGoodsListBean.DataBean> beanList;
+    private final LayoutInflater mLayoutInflater;
 
     public SearchGoodsListAdapter(Context context, List<SearchGoodsListBean.DataBean> beanList) {
         this.context = context;
         this.beanList = beanList;
-
+        mLayoutInflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -40,7 +42,7 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
         View view = null;
         ViewHolder holder = null;
         if (holder == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_search_goods_list, null);
+            view = mLayoutInflater.inflate(R.layout.item_search_goods_list, null);
             holder = new ViewHolder(view);
             view.setTag(holder);
         } else {
@@ -97,8 +99,8 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
         public  ImageView                 mImg;
         public  TextView                  mName;
         public  TextView                  mPrice;
-        public  LinearLayout              mDetails;
         public  TextView                  integral;
+        public  RelativeLayout mDetails;
         private RushBuyCountDownTimerView timeView1;
 
         public ViewHolder(View rootView) {
@@ -108,7 +110,7 @@ public class SearchGoodsListAdapter extends RecyclerView.Adapter<SearchGoodsList
             this.mName = (TextView) rootView.findViewById(R.id.mName);
             this.mPrice = (TextView) rootView.findViewById(R.id.mPrice);
             this.integral = (TextView) rootView.findViewById(R.id.integral);
-            this.mDetails = (LinearLayout) rootView.findViewById(R.id.mDetails);
+            this.mDetails = (RelativeLayout) rootView.findViewById(R.id.mDetails);
             this.timeView1=rootView.findViewById(R.id.timeView1);
         }
 

@@ -54,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        com.pgyersdk.crash.PgyCrashManager.register(this);
+        initUpdateApp();
     }
 
     @OnClick({R.id.login_back, R.id.login_bt, R.id.login_register, R.id.login_forget})
@@ -89,5 +91,37 @@ public class LoginActivity extends AppCompatActivity {
                 RxActivityTool.skipActivity(this,ForgetPwdActivity.class);
                 break;
         }
+    }
+
+
+    private void initUpdateApp() {
+        com.pgyersdk.update.PgyUpdateManager.register(LoginActivity.this,
+                new com.pgyersdk.update.UpdateManagerListener() {
+
+                    @Override
+                    public void onUpdateAvailable(final String result) {
+                        // 将新版本信息封装到AppBean中
+                        final com.pgyersdk.javabean.AppBean appBean = getAppBeanFromString(result);
+                        final com.vondear.rxtools.view.dialog.RxDialogSure rxDialogSure = new com.vondear.rxtools.view.dialog.RxDialogSure(LoginActivity.this);
+                        rxDialogSure.setTitle("版本更新");
+                        rxDialogSure.setSure("确定更新");
+                        rxDialogSure.setContent("发现新版本：" + appBean.getVersionName());
+                        rxDialogSure.setSureListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startDownloadTask(
+                                        LoginActivity.this,
+                                        appBean.getDownloadURL());
+                                com.pgyersdk.update.UpdateManagerListener.updateLocalBuildNumber(result);
+
+                            }
+                        });
+                        rxDialogSure.show();
+                    }
+
+                    @Override
+                    public void onNoUpdateAvailable() {
+                    }
+                });
     }
 }

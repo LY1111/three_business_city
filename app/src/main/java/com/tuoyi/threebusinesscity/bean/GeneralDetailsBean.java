@@ -102,6 +102,16 @@ public class GeneralDetailsBean {
             private String member;
             private double distance;
 
+            public String getBackground_image() {
+                return background_image;
+            }
+
+            public void setBackground_image(String background_image) {
+                this.background_image = background_image;
+            }
+
+            private String background_image;
+
             public int getUid() {
                 return uid;
             }

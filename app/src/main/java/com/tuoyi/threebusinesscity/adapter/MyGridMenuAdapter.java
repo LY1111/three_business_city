@@ -1,14 +1,17 @@
 package com.tuoyi.threebusinesscity.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.BusinessLoginActivity;
@@ -56,7 +59,8 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
         holder.itemTitle.setText(holder.mItem.getName());
-        Glide.with(context).load( holder.mItem.getImg()).into(holder.itemIcon);
+       // Glide.with(context).load(holder.mItem.getImg()).into(holder.itemIcon);
+        holder.itemIcon.setImageResource( holder.mItem.getImg());
 //        Glide.with(context).load(IMGS + holder.mItem.getImg()).into(holder.itemIcon);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +83,7 @@ public class MyGridMenuAdapter extends RecyclerView.Adapter<MyGridMenuAdapter.Vi
                     case 4://我的伙伴
                         RxActivityTool.skipActivity(context, MyMembersActivity.class);
                         break;
-                    case 5://
+                    case 5://我的推广商家
                         RxActivityTool.skipActivity(context, MyPromoterActivity.class);
                         break;
                     case 6://我的店铺

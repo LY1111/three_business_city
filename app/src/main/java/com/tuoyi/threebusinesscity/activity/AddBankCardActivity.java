@@ -1,17 +1,14 @@
 package com.tuoyi.threebusinesscity.activity;
 
 import android.app.Dialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +25,7 @@ import com.tuoyi.threebusinesscity.bean.AddBankCarkBean;
 import com.tuoyi.threebusinesscity.bean.BaseBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
-import com.tuoyi.threebusinesscity.util.ToastUtil;
+import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.view.RxToast;
 
 import butterknife.BindView;
@@ -46,18 +43,23 @@ public class AddBankCardActivity extends AppCompatActivity {
     EditText etCardphnum;
     @BindView(R.id.tv_addcard)
     TextView tvAddcard;
+    @BindView(R.id.et_PayLineNumber)
+    EditText etPayLineNumber;
+    @BindView(R.id.et_OpeningBank)
+    EditText etOpeningBank;
 
     private AddBankCarkBean msgBean;
     private String where;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addankcard);
-        com.vondear.rxtools.RxBarTool.setStatusBarColor(this,R.color.colorPrimary);
+        RxBarTool.setStatusBarColor(this, R.color.colorPrimary);
         ButterKnife.bind(this);
 
-        Bundle bundle=getIntent().getExtras();
-        where=bundle.getString("where");
+        Bundle bundle = getIntent().getExtras();
+        where = bundle.getString("where");
         LogUtils.e(where);
     }
 
@@ -86,10 +88,10 @@ public class AddBankCardActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         BaseBean baseBean = gson.fromJson(response.body(), BaseBean.class);
                         if (baseBean.getCode() == 200) {
-                            if ("Personal_InformationActivity".equals(where)){
+                            if ("Personal_InformationActivity".equals(where)) {
                                 //会员请求绑定银行卡
                                 addBankCark();
-                            }else {
+                            } else {
                                 addBankCark1();
                             }
                         } else {
@@ -104,7 +106,9 @@ public class AddBankCardActivity extends AppCompatActivity {
         OkGo.<String>post(Config.s + "api/AppProve/request_binding_bank_card")
                 .tag(this)
                 .params("cardNo", etCardnum.getText().toString().trim())
-                .params("phone",etCardphnum.getText().toString().trim() )
+                .params("phone", etCardphnum.getText().toString().trim())
+                .params("unionBank", etPayLineNumber.getText().toString().trim())
+                .params("bankName", etOpeningBank.getText().toString().trim())
                 .params("token", UserBean.getToken(this))
                 .execute(new StringCallback() {
                     @Override
@@ -122,13 +126,16 @@ public class AddBankCardActivity extends AppCompatActivity {
                     }
                 });
     }
+
     //个企请求绑定银行卡
     private void addBankCark1() {
         OkGo.<String>post(Config.s + "api/AppBusinessProve/request_binding_bank_card")
                 .tag(this)
                 .params("cardNo", etCardnum.getText().toString().trim())
-                .params("phone",etCardphnum.getText().toString().trim() )
+                .params("phone", etCardphnum.getText().toString().trim())
                 .params("business_token", UserBean.getBusineToken(this))
+                .params("unionBank", etPayLineNumber.getText().toString().trim())
+                .params("bankName",etOpeningBank.getText().toString().trim() )
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -167,9 +174,9 @@ public class AddBankCardActivity extends AppCompatActivity {
                 String code = tv_verificationcode.getText().toString().trim();
                 //String name = etName.getText().toString().trim();
                 if (!TextUtils.isEmpty(code)) {
-                    if ("Personal_InformationActivity".equals(where)){
+                    if ("Personal_InformationActivity".equals(where)) {
                         confirmBankCark(code);
-                    }else {
+                    } else {
                         confirmBankCark1(code);
                     }
                 } else {
@@ -181,14 +188,17 @@ public class AddBankCardActivity extends AppCompatActivity {
     }
 
     //会员确认绑定银行卡
-    private void confirmBankCark(String Code ) {
+    private void confirmBankCark(String Code) {
         OkGo.<String>post(Config.s + "api/AppProve/confirm_binding_bank_card")
                 .tag(this)
                 .params("tranceNum", msgBean.getData().getTranceNum())
-                .params("transDate",msgBean.getData().getTransDate())
-                .params("phone",etCardphnum.getText().toString().trim() )
-                .params("verificationCode",Code )
+                .params("transDate", msgBean.getData().getTransDate())
+                .params("phone", etCardphnum.getText().toString().trim())
+                .params("verificationCode", Code)
                 .params("token", UserBean.getToken(this))
+                .params("unionBank", etPayLineNumber.getText().toString().trim())
+                .params("bankName", etOpeningBank.getText().toString().trim())
+                .params("cardNo", etCardnum.getText().toString().trim())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -204,15 +214,19 @@ public class AddBankCardActivity extends AppCompatActivity {
                     }
                 });
     }
+
     //个企确认绑定银行卡
-    private void confirmBankCark1(String Code ) {
+    private void confirmBankCark1(String Code) {
         OkGo.<String>post(Config.s + "api/AppBusinessProve/confirm_binding_bank_card")
                 .tag(this)
                 .params("tranceNum", msgBean.getData().getTranceNum())
-                .params("transDate",msgBean.getData().getTransDate())
-                .params("phone",etCardphnum.getText().toString().trim() )
-                .params("verificationCode",Code )
+                .params("transDate", msgBean.getData().getTransDate())
+                .params("phone", etCardphnum.getText().toString().trim())
+                .params("verificationCode", Code)
                 .params("business_token", UserBean.getBusineToken(this))
+                .params("unionBank", etPayLineNumber.getText().toString().trim())
+                .params("bankName", etOpeningBank.getText().toString().trim())
+                .params("cardNo", etCardnum.getText().toString().trim())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

@@ -5,16 +5,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -23,7 +23,6 @@ import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.business.BusinessAdministrationActivity;
 import com.tuoyi.threebusinesscity.activity.business.BusinessBillActivity;
-import com.tuoyi.threebusinesscity.activity.business.BusinessPromotionActivity;
 import com.tuoyi.threebusinesscity.activity.business.BusinessReceivableActivity;
 import com.tuoyi.threebusinesscity.activity.business.BusinessSetActivity;
 import com.tuoyi.threebusinesscity.bean.BaseBean;
@@ -45,7 +44,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class CoOperatorActivity extends AppCompatActivity {
 
-    @BindView(R.id.img_head)
+    @BindView(R.id.CoOperator_img_head)
     CircleImageView imgHead;
     @BindView(R.id.tv_name)
     TextView tvName;
@@ -65,8 +64,6 @@ public class CoOperatorActivity extends AppCompatActivity {
     LinearLayout llAdministration;
     @BindView(R.id.ll_Receivables)
     LinearLayout llReceivables;
-    @BindView(R.id.ll_Promotion)
-    LinearLayout Promotion;
     @BindView(R.id.ll_PutForward)
     LinearLayout ll_PutForward;
     @BindView(R.id.ll_BankCard)
@@ -88,9 +85,10 @@ public class CoOperatorActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getBusinessMsg();
+        Log.e("adasdasdasdasd","onResume");
     }
 
-    @OnClick({R.id.ll_setshop, R.id.ll_bill, R.id.ll_administration, R.id.ll_Receivables, R.id.ll_Promotion,R.id.Sign_out,R.id.tv_Authentication,R.id.tv_Contract,R.id.ll_PutForward,R.id.ll_BankCard})
+    @OnClick({R.id.ll_setshop, R.id.ll_bill, R.id.ll_administration, R.id.ll_Receivables,R.id.Sign_out,R.id.tv_Authentication,R.id.tv_Contract,R.id.ll_PutForward,R.id.ll_BankCard})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_setshop://店铺设置
@@ -105,12 +103,13 @@ public class CoOperatorActivity extends AppCompatActivity {
             case R.id.ll_Receivables://收款码
                 RxActivityTool.skipActivity(CoOperatorActivity.this,BusinessReceivableActivity.class);
                 break;
-            case R.id.ll_Promotion://促销活动
-                RxActivityTool.skipActivity(CoOperatorActivity.this,BusinessPromotionActivity.class);
-                break;
             case R.id.Sign_out://退出
-                UserBean.setBusineToken(CoOperatorActivity.this,"");
-                finish();
+                if ("登陆".equals(sign_out.getText().toString())){
+                    RxActivityTool.skipActivity(this, BusinessLoginActivity.class);
+                }else {
+                    UserBean.setBusineToken(CoOperatorActivity.this,"");
+                    finish();
+                }
                 break;
             case R.id.tv_Contract://签约
                 Bundle bundle=new Bundle();
@@ -152,10 +151,11 @@ public class CoOperatorActivity extends AppCompatActivity {
                         BusinessMsgBean msgBean = gson.fromJson(response.body(), BusinessMsgBean.class);
                         if (msgBean.getCode() == 200) {
                             sign_out.setText("退出");
-                            Glide.with(CoOperatorActivity.this).load(Config.IMGS+msgBean.getData().getImage())/*.placeholder(R.mipmap.tucengsan).error(R.mipmap.tucengsan)*/
-                                    .into(imgHead);
+
+                            RequestOptions options = new RequestOptions();
+                            options.placeholder(R.mipmap.headimg);
+                            Glide.with(CoOperatorActivity.this).load(Config.IMGS+msgBean.getData().getImage()).apply(options).into(imgHead);
                             tvName.setText(msgBean.getData().getShop_name());
-                            LogUtils.e(msgBean.getData().getTotal_bonus()+"adadadada");
                             money=msgBean.getData().getTotal_bonus()+"";
                             tvTurnover.setText(money);
                             business_type=msgBean.getData().getBusiness_type();

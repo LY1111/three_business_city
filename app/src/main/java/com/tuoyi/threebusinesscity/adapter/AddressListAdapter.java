@@ -62,7 +62,7 @@ public class AddressListAdapter extends BaseAdapter {
         }
         viewHolder.tv_name.setText(dataBeans.get(position).getName());
         viewHolder.tv_phone.setText(dataBeans.get(position).getTelephone());
-        viewHolder.tv_address.setText(dataBeans.get(position).getAddress());
+        viewHolder.tv_address.setText(dataBeans.get(position).getProvince()+ dataBeans.get(position).getCity()+dataBeans.get(position).getCountry() +dataBeans.get(position).getAddress());
        /* if (position==0){
             viewHolder. select_img.setImageResource(R.mipmap.weixuanzhong);
         }*/

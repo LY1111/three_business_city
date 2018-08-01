@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.MyMembersBean;
+import com.tuoyi.threebusinesscity.url.Config;
 
 import java.util.List;
 
@@ -25,9 +28,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyMembersAdapter extends RecyclerView.Adapter<MyMembersAdapter.ViewHolder> {
 
     private Context context;
-    private List<MyMembersBean> mdatas;
+    private List<MyMembersBean.DataBean.UpperMemberBean> mdatas;
 
-    public MyMembersAdapter(List<MyMembersBean> items) {
+    public MyMembersAdapter(List<MyMembersBean.DataBean.UpperMemberBean> items) {
         mdatas = items;
     }
 
@@ -41,8 +44,9 @@ public class MyMembersAdapter extends RecyclerView.Adapter<MyMembersAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.mItem = mdatas.get(position);
-        holder.mName.setText(holder.mItem.getMemberName());
+        holder.mName.setText(mdatas.get(position).getUsername());
+        RequestOptions options=new RequestOptions().placeholder(R.drawable.demo_img);
+        Glide.with(context).load(Config.IMGS+(mdatas.get(position).getUserpic())).apply(options).into(holder.mImage);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -25,24 +25,24 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
+import com.pgyersdk.crash.PgyCrashManager;
+import com.pgyersdk.javabean.AppBean;
+import com.pgyersdk.update.PgyUpdateManager;
+import com.pgyersdk.update.UpdateManagerListener;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.activity.onLineShop.OnLineShopActivity;
-import com.tuoyi.threebusinesscity.activity.onLineShop.OnLineShopActivity1;
-import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.fragment.MainFragment;
 import com.tuoyi.threebusinesscity.fragment.MessageFragment;
 import com.tuoyi.threebusinesscity.fragment.MyFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
 import com.tuoyi.threebusinesscity.fragment.ShopFragment;
-import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
-import com.vondear.rxtools.RxPermissionsTool;
-
-import org.greenrobot.eventbus.EventBus;
+import com.tuoyi.threebusinesscity.util.RxSPTool;
+import com.vondear.rxtools.view.dialog.RxDialogSure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +50,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-//import com.amap.api.location.AMapLocation;
-//import com.amap.api.location.AMapLocationClient;
-//import com.amap.api.location.AMapLocationClientOption;
-//import com.amap.api.location.AMapLocationListener;
 
 /**
  * 主界面
@@ -84,6 +80,7 @@ public class MainActivity extends AppCompatActivity  {
     private MyFragment mMyFragment;
     private OnLineShopFragment onLineShopFragment;
     private int tab;
+    private RequestOptions options;
 
     /**
      * 需要进行检测的权限数组
@@ -239,7 +236,9 @@ public class MainActivity extends AppCompatActivity  {
         initListener();
 
 //        initFragment(changIndexListener.changIndex());
-
+        initUpdateApp();
+        PgyCrashManager.register(this);
+        initUpdateApp();
     }
 
     /**
@@ -284,7 +283,8 @@ public class MainActivity extends AppCompatActivity  {
                         mainRbMy.setTextColor(getResources().getColor(R.color.darkColor));
                         mainRbMy.setCompoundDrawables(null,my_a,null,null);
                         initFragment(1);
-                        Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
+                        options = new RequestOptions().priority(Priority.LOW).centerCrop();
+                        Glide.with(MainActivity.this).load(R.mipmap.photo).apply(options).into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
                         mainRbSao.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -298,6 +298,11 @@ public class MainActivity extends AppCompatActivity  {
 //                        JumpUtil.newInstance().jumpRight(MainActivity.this, OnLineShopActivity.class);
 //                        Intent intent=new Intent(MainActivity.this,OnLineShopActivity.class);
 //                        startActivityForResult(intent,1);
+//                        Bundle bundle=new Bundle();
+//                        bundle.putString("where","MainActivity");
+
+
+                        RxSPTool.putString(MainActivity.this, "where","MainActivity");
                         RxActivityTool.skipActivity(MainActivity.this, OnLineShopActivity.class);
                         mainRg.check(R.id.main_rb_main);
 //                        initFragment(2);
@@ -324,7 +329,8 @@ public class MainActivity extends AppCompatActivity  {
                         mainRbMy.setTextColor(getResources().getColor(R.color.darkColor));
                         mainRbMy.setCompoundDrawables(null,my_a,null,null);
                         initFragment(3);
-                        Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
+                        //RequestOptions options1 = new RequestOptions().priority(Priority.LOW).centerCrop();
+                        Glide.with(MainActivity.this).load(R.mipmap.photo).apply(options).into(mainRbSaoImg);
                         mainRbSaoTv.setText("扫一扫");
                         mainRbSao.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -345,7 +351,7 @@ public class MainActivity extends AppCompatActivity  {
                             mainRbMy.setTextColor(getResources().getColor(R.color.colorPrimary));
                             mainRbMy.setCompoundDrawables(null,my_b,null,null);
                             initFragment(4);
-                            Glide.with(MainActivity.this).load(R.mipmap.photo).priority(Priority.LOW).centerCrop().into(mainRbSaoImg);
+                            Glide.with(MainActivity.this).load(R.mipmap.photo).apply(options).into(mainRbSaoImg);
                             mainRbSaoTv.setText("扫一扫");
                             mainRbSao.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -427,4 +433,36 @@ public class MainActivity extends AppCompatActivity  {
         super.onDestroy();
 //        mLocationClient.onDestroy();//销毁定位客户端，同时销毁本地定位服务。
     }
+
+    private void initUpdateApp() {
+        PgyUpdateManager.register(MainActivity.this,
+                new UpdateManagerListener() {
+
+                    @Override
+                    public void onUpdateAvailable(final String result) {
+                        // 将新版本信息封装到AppBean中
+                        final AppBean appBean = getAppBeanFromString(result);
+                        final RxDialogSure rxDialogSure = new RxDialogSure(MainActivity.this);
+                        rxDialogSure.setTitle("版本更新");
+                        rxDialogSure.setSure("确定更新");
+                        rxDialogSure.setContent("发现新版本：" + appBean.getVersionName());
+                        rxDialogSure.setSureListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                startDownloadTask(
+                                        MainActivity.this,
+                                        appBean.getDownloadURL());
+                                UpdateManagerListener.updateLocalBuildNumber(result);
+
+                            }
+                        });
+                        rxDialogSure.show();
+                    }
+
+                    @Override
+                    public void onNoUpdateAvailable() {
+                    }
+                });
+    }
+
 }

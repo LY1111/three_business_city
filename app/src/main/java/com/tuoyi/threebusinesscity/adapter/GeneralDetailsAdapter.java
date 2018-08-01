@@ -34,9 +34,11 @@ public class GeneralDetailsAdapter extends RecyclerView.Adapter<GeneralDetailsAd
 
     private Context context;
     private List<GeneralDetailsBean.DataBean.GoodsBean> mdatas;
+    private String businessID;
 
-    public GeneralDetailsAdapter(List<GeneralDetailsBean.DataBean.GoodsBean> items) {
-        mdatas = items;
+    public GeneralDetailsAdapter(List<GeneralDetailsBean.DataBean.GoodsBean> items,String businessID) {
+        this.mdatas = items;
+        this.businessID=businessID;
     }
 
     @Override
@@ -63,10 +65,12 @@ public class GeneralDetailsAdapter extends RecyclerView.Adapter<GeneralDetailsAd
         holder.mBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "点击付款："+holder.mItem.getGoods_id(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "点击付款："+holder.mItem.getGoods_id(), Toast.LENGTH_SHORT).show();
                 holder.mItem.getGoods_id();
                 Bundle bundle=new Bundle();
-                bundle.putString("where",holder.mItem.getPrice());
+                bundle.putString("money",holder.mItem.getPrice());
+                bundle.putString("where"," GeneralDetailsAdapte");
+                bundle.putString("businessID",businessID);
                 RxActivityTool.skipActivity(context, PaymentActivity.class,bundle);
             }
         });
@@ -97,6 +101,11 @@ public class GeneralDetailsAdapter extends RecyclerView.Adapter<GeneralDetailsAd
             ButterKnife.bind(this, view);
 
         }
+    }
+
+    public  void setData(List<GeneralDetailsBean.DataBean.GoodsBean> mdatas ){
+        this.mdatas=mdatas;
+        notifyDataSetChanged();
     }
 
 }

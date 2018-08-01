@@ -104,10 +104,10 @@ public class OnLineMyFragment extends Fragment {
         mFragments = new ArrayList<>();
         mFragments.add(WholeFragment.newInstance(0));    //全部
         mFragments.add(WholeFragment.newInstance(3));  //待付款
-        mFragments.add(WholeFragment.newInstance(1));  //待收货
-        mFragments.add(WholeFragment.newInstance(4)); //待评价
-        mFragments.add(WholeFragment.newInstance(5));    //售后
-        mFragments.add(WholeFragment.newInstance(2));    //售后
+        mFragments.add(WholeFragment.newInstance(1));  //待发货
+        mFragments.add(WholeFragment.newInstance(4)); //已发货
+        mFragments.add(WholeFragment.newInstance(5));    //已取消
+        mFragments.add(WholeFragment.newInstance(2));    //已完成
 
         contentAdapter = new MyPagerAdapter(getChildFragmentManager());
         viewpager.setAdapter(contentAdapter);

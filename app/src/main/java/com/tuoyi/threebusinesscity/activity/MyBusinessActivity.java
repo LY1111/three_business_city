@@ -211,7 +211,7 @@ public class MyBusinessActivity extends AppCompatActivity {
         });
     }
     private void register() {
-        OkGo.<String>post("http://sszl.tuoee.com/api/member/business_register")
+        OkGo.<String>post(Config.s+"api/member/business_register")
                 .params("business_type", type1)
                 .params("commission_id", type_id)
                 .params("classification_id", sort_id)
@@ -242,10 +242,10 @@ public class MyBusinessActivity extends AppCompatActivity {
                                 String data = jsonObject.getString("data");
                                 JSONObject object = new JSONObject(data);
                                 UserBean.setToken(MyBusinessActivity.this, object.getString("token"));*/
-                                Toast.makeText(MyBusinessActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                                RxToast.success(jsonObject.getString("message"));
                                 finish();
                             } else {
-                                Toast.makeText(MyBusinessActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                               RxToast.error(jsonObject.getString("message"));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -38,13 +38,7 @@ public class ListDetailsAdapter extends BaseAdapter {
         private LinearLayout linearLayout;
 
     }
-//    public ListDetailsAdapter(Context context, List<ShoppingCartBean.DataBean.GoodsBean> datas,List<ShoppingCartBean.DataBean.GoodsBean.OptionBean> datas2) {
-//        inflater = LayoutInflater.from(context);
-//        this.datas = datas;
-//        this.context=context;
-//        this.datas2=datas2;
-//
-//    }
+
     public ListDetailsAdapter(Context context, List<ShoppingCartBean.DataBean.GoodsBean> datas,List<OptionListBean> datas2) {
         inflater = LayoutInflater.from(context);
         this.datas = datas;
@@ -89,7 +83,7 @@ public class ListDetailsAdapter extends BaseAdapter {
         holder.tv_name.setText(datas.get(position).getName());
         holder.tv_price.setText("¥："+datas.get(position).getPrice());
         holder.tv_num.setText("x "+datas.get(position).getQuantity());
-        holder.tv_integral.setText("积分："+datas.get(position).getTotal_pay_points());
+        holder.tv_integral.setText("积分："+datas.get(position).getPay_points());
         Glide.with(context).load(Config.s+datas.get(position).getImage()).into(holder.img_title);
 
 /*

@@ -134,4 +134,5 @@ public class MyIncomeActivity extends AppCompatActivity {
     public void onViewClicked() {
         finish();
     }
+
 }

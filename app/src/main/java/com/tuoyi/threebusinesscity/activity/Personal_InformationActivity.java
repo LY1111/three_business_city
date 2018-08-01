@@ -3,6 +3,7 @@ package com.tuoyi.threebusinesscity.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.MainThread;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -25,6 +27,7 @@ import com.lzy.okgo.model.Response;
 import com.mob.wrappers.AnalySDKWrapper;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.BaseBean;
+import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.bean.UploadImageBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.bean.UserInfoBean;
@@ -38,6 +41,10 @@ import com.vondear.rxtools.view.dialog.RxDialog;
 import com.vondear.rxtools.view.dialog.RxDialogChooseImage;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -93,10 +100,6 @@ public class Personal_InformationActivity extends AppCompatActivity {
     private String mImgUrl = "";
     private int mSexint = 0;
     private Uri resultUri;
-    private String mBirthday1 = "";
-    private static final String IMAGE_UNSPECIFIED = "image/*";
-    private final int IMAGE_CODE = 0; // 这里的IMAGE_CODE是自己任意定义的
-    //private File file;
     private String contract;
 
     @Override
@@ -104,13 +107,19 @@ public class Personal_InformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_data);
         ButterKnife.bind(this);
-
+        EventBus.getDefault().register(this);
+        initGetUerInfo();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initGetUerInfo();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     //从Uri中加载图片 并将其转化成File文件返回
@@ -121,6 +130,7 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 thumbnail(0.5f).
                 into(imageView);
 
+
         return (new File(RxPhotoTool.getImageAbsolutePath(this, uri)));
     }
 
@@ -129,15 +139,12 @@ public class Personal_InformationActivity extends AppCompatActivity {
         switch (requestCode) {
             case RxPhotoTool.GET_IMAGE_FROM_PHONE://选择相册之后的处理
                 if (resultCode == RESULT_OK) {
-//                    RxPhotoTool.cropImage(ActivityUser.this, );// 裁剪图片
                     initUCrop(data.getData());
                 }
 
                 break;
             case RxPhotoTool.GET_IMAGE_BY_CAMERA://选择照相机之后的处理
                 if (resultCode == RESULT_OK) {
-                    /* data.getExtras().get("data");*/
-//                    RxPhotoTool.cropImage(ActivityUser.this, RxPhotoTool.imageUriFromCamera);// 裁剪图片
                     initUCrop(RxPhotoTool.imageUriFromCamera);
 
                 }
@@ -147,18 +154,14 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 resultUri = RxPhotoTool.cropImageUri;
                 File file0 = roadImageView(resultUri, mImage);
                 initUploadImage(file0);
-                RxToast.success("剪辑成功");
-//                RequestUpdateAvatar(new File(RxPhotoTool.getRealFilePath(this, RxPhotoTool.cropImageUri)));
                 break;
 
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
                 if (resultCode == RESULT_OK) {
                     resultUri = UCrop.getOutput(data);
                     File file = roadImageView(resultUri, mImage);
-                    LogUtils.e("adassdada" + file);
                     initUploadImage(file);
-                    RxToast.success("剪辑成功");
-//                    RxSPTool.putContent(this, "AVATAR", resultUri.toString());
+
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
                 }
@@ -226,8 +229,8 @@ public class Personal_InformationActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.leftBack, R.id.personalData_sex, R.id.personalData_save, R.id.personalData_getCode, R.id.personalData_image_rl, R.id.tv_authentication,R.id.tv_agreement
-    ,R.id.ll_bankCard})
+    @OnClick({R.id.leftBack, R.id.personalData_sex, R.id.personalData_save, R.id.personalData_getCode, R.id.personalData_image_rl, R.id.tv_authentication, R.id.tv_agreement
+            , R.id.ll_bankCard})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.leftBack:
@@ -240,7 +243,6 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 picker1.setOnOptionPickListener(new OptionPicker.OnOptionPickListener() {
                     @Override
                     public void onOptionPicked(int position, String option) {
-//                        showToast(option);
                         mSex.setText(option);
                         mSexint = position;
                         picker1.dismiss();
@@ -255,7 +257,6 @@ public class Personal_InformationActivity extends AppCompatActivity {
 
                 break;
             case R.id.personalData_image_rl:
-//                setImage1();
                 RxDialogChooseImage dialogChooseImage = new RxDialogChooseImage(this, TITLE);
                 dialogChooseImage.show();
                 break;
@@ -266,7 +267,6 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 } else {
                     CountDownTimerUtils utils = new CountDownTimerUtils(mGetCode, 60000, 1000);
                     utils.start();
-                    // initGetCode(mPhone.getText().toString().trim());
                 }
 
                 break;
@@ -274,16 +274,16 @@ public class Personal_InformationActivity extends AppCompatActivity {
                 authentication();   //实名认证
                 break;
             case R.id.ll_bankCard:      //银行卡列表
-                Bundle bundle1=new Bundle();
-                bundle1.putString("where","Personal_InformationActivity");
-                RxActivityTool.skipActivity(this, BankCardActivity.class,bundle1);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("where", "Personal_InformationActivity");
+                RxActivityTool.skipActivity(this, BankCardActivity.class, bundle1);
                 break;
             case R.id.tv_agreement:
-                if ("1".equals(contract)){
-                    Bundle bundle=new Bundle();
-                    bundle.putString("where","Personal_InformationActivity");
-                    RxActivityTool.skipActivity(this,ContractActivity.class,bundle);   //签约
-                }else {
+                if ("1".equals(contract)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("where", "Personal_InformationActivity");
+                    RxActivityTool.skipActivity(this, ContractActivity.class, bundle);   //签约
+                } else {
                     ToastUtil.show(this, "请实名认证后，在进行签约");
                 }
 
@@ -318,17 +318,17 @@ public class Personal_InformationActivity extends AppCompatActivity {
                             .tag(this)
                             .params("name", name)
                             .params("identityNo", password)
-                            .params("token",  UserBean.getToken(Personal_InformationActivity.this))
+                            .params("token", UserBean.getToken(Personal_InformationActivity.this))
                             .execute(new StringCallback() {
                                 @Override
                                 public void onSuccess(Response<String> response) {
                                     Gson gson = new Gson();
                                     BaseBean bean = gson.fromJson(response.body(), BaseBean.class);
-                                    if (bean.getCode()==200){
+                                    if (bean.getCode() == 200) {
                                         ToastUtil.show(Personal_InformationActivity.this, bean.getMessage());
                                         initGetUerInfo();
                                         dialog.dismiss();
-                                    }else {
+                                    } else {
                                         ToastUtil.show(Personal_InformationActivity.this, bean.getMessage());
                                     }
                                 }
@@ -363,6 +363,7 @@ public class Personal_InformationActivity extends AppCompatActivity {
                         UploadImageBean bean = gson.fromJson(response.body(), UploadImageBean.class);
                         if (bean.getCode() == 200) {
                             mImgUrl = bean.getData().getImage_url();
+
                         }
                         // Toast.makeText(Personal_InformationActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -383,8 +384,10 @@ public class Personal_InformationActivity extends AppCompatActivity {
                         UserInfoBean mUserInfo = gson.fromJson(response.body(), UserInfoBean.class);
                         if (mUserInfo.getCode() == 200) {
                             mImgUrl = mUserInfo.getData().getUserpic();
+                            RequestOptions options = new RequestOptions().placeholder(R.drawable.demo_img).error(R.drawable.demo_img);
                             Glide.with(Personal_InformationActivity.this).
                                     load(Config.IMGS + mUserInfo.getData().getUserpic()).
+                                    apply(options).
                                     thumbnail(0.5f).
                                     into(mImage);
                             mNickName.setText(mUserInfo.getData().getUsername());
@@ -400,7 +403,7 @@ public class Personal_InformationActivity extends AppCompatActivity {
                             // mBirthday.setText(mUserInfo.getData().getBirthday());
                             mSign.setText(mUserInfo.getData().getAutograph());
                             //是否认证
-                            contract=mUserInfo.getData().getIs_real_name();
+                            contract = mUserInfo.getData().getIs_real_name();
                             if ("0".equals(mUserInfo.getData().getIs_real_name())) {
                                 tv_authentication.setBackgroundResource(R.drawable.bg_identify_code_normal);
                                 tv_authentication.setEnabled(true);
@@ -420,7 +423,6 @@ public class Personal_InformationActivity extends AppCompatActivity {
                                 tv_agreement.setText("已签约");
                             }
                         }
-                        //Toast.makeText(Personal_InformationActivity.this, mUserInfo.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -467,5 +469,18 @@ public class Personal_InformationActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public   void dada(MessageEvent messageEvent){
+        if (messageEvent.equals("true")){
+            initGetUerInfo();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }

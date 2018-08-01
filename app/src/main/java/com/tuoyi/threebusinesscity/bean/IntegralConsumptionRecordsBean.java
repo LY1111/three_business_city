@@ -15,7 +15,7 @@ public class IntegralConsumptionRecordsBean {
      * status : 1
      * code : 200
      * message : 成功
-     * data : [{"money":"10000.00","order_time":1531470735,"order_status":0,"business_shop_name":""},{"money":"10000.00","order_time":1531470794,"order_status":0,"business_shop_name":""},{"money":"10000.00","order_time":1531470808,"order_status":0,"business_shop_name":""},{"money":"10000.00","order_time":1531470840,"order_status":0,"business_shop_name":""},{"money":"10095.00","order_time":1531470877,"order_status":0,"business_shop_name":""},{"money":"10095.00","order_time":1531471153,"order_status":0,"business_shop_name":""},{"money":"10095.00","order_time":1531471158,"order_status":0,"business_shop_name":""},{"money":"1000.00","order_time":1531472806,"order_status":0,"business_shop_name":""},{"money":"1000.00","order_time":1531472969,"order_status":0,"business_shop_name":"真实测试一"},{"money":"500.00","order_time":1531535144,"order_status":0,"business_shop_name":"真实测试一"}]
+     * data : [{"money":1,"order_time":1531897885,"business_shop_name":"自营平台消费","return_points":5},{"money":1,"order_time":1531899355,"business_shop_name":"自营平台消费","return_points":0},{"money":5000.33,"order_time":1531905796,"business_shop_name":"李岩测试店铺","return_points":0},{"money":1,"order_time":1531909064,"business_shop_name":"自营平台消费","return_points":0},{"money":1,"order_time":1531965229,"business_shop_name":"自营平台消费","return_points":0},{"money":1,"order_time":1531965268,"business_shop_name":"自营平台消费","return_points":0},{"money":1,"order_time":1531987012,"business_shop_name":"自营平台消费","return_points":5},{"money":1,"order_time":1531990732,"business_shop_name":"自营平台消费","return_points":5},{"money":10,"order_time":1532058023,"business_shop_name":"何敬之店铺","return_points":0.05}]
      */
 
     private int status;
@@ -57,22 +57,22 @@ public class IntegralConsumptionRecordsBean {
 
     public static class DataBean {
         /**
-         * money : 10000.00
-         * order_time : 1531470735
-         * order_status : 0
-         * business_shop_name :
+         * money : 1
+         * order_time : 1531897885
+         * business_shop_name : 自营平台消费
+         * return_points : 5
          */
 
-        private String money;
+        private float money;
         private int order_time;
-        private int order_status;
         private String business_shop_name;
+        private float return_points;
 
-        public String getMoney() {
+        public float getMoney() {
             return money;
         }
 
-        public void setMoney(String money) {
+        public void setMoney(float money) {
             this.money = money;
         }
 
@@ -84,20 +84,20 @@ public class IntegralConsumptionRecordsBean {
             this.order_time = order_time;
         }
 
-        public int getOrder_status() {
-            return order_status;
-        }
-
-        public void setOrder_status(int order_status) {
-            this.order_status = order_status;
-        }
-
         public String getBusiness_shop_name() {
             return business_shop_name;
         }
 
         public void setBusiness_shop_name(String business_shop_name) {
             this.business_shop_name = business_shop_name;
+        }
+
+        public float getReturn_points() {
+            return return_points;
+        }
+
+        public void setReturn_points(float return_points) {
+            this.return_points = return_points;
         }
     }
 }

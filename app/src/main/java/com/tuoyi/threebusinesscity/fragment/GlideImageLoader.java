@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.url.Config;
+import com.youth.banner.loader.ImageLoader;
 import com.youth.banner.loader.ImageLoaderInterface;
 
 import static com.tuoyi.threebusinesscity.url.Config.IMGS;
@@ -17,16 +18,16 @@ import static com.tuoyi.threebusinesscity.url.Config.IMGS;
  * 轮播图专用加载接口
  */
 
-public class GlideImageLoader implements ImageLoaderInterface {
+public class GlideImageLoader extends ImageLoader {
+
+
     @Override
-    public void displayImage(Context context, Object path, View imageView) {
-        //Glide 加载图片简单用法
-//        Glide.with(context).load(IMGS + path).into((ImageView) imageView);
+    public void displayImage(Context context, Object path, ImageView imageView) {
         Glide.with(context).load(IMGS+path).into((ImageView) imageView);
     }
 
     @Override
-    public View createImageView(Context context) {
+    public ImageView createImageView(Context context) {
         ImageView view = new ImageView(context);
         view.setScaleType(ImageView.ScaleType.FIT_XY);
         return view;

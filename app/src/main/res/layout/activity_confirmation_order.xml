@@ -65,7 +65,7 @@
 
                         <LinearLayout
                             android:id="@+id/ll_address_1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:paddingBottom="@dimen/common10dp"
@@ -73,7 +73,7 @@
                             android:paddingTop="@dimen/common10dp"
                             android:layout_toRightOf="@id/tubiao"
                             android:layout_centerVertical="true"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -88,12 +88,15 @@
 
                                 <TextView
                                     android:id="@+id/tv_address_phone"
-                                    style="@style/black_text14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="@dimen/text_size_14sp"
                                     android:layout_marginLeft="@dimen/common10dp"
                                     android:inputType="phone"
                                     android:maxLength="11"
                                     android:maxLines="1"
-                                    android:text="13028909099" />
+                                    android:text="13028909099"
+                                    android:textColor="@color/background_content"/>
 
                             </LinearLayout>
 
@@ -112,7 +115,8 @@
                             android:orientation="vertical"
                             android:paddingBottom="@dimen/common10dp"
                             android:paddingLeft="@dimen/common10dp"
-                            android:paddingTop="@dimen/common10dp">
+                            android:paddingTop="@dimen/common10dp"
+                            android:visibility="gone">
 
                             <TextView
                                 style="@style/black_text14"
@@ -143,50 +147,6 @@
 
                 <View style="@style/gray_line" />
 
-               <!-- <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/common40dp"
-                    android:background="@color/whiteColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="@dimen/common10dp">
-
-                    <TextView
-                        style="@style/black_text14"
-                        android:text="运费：" />
-
-                    <TextView
-                        style="@style/black_text14"
-                        android:layout_width="@dimen/common0dp"
-                        android:layout_weight="1"
-                        android:text=""
-                        android:textColor="@color/colorAccent" />
-
-                </LinearLayout>-->
-
-               <!-- <View style="@style/gray_line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/common40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:background="@color/whiteColor"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="@dimen/common10dp">
-
-                    <TextView
-                        style="@style/black_text14"
-                        android:text="优惠卷：" />
-
-                    <TextView
-                        style="@style/black_text14"
-                        android:layout_width="@dimen/common0dp"
-                        android:layout_weight="1"
-                        android:text="" />
-                </LinearLayout>
--->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

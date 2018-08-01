@@ -55,14 +55,14 @@ public class MyIncomeBean {
          * order_time : 1531536323
          */
 
-        private String total_bonus;
+        private float total_bonus;
         private int order_time;
 
-        public String getTotal_bonus() {
+        public float getTotal_bonus() {
             return total_bonus;
         }
 
-        public void setTotal_bonus(String total_bonus) {
+        public void setTotal_bonus(float total_bonus) {
             this.total_bonus = total_bonus;
         }
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tuoyi.threebusinesscity.R;
@@ -33,7 +34,7 @@ public class ChildInfoAdapter extends RecyclerView.Adapter<ChildInfoAdapter.View
 
 
     private Context context;
-    private int id;
+    private int id,state;
     private List<GetWholeOrderBean.DataBean.OrderGoodsBean> list; // List 集合（里面是image+text）
 
     /**
@@ -42,10 +43,11 @@ public class ChildInfoAdapter extends RecyclerView.Adapter<ChildInfoAdapter.View
      * @param context
      * @param list
      */
-    public ChildInfoAdapter(Context context, List<GetWholeOrderBean.DataBean.OrderGoodsBean> list,int id) {
+    public ChildInfoAdapter(Context context, List<GetWholeOrderBean.DataBean.OrderGoodsBean> list,int id,int state) {
         this.context = context;
         this.list = list;
         this.id=id;
+        this.state=state;
     }
 
     @Override
@@ -61,13 +63,24 @@ public class ChildInfoAdapter extends RecyclerView.Adapter<ChildInfoAdapter.View
         holder.itemOrderListNum.setText(info.getQuantity()+"");
         holder.itemOrderListTitle.setText(info.getName());
         holder.itemOrderListPrice.setText(info.getPrice()+"");
+        if (state==4){
+            holder.itemOrderListLogistics.setVisibility(View.VISIBLE);
+        }
+//
+//        holder.mView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(context, OrderDetailsActivity.class);
+//                intent.putExtra("id",id);
+//                context.startActivity(intent);
+//            }
+//        });
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        //查看物流
+        holder.itemOrderListLogistics.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, OrderDetailsActivity.class);
-                intent.putExtra("id",id);
-                context.startActivity(intent);
+            public void onClick(View view) {
+                Toast.makeText(context, "点击查看物流：", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -90,6 +103,8 @@ public class ChildInfoAdapter extends RecyclerView.Adapter<ChildInfoAdapter.View
         TextView itemOrderListPrice;
         @BindView(R.id.item_orderList_num)
         TextView itemOrderListNum;
+        @BindView(R.id.item_orderList_logistics)       //查看物流
+                TextView itemOrderListLogistics;
         public View mView;
         public ViewHolder(View itemView) {
             super(itemView);

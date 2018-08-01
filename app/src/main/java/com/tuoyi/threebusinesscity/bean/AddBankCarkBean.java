@@ -2,11 +2,12 @@ package com.tuoyi.threebusinesscity.bean;
 
 public class AddBankCarkBean {
 
+
     /**
      * status : 1
      * code : 200
      * message : 成功
-     * data : {"tranceNum":"D2018070941810","transDate":"20180709","phone":"17661044588"}
+     * data : {"tranceNum":"D2018072642755","transDate":"20180726","phone":"17661044588","unionBank":"123456789369","bankName":"农业银行槐荫支行","cardNo":"6228480286927636469"}
      */
 
     private int status;
@@ -48,14 +49,20 @@ public class AddBankCarkBean {
 
     public static class DataBean {
         /**
-         * tranceNum : D2018070941810
-         * transDate : 20180709
+         * tranceNum : D2018072642755
+         * transDate : 20180726
          * phone : 17661044588
+         * unionBank : 123456789369
+         * bankName : 农业银行槐荫支行
+         * cardNo : 6228480286927636469
          */
 
         private String tranceNum;
         private String transDate;
         private String phone;
+        private String unionBank;
+        private String bankName;
+        private String cardNo;
 
         public String getTranceNum() {
             return tranceNum;
@@ -79,6 +86,30 @@ public class AddBankCarkBean {
 
         public void setPhone(String phone) {
             this.phone = phone;
+        }
+
+        public String getUnionBank() {
+            return unionBank;
+        }
+
+        public void setUnionBank(String unionBank) {
+            this.unionBank = unionBank;
+        }
+
+        public String getBankName() {
+            return bankName;
+        }
+
+        public void setBankName(String bankName) {
+            this.bankName = bankName;
+        }
+
+        public String getCardNo() {
+            return cardNo;
+        }
+
+        public void setCardNo(String cardNo) {
+            this.cardNo = cardNo;
         }
     }
 }

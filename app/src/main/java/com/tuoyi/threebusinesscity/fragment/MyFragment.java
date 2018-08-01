@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.gongwen.marqueen.MarqueeFactory;
 import com.gongwen.marqueen.MarqueeView;
 import com.google.gson.Gson;
@@ -22,6 +25,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
+import com.tuoyi.threebusinesscity.activity.LoginActivity;
 import com.tuoyi.threebusinesscity.activity.MainActivity;
 import com.tuoyi.threebusinesscity.activity.PutForwardActivity;
 import com.tuoyi.threebusinesscity.adapter.MyGridMenuAdapter;
@@ -75,7 +79,7 @@ public class MyFragment extends Fragment {
     private LinkedList<MyGridMenuBean> headGridList;
     private MyGridMenuAdapter gridMenuadapter;
     private ArrayList<String> marqueeList;
-    private String money;
+    private String money,imgurl;
     //    底部导航list
     private String[] menuTvList = {"个人信息", "消费记录", "我的收入", "分享推荐", "我的伙伴", "我推荐的商家", "我的店铺", "合作商家入口", "代理商入口", "供货商家入口"};
 
@@ -100,9 +104,14 @@ public class MyFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
-        initMenuList();
         initMarqueeView();
-        //GetUserInfo();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        GetUserInfo();
+        initMenuList();
     }
 
     private void initView() {
@@ -126,8 +135,11 @@ public class MyFragment extends Fragment {
                             userMoney.setText("我的余额：￥" + bean.getData().getTotal_bonus());
                             money = bean.getData().getTotal_bonus();
                             userQuotient.setText("积分：" + bean.getData().getPoints());
-                            Glide.with(getContext()).load(Config.IMGS + bean.getData().getUserpic())
-                                    .error(R.drawable.demo_img)//图片加载失败后，显示的图片
+                            RequestOptions options=new RequestOptions().placeholder(R.drawable.demo_img).error(R.drawable.demo_img);
+                            imgurl=bean.getData().getUserpic();
+                            Log.e("GetUserInfo",imgurl+"=============");
+                            Glide.with(getContext()).load(Config.IMGS +imgurl)
+                                    .apply(options)//图片加载失败后，显示的图片
                                     .into(mainmProfileImage);
                             btnQuit.setText("退出");
                         } else if (bean.getCode() == 400) {
@@ -171,7 +183,7 @@ public class MyFragment extends Fragment {
     public void onStart() {
         super.onStart();
         mainmMarqueeView.startFlipping();
-        GetUserInfo();
+        //GetUserInfo();
     }
 
     @Override
@@ -229,6 +241,7 @@ public class MyFragment extends Fragment {
         }
         mainmGridList.setNestedScrollingEnabled(false);
         mainmGridList.setLayoutManager(new FullyGridLayoutManager(getContext(), 3));
+        Log.e("setAdapter",imgurl+"=============");
         gridMenuadapter = new MyGridMenuAdapter(headGridList);
         mainmGridList.setAdapter(gridMenuadapter);
     }
@@ -248,8 +261,12 @@ public class MyFragment extends Fragment {
                 RxActivityTool.skipActivity(getContext(), PutForwardActivity.class, bundle);
                 break;
             case R.id.btn_quit:
-                UserBean.setToken(getActivity(), "");
-                RxActivityTool.skipActivityAndFinish(getActivity(), MainActivity.class);
+                if ("退出".equals(btnQuit.getText().toString())){
+                    UserBean.setToken(getActivity(), "");
+                    RxActivityTool.skipActivityAndFinish(getActivity(), MainActivity.class);
+                }else {
+                    RxActivityTool.skipActivityAndFinish(getActivity(), LoginActivity.class);
+                }
                 break;
         }
     }

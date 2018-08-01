@@ -41,7 +41,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
     }
 
     private void getOrderDetail(int id) {
-        OkGo.<String>post("http://sszl.tuoee.com/api/AppProve/get_order_one")
+      OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/AppProve/get_order_one")
                 .tag(this)
                 .params("token", UserBean.getToken(OrderDetailsActivity.this))
                 .params("id", id)

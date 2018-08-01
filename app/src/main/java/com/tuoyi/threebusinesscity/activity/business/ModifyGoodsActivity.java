@@ -65,7 +65,7 @@ public class ModifyGoodsActivity extends AppCompatActivity {
 
     private BusineseeAdminBean.DataBean dataBean;
     private String imgurl;
-    private int status;
+    private int status=1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,11 +86,11 @@ public class ModifyGoodsActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_yes:
-                        status = checkedId;
+                        status = 1;
                         Log.e("222222qweuqwourqw", checkedId + "");
                         break;
                     case R.id.rb_no:
-                        status = checkedId;
+                        status = 0;
                         Log.e("222222qweuqwourqw", checkedId + "");
                         break;
                 }

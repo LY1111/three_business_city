@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.tuoyi.threebusinesscity.R;
@@ -28,7 +29,8 @@ public class KillAdapter1 extends BaseQuickAdapter<KillBean.DataBean, BaseViewHo
     @Override
     protected void convert(BaseViewHolder helper, KillBean.DataBean item) {
         ImageView imageView11111=helper.getView(R.id.mHandPick1_pic);
-        Glide.with(mContext).load(IMGS + item.getImage()).into(imageView11111);
+        RequestOptions options=new RequestOptions().placeholder(R.drawable.s_img);
+        Glide.with(mContext).load(IMGS + item.getImage()).apply(options).into(imageView11111);
 
         helper.setText(R.id.mHandPick1_text, item.getName());
         helper.setText(R.id.mHandPick1_point, "积分" + item.getPrice());

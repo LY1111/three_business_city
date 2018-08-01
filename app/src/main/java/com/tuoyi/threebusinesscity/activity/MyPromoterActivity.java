@@ -3,9 +3,13 @@ package com.tuoyi.threebusinesscity.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -21,6 +25,7 @@ import com.tuoyi.threebusinesscity.adapter.MyPromoterAdapter;
 import com.tuoyi.threebusinesscity.bean.MyIncomeBean;
 import com.tuoyi.threebusinesscity.bean.MyPromoterBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
+import com.tuoyi.threebusinesscity.bean.UserInformationBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.widget.AutoLinearLayoutManager;
 import com.vondear.rxtools.view.RxToast;
@@ -34,7 +39,7 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * 我的推广商家爱
+ * 我的推广商家
  */
 public class MyPromoterActivity extends AppCompatActivity {
 
@@ -44,6 +49,8 @@ public class MyPromoterActivity extends AppCompatActivity {
     CircleImageView mImage;
     @BindView(R.id.my_promoter_title)
     TextView myPromoterTitle;
+    @BindView(R.id.tv_number)
+    TextView tv_number;
     @BindView(R.id.recyclerview_list)
     RecyclerView mRecyclerview;
     @BindView(R.id.refresh_layout)
@@ -61,7 +68,7 @@ public class MyPromoterActivity extends AppCompatActivity {
 
         initRecyclerView();
         initListener();
-
+        GetUserInfo();
         okGoRecords();
     }
 
@@ -105,6 +112,30 @@ public class MyPromoterActivity extends AppCompatActivity {
         });
     }
 
+    //    token获取用户信息
+    private void GetUserInfo() {
+        OkGo.<String>post(Config.s + "api/AppProve/member_info")
+                .tag(this)
+                .params("token", UserBean.getToken(this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Logger.json(response.body());
+                        Gson gson = new Gson();
+                        UserInformationBean bean = gson.fromJson(response.body(), UserInformationBean.class);
+                        if (bean.getCode() == 200) {
+                            RequestOptions options=new RequestOptions().placeholder(R.drawable.demo_img).error(R.drawable.demo_img);
+                            Glide.with(mImage).load(Config.IMGS +bean.getData().getUserpic())
+                                    .apply(options)//图片加载失败后，显示的图片
+                                    .into(mImage);
+                        } else if (bean.getCode() == 400) {
+                           RxToast.error(bean.getMessage());
+                        }
+                    }
+                });
+
+    }
+
     private void okGoRecords() {
         OkGo.<String>post(Config.s + "api/AppProve/recommending_business")
                 .tag(this)
@@ -118,6 +149,7 @@ public class MyPromoterActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         MyPromoterBean baseBean = gson.fromJson(response.body(), MyPromoterBean.class);
                         if (baseBean.getCode() == 200) {
+                            tv_number.setText(baseBean.getData().getCount()+"");
                             if (isClear){
                                 beanList.clear();
                             }

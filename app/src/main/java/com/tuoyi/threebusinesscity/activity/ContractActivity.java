@@ -36,12 +36,15 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.ContractBean;
+import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.vondear.rxtools.RxBarTool;
 import com.vondear.rxtools.view.RxToast;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -249,6 +252,8 @@ public class ContractActivity extends AppCompatActivity {
             mWebview.destroy();
             mWebview = null;
         }
+
+        EventBus.getDefault().post(new MessageEvent("true"));
         super.onDestroy();
     }
 
@@ -476,5 +481,7 @@ public class ContractActivity extends AppCompatActivity {
             mWebview.goBack();
         }
     }
+
+
 
 }

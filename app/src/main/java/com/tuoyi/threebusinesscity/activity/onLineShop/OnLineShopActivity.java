@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +20,7 @@ import com.tuoyi.threebusinesscity.fragment.OnLineMyFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineShopFragment;
 import com.tuoyi.threebusinesscity.fragment.OnLineSortFragment;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.tuoyi.threebusinesscity.util.RxSPTool;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -56,29 +58,25 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
         setContentView(R.layout.activity_on_line_shop);
         ButterKnife.bind(this);
         RxActivityTool.addActivity(this);
-        EventBus.getDefault().register(this);
         initView();
-        LogUtils.e("onCreate");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtils.e("onResume");
+        if (RxSPTool.getString(this, "where") != null) {
+            where = RxSPTool.getString(this, "where");
+            if ("GoodDetailsActivity".equals(where)) {
+                tabBottom.check(R.id.mCar);
+            }
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        LogUtils.e("onStart");
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void Event(MessageEvent messageEvent) {
-        LogUtils.e("Event");
-        where=(messageEvent.getMessage());
-        initView();
-    }
 
     /**
      * back键监听
@@ -87,8 +85,6 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
     public void onBackPressed() {
         super.onBackPressed();
         LogUtils.e("111111111111");
-//        setResult(RESULT_OK);
-//        finish();
         RxActivityTool.finishActivity(this);
     }
 
@@ -100,26 +96,17 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
         fragmentList = getFragments();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-
-       // if (!TextUtils.isEmpty(where)) {
-            if ("GoodDetailsActivity".equals(where)) {
-                fragment = fragmentList.get(2);
-                //mCar.setChecked(true);
-            }else {
-                fragment = fragmentList.get(0);
-            }
-        //}
-
+        fragment = fragmentList.get(0);
         transaction.replace(R.id.view_pager, fragment);
         transaction.commit();
     }
 
     /* 添加viewpager */
     public List<Fragment> getFragments() {
-        fragmentList.add(new OnLineShopFragment());
-        fragmentList.add(new OnLineSortFragment());
-        fragmentList.add(new OnLineCarFragment());
-        fragmentList.add(new OnLineMyFragment());
+        fragmentList.add(OnLineShopFragment.newInstance());
+        fragmentList.add(OnLineSortFragment.newInstance());
+        fragmentList.add(OnLineCarFragment.newInstance());
+        fragmentList.add(OnLineMyFragment.newInstance());
         return fragmentList;
     }
 
@@ -130,29 +117,26 @@ public class OnLineShopActivity extends AppCompatActivity implements RadioGroup.
         switch (i) {
             case R.id.mMain:
                 fragment = fragmentList.get(0);
-                transaction.replace(R.id.view_pager, fragment);
                 break;
             case R.id.mSort:
                 fragment = fragmentList.get(1);
-                transaction.replace(R.id.view_pager, fragment);
                 break;
             case R.id.mCar:
                 fragment = fragmentList.get(2);
-                transaction.replace(R.id.view_pager, fragment);
                 break;
             case R.id.mMine:
                 fragment = fragmentList.get(3);
-                transaction.replace(R.id.view_pager, fragment);
                 break;
         }
+        transaction.replace(R.id.view_pager, fragment);
         transaction.commit();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().unregister(this);
-        }
+//        if(EventBus.getDefault().isRegistered(this)) {
+//            EventBus.getDefault().unregister(this);
+//        }
     }
 }

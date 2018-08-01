@@ -24,7 +24,9 @@ import com.tuoyi.threebusinesscity.bean.GeneralDetailsBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.vondear.rxtools.view.RxToast;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +54,7 @@ public class GeneralDetailsActivity extends AppCompatActivity {
     TextView mSaoBtn;
     @BindView(R.id.general_RecyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.general_turnover)
-    TextView mTurnover;
+
     @BindView(R.id.general_address)
     TextView mAddress;
     @BindView(R.id.general_distance)
@@ -65,6 +66,7 @@ public class GeneralDetailsActivity extends AppCompatActivity {
     private List<GeneralDetailsBean.DataBean.GoodsBean> list = new ArrayList<>();
     private GeneralDetailsAdapter adapter;
     private String mPhone = "";
+    private int businessID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,25 +93,31 @@ public class GeneralDetailsActivity extends AppCompatActivity {
                         if (bean.getCode() == 200) {
                             GeneralDetailsBean.DataBean.BusinessBean business = bean.getData().getBusiness();
                             list = bean.getData().getGoods();
+                            businessID=business.getUid();
                             mTitle.setText(business.getShop_name());
                             mAddress.setText("地址：" + business.getAddress());
-                            mDistance.setText(business.getDistance() + "m");
+
+                            if (business.getDistance()>1000){
+                                mDistance.setText("距离：" + new BigDecimal(business.getDistance()).divide(new BigDecimal(1000)).setScale(2, BigDecimal.ROUND_DOWN)  + "km");
+                            }else {
+                                mDistance.setText("距离：" +  new BigDecimal(business.getDistance()).setScale(2, BigDecimal.ROUND_DOWN) + "m");
+                            }
                             mPhone = business.getTelephone();
                             mPhoneTv.setText("电话：" + mPhone);
-                            mTurnover.setText("￥交易额：" + business.getTotal_sales()+"");
-                            mActivity.setText("促销活动：会员到店消费奖励" + business.getTelephone() + "%三商豆");
-//                            mIvBg.setImageBitmap(ImageUtil.getURLBitmap(GeneralDetailsActivity.this, IMGS +business.getImage()));
+                            mActivity.setText("促销活动：会员到店消费奖励" + business.getMember() + "%积分");
                             Glide.with(GeneralDetailsActivity.this).load(IMGS + business.getImage()).into(mProfileImage);
-                            initList();
+                            Glide.with(GeneralDetailsActivity.this).load(IMGS + business.getBackground_image()).into(mIvBg);
+                            adapter.setData(list);
+                            //initList();
                         } else {
-                            Toast.makeText(GeneralDetailsActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
+                            RxToast.error(bean.getMessage());
                         }
                     }
                 });
     }
 
     private void initList() {
-        adapter = new GeneralDetailsAdapter(list);
+        adapter = new GeneralDetailsAdapter(list,businessID+"");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
     }
@@ -125,6 +133,8 @@ public class GeneralDetailsActivity extends AppCompatActivity {
             case R.id.general_sao_btn:
                 Bundle bundle=new Bundle();
                 bundle.putString("where","GeneralDetailsActivity");
+                bundle.putString("money","");
+                bundle.putString("businessID",businessID+"");
                 RxActivityTool.skipActivity(this,PaymentActivity.class,bundle);
                 break;
         }

@@ -44,7 +44,7 @@ public class ShopSortActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        OkGo.<String>post("http://sszl.tuoee.com/api/member/get_business_classification")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/member/get_business_classification")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

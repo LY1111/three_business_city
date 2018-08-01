@@ -12,6 +12,7 @@ import com.tuoyi.threebusinesscity.bean.IntegralConsumptionRecordsBean;
 import com.vondear.rxtools.RxDataTool;
 import com.vondear.rxtools.RxTimeTool;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -47,9 +48,9 @@ public class IntegralConsumptionRecordsAdapter extends RecyclerView.Adapter<Inte
         holder.mItem = mdatas.get(position);
        // holder.mTvIntegral.setText(String.valueOf(holder.mItem.getIntegral()));
         holder.mTvName.setText(holder.mItem.getBusiness_shop_name());
-        holder.mTvMoney.setText("消费金额：￥"+holder.mItem.getMoney());
+        holder.mTvMoney.setText("消费金额：￥"+new BigDecimal(holder.mItem.getMoney()).divide(new BigDecimal(100)).setScale(2, BigDecimal.ROUND_DOWN));
         holder.mTvTime.setText(stampToDate(holder.mItem.getOrder_time()+""));
-
+        holder.mTvIntegral.setText("+"+holder.mItem.getReturn_points());
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

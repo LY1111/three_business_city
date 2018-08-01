@@ -30,7 +30,7 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <com.andview.refreshview.XRefreshView
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/mainf_XRefreshView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,6 +45,6 @@
             android:overScrollMode="never"
             android:scrollbars="none" />
 
-    </com.andview.refreshview.XRefreshView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.tuoyi.threebusinesscity.activity.onLineShop;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,19 +27,14 @@ import com.lzy.okgo.model.Response;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.ListTypeAdapter1;
 import com.tuoyi.threebusinesscity.bean.AddCarBean;
-import com.tuoyi.threebusinesscity.bean.MessageEvent;
 import com.tuoyi.threebusinesscity.bean.OnLineGoodsDetailsBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.fragment.GlideImageLoader;
 import com.tuoyi.threebusinesscity.util.CommonUtils;
-import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.tuoyi.threebusinesscity.util.RxSPTool;
 import com.tuoyi.threebusinesscity.util.ToastUtil;
 import com.youth.banner.Banner;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +70,8 @@ public class GoodDetailsActivity extends AppCompatActivity {
     LinearLayout ll_type;
     @BindView(R.id.wv_detail)
     WebView mWv_detail;
+    @BindView(R.id.Details_mCar)
+    ImageView DetailsMCar;
     private String goods_id;//商品id
     private int number;//商品数量
     private String sNumber;
@@ -98,7 +97,7 @@ public class GoodDetailsActivity extends AppCompatActivity {
 
     /* 获取商品详情 */
     private void initData() {
-        OkGo.<String>post("http://sszl.tuoee.com/api/app/get_goods_one")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/app/get_goods_one")
                 .tag(this)
                 .params("goods_id", goods_id)
                 .execute(new StringCallback() {
@@ -127,7 +126,7 @@ public class GoodDetailsActivity extends AppCompatActivity {
                                 sNumber = String.valueOf(goodsBean.getQuantity());
                                 mAll.setText("库存 " + sNumber);
                             } else if (beanData.getGoods().getType() == 2) {
-                                mPrice.setText("¥" + goodsBean.getPrice() + goodsBean.getPay_points() + "积分");
+                                mPrice.setText("¥" + goodsBean.getPrice() + "         " + goodsBean.getPay_points() + "积分");
                                 mName.setText(goodsBean.getName());
                                 sNumber = String.valueOf(goodsBean.getQuantity());
                                 mAll.setText("库存 " + sNumber);
@@ -170,7 +169,7 @@ public class GoodDetailsActivity extends AppCompatActivity {
 
     }
 
-    @OnClick({R.id.mCollect, R.id.iv_sub, R.id.iv_add, R.id.mCar, R.id.mAddCar, R.id.mBuy, R.id.ll_type})
+    @OnClick({R.id.mCollect, R.id.iv_sub, R.id.iv_add, R.id.Details_mCar, R.id.mAddCar, R.id.mBuy, R.id.ll_type})
     public void onViewClicked(View view) {
         number = Integer.parseInt(mNumber.getText().toString());
         switch (view.getId()) {
@@ -192,8 +191,8 @@ public class GoodDetailsActivity extends AppCompatActivity {
                     mNumber.setText(String.valueOf(number));
                 }
                 break;
-            case R.id.mCar:
-                EventBus.getDefault().post(new MessageEvent("GoodDetailsActivity"));
+            case R.id.Details_mCar:
+                RxSPTool.putString(this, "where", "GoodDetailsActivity");
                 RxActivityTool.skipActivity(this, OnLineShopActivity.class);
                 break;
             case R.id.mAddCar:
@@ -212,8 +211,6 @@ public class GoodDetailsActivity extends AppCompatActivity {
     }
 
 
-
-
     /**
      * 组装加入购物车接口的option参数
      */
@@ -224,14 +221,6 @@ public class GoodDetailsActivity extends AppCompatActivity {
             for (int j = 0; j < mOptionsBeanList.get(i).getGoods_option_value().size(); j++) {
                 smallMap = new ArrayList<>();
                 if (mOptionsBeanList.get(i).getGoods_option_value().get(j).isCheck()) {
-//                            smallMap.put(
-//                                    mOptionsBeanList.get(i).getOption_id() +"",
-//                                    + mOptionsBeanList.get(i).getGoods_option_value().get(j).getOption_value_id() + ""
-//                            );
-//                    smallMap.add(mGoodsId + "");
-//                    smallMap.add(mOptionsBeanList.get(i).getOption_id() + "");
-                    //bigMap.add("option" + smallMap.toString());
-//                    bigMap.add(smallMap.toString());
                     String s = mGoodsId + "," + mOptionsBeanList.get(i).getOption_id();
                     mGoodsMap.put(s.trim(), String.valueOf(mOptionsBeanList.get(i).getGoods_option_value().get(j).getOption_value_id()).trim());
                 }
@@ -260,14 +249,14 @@ public class GoodDetailsActivity extends AppCompatActivity {
         list_type.setAdapter(mAdapter);
         mAdapter.setRadioButtonClickListener(new ListTypeAdapter1.RadioButtonClickListener() {
             @Override
-            public void OnRadioButtonClickListener( OnLineGoodsDetailsBean.DataBean.OptionsBean detail, int position) {
+            public void OnRadioButtonClickListener(OnLineGoodsDetailsBean.DataBean.OptionsBean detail, int position) {
                 Log.e("8888888888", position + "");
                 for (int i = 0; i < detail.getGoods_option_value().size(); i++) {
                     if (i == position) {
 //                        if (detail.getGoods_option_value().get(i).isCheck()) {
 //                            detail.getGoods_option_value().get(position).setCheck(false);
 //                        } else {
-                            detail.getGoods_option_value().get(position).setCheck(true);
+                        detail.getGoods_option_value().get(position).setCheck(true);
 //                        }
                     } else {
                         detail.getGoods_option_value().get(i).setCheck(false);
@@ -311,7 +300,7 @@ public class GoodDetailsActivity extends AppCompatActivity {
 
     /* 加入购物车 */
     private void addCar() {
-        OkGo.<String>post("http://sszl.tuoee.com/api/AppProve/add_cart")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/AppProve/add_cart")
                 .tag(this)
                 .params("token", UserBean.getToken(this))
                 .params("goods_id", goods_id)
@@ -352,5 +341,9 @@ public class GoodDetailsActivity extends AppCompatActivity {
 
     private void showPopupWindow(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.popup_add_car, null);
+    }
+
+    @OnClick(R.id.Details_mCar)
+    public void onViewClicked() {
     }
 }

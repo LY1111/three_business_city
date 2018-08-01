@@ -162,7 +162,7 @@ public class MainFragment extends Fragment implements AMapLocationListener {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Toast.makeText(getContext(), "你点击了搜索键。。。。", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "你点击了搜索键。。。。", Toast.LENGTH_SHORT).show();
                     name = mainfSearchEt.getText().toString().trim();
                     if (!TextUtils.isEmpty(name)) {
                         mListType = 2;

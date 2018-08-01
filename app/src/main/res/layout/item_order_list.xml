@@ -43,11 +43,11 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false">
     </android.support.v7.widget.RecyclerView>
 
     <LinearLayout
@@ -141,6 +141,7 @@
             android:text="确认收货"
             android:textColor="@color/white"
             android:textSize="15sp" />
+
 
     </LinearLayout>
 </LinearLayout>

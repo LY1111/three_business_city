@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.bean.ShoppingCartBean;
 import com.tuoyi.threebusinesscity.url.Config;
@@ -130,8 +131,9 @@ public class ShoppingCartAdapter extends BaseAdapter {
         //holder.tvCommodityNum.setText(" X"+shoppingCartBean.getCount()+"");
         holder.tvCommodityNum.setText(" X"+goodsBean.getQuantity()+"");
         holder.tvCommodityShowNum.setText(goodsBean.getQuantity()+"");
-        Glide.with(context).load(Config.s + goodsBean.getImage()).into(holder.ivShowPic);
-        holder.tv_commodity_integral.setText("积分："+goodsBean.getTotal_pay_points());
+        RequestOptions options=new RequestOptions().placeholder(R.drawable.s_img);
+        Glide.with(context).load(Config.s + goodsBean.getImage()).apply(options).into(holder.ivShowPic);
+        holder.tv_commodity_integral.setText("积分："+goodsBean.getPay_points());
         //单选框按钮
         holder.ckOneChose.setOnClickListener(
                 new View.OnClickListener() {
@@ -160,26 +162,6 @@ public class ShoppingCartAdapter extends BaseAdapter {
         holder.tvCommodityDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*AlertDialog alert = new AlertDialog.Builder(context).create();
-                alert.setTitle("操作提示");
-                alert.setMessage("您确定要将这些商品从购物车中移除吗？");
-                alert.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                return;
-                            }
-                        });
-                alert.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                modifyCountInterface.childDelete(position);//删除 目前只是从item中移除
-
-
-                            }
-                        });
-                alert.show();*/
                 modifyCountInterface.childDelete(position,shoppingCartBeanList.get(position).getCart_id());
 
             }

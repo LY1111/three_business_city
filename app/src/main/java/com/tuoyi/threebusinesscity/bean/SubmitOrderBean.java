@@ -61,7 +61,7 @@ public class SubmitOrderBean {
         private String subject;
         private String name;
         private String pay_order_no;
-        private int pay_total;
+        private double pay_total;
         private int uid;
 
         public String getOrder_id() {
@@ -96,11 +96,11 @@ public class SubmitOrderBean {
             this.pay_order_no = pay_order_no;
         }
 
-        public int getPay_total() {
+        public double getPay_total() {
             return pay_total;
         }
 
-        public void setPay_total(int pay_total) {
+        public void setPay_total(double pay_total) {
             this.pay_total = pay_total;
         }
 

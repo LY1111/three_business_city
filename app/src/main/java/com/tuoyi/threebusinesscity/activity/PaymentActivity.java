@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,11 +23,12 @@ import com.orhanobut.logger.Logger;
 import com.tuoyi.threebusinesscity.R;
 import com.tuoyi.threebusinesscity.adapter.SmallBPayAdapter;
 import com.tuoyi.threebusinesscity.bean.BusinessPaymentBean;
-import com.tuoyi.threebusinesscity.bean.GeneralDetailsBean;
 import com.tuoyi.threebusinesscity.bean.PayNowBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.vondear.rxtools.RxBarTool;
+import com.vondear.rxtools.view.RxToast;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,10 +48,24 @@ public class PaymentActivity extends AppCompatActivity {
     TextView loginTitle;
     @BindView(R.id.tv_pay)
     TextView tvPay;
+    @BindView(R.id.ll_payment)
+    LinearLayout llPayment;
+    @BindView(R.id.avi)
+    AVLoadingIndicatorView avi;
     private List<PayNowBean> payNowBeanList = new ArrayList<>();
     private SmallBPayAdapter adapter;
     private int num = 2;
-    private String where;
+    private String where, money, orderno,businessID;
+
+    /**
+     * where包括：
+     * GeneralDetailsActivity：     商家详情（输入支付）
+     * Confirmation_OrderActivity： 确认订单Activity
+     * GeneralDetailsAdapte：       商家商品
+     * OrederAdapter                我的订单WholeFragment
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,10 +75,20 @@ public class PaymentActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initData();
         initRecyclerView();
-        Bundle bundle=getIntent().getExtras();
-        where=bundle.getString("where");
-        if (!"GeneralDetailsActivity".equals(where)){
-            mPutMoney.setText(where);
+        Bundle bundle = getIntent().getExtras();
+        where = bundle.getString("where");
+        money = bundle.getString("money");
+        if (!"GeneralDetailsActivity".equals(where)) {
+            llPayment.setFocusable(true);
+            llPayment.setFocusableInTouchMode(true);
+            mPutMoney.setText("¥" + money);
+            mPutMoney.setEnabled(false);
+        }
+        if ("GeneralDetailsAdapte".equals(where)||"GeneralDetailsActivity".equals(where)){
+            businessID=bundle.getString("businessID");
+        }
+        if ("Confirmation_OrderActivity".equals(where) || "OrederAdapter".equals(where)) {
+            orderno = bundle.getString("orderno");
         }
 
     }
@@ -101,11 +127,40 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
-    private void initOkGoList(String money) {
-        OkGo.<String>post(Config.s + "api/AppProve/business_payment")
+    @OnClick({R.id.leftBack, R.id.tv_pay})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.leftBack:
+                finish();
+                break;
+            case R.id.tv_pay:
+                if ("GeneralDetailsActivity".equals(where)) {
+                    avi.setVisibility(View.VISIBLE);
+                    avi.show();
+                    initOkGoList(mPutMoney.getText().toString().trim());
+                } else if ("GeneralDetailsAdapte".equals(where)) {
+                    avi.setVisibility(View.VISIBLE);
+                    avi.show();
+                    initOkGoList(money);
+                } else if ("Confirmation_OrderActivity".equals(where)) {
+                    avi.setVisibility(View.VISIBLE);
+                    avi.show();
+                    initOkGoList1(money);
+                } else if ("OrederAdapter".equals(where)) {
+                    avi.setVisibility(View.VISIBLE);
+                    avi.show();
+                    initOkGoList1(money);
+                }
+                break;
+        }
+    }
+
+    //
+    private void initOkGoList1(String money) {
+        OkGo.<String>post(Config.s + "api/AppProve/personal_commercial_city_payment")
                 .tag(this)
                 .params("amount", money)
-                .params("business_id", "88")
+                .params("order_num_alias", orderno)
                 .params("token", UserBean.getToken(this))
                 .execute(new StringCallback() {
                     @Override
@@ -114,31 +169,49 @@ public class PaymentActivity extends AppCompatActivity {
                         Gson gson = new Gson();
                         BusinessPaymentBean bean = gson.fromJson(response.body(), BusinessPaymentBean.class);
                         if (bean.getCode() == 200) {
-                            Toast.makeText(PaymentActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
+                            avi.hide();
+                            avi.setVisibility(View.GONE);
+                            //Toast.makeText(PaymentActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
                             Uri uri = Uri.parse(bean.getData().getPayInfo());
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(PaymentActivity.this, bean.getMessage(), Toast.LENGTH_SHORT).show();
+                            avi.hide();
+                            avi.setVisibility(View.GONE);
+                            RxToast.error(bean.getMessage());
                         }
                     }
                 });
     }
 
-    @OnClick({R.id.leftBack, R.id.tv_pay})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.leftBack:
-                finish();
-                break;
-            case R.id.tv_pay:
-                if ("GeneralDetailsActivity".equals(where)){
-                    initOkGoList(mPutMoney.getText().toString().trim());
-                }else {
-                    initOkGoList(where);
-                }
-                break;
-        }
+    private void initOkGoList(String money1) {
+        OkGo.<String>post(Config.s + "api/AppProve/business_payment")
+                .tag(this)
+                .params("amount", money1)
+                .params("business_id", businessID)
+                .params("token", UserBean.getToken(this))
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Logger.json(response.body());
+                        Gson gson = new Gson();
+                        BusinessPaymentBean bean = gson.fromJson(response.body(), BusinessPaymentBean.class);
+                        if (bean.getCode() == 200) {
+                            avi.hide();
+                            avi.setVisibility(View.GONE);
+                            Uri uri = Uri.parse(bean.getData().getPayInfo());
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            avi.hide();
+                            avi.setVisibility(View.GONE);
+                            RxToast.error(bean.getMessage());
+                        }
+                    }
+                });
     }
+
+
 }

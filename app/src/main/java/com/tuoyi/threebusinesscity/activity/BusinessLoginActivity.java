@@ -60,7 +60,7 @@ public class BusinessLoginActivity extends AppCompatActivity {
             case R.id.login_back:
                 break;
             case R.id.login_bt:
-                OkGo.<String>post("http://sszl.tuoee.com/api/member/business_login")
+                OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/member/business_login")
                         .tag(this)
                         .params("telephone", loginPhone.getText().toString().trim())
                         .params("password", loginPassword.getText().toString().trim())

@@ -15,6 +15,7 @@ import com.tuoyi.threebusinesscity.bean.MainBottomShopBean;
 import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.BindView;
@@ -49,8 +50,12 @@ public class MainBottomShopAdapter extends RecyclerView.Adapter<MainBottomShopAd
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.mItem = mdatas.get(position);
         holder.itemName.setText(holder.mItem.getShop_name());
-        holder.itemDistance.setText("距离：" + holder.mItem.getDistance() + "m");
-        holder.itemContent.setText("会员到店消费奖励" + holder.mItem.getMember() + "%三商豆");
+        if (holder.mItem.getDistance()>1000){
+            holder.itemDistance.setText("距离：" + new BigDecimal(holder.mItem.getDistance()).divide(new BigDecimal(1000)).setScale(2, BigDecimal.ROUND_DOWN)  + "km");
+        }else {
+            holder.itemDistance.setText("距离：" +  new BigDecimal(holder.mItem.getDistance()).setScale(2, BigDecimal.ROUND_DOWN) + "m");
+        }
+        holder.itemContent.setText("会员到店消费奖励金额的" + holder.mItem.getMember() + "%积分");
         holder.itemAddress.setText(holder.mItem.getAddress());
         Glide.with(context).load(IMGS + holder.mItem.getImage()).into(holder.itemIcon);
         holder.mView.setOnClickListener(new View.OnClickListener() {

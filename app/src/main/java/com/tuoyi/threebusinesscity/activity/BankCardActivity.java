@@ -145,6 +145,7 @@ public class BankCardActivity extends AppCompatActivity {
                             Toast.makeText(BankCardActivity.this, msgBean.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
+
                 });
     }
 

@@ -84,11 +84,11 @@ public class OnLineSortFragment extends Fragment {
                         final ShopClassificationInformationBean bean = gson.fromJson(response.body(), ShopClassificationInformationBean.class);
                         if (bean.getCode() == 200) {
                             dataBean = bean.getData();
-                            listAdapter = new ClassificationListAdapter(getActivity(), dataBean);
+                            listAdapter = new ClassificationListAdapter(getActivity().getApplicationContext(), dataBean);
                             mLvMenu.setAdapter(listAdapter);
 
                             dataBean2 = bean.getData().get(0).getLower();
-                            gridAdapter = new ClassificationGridAdapter(getActivity(), dataBean2);
+                            gridAdapter = new ClassificationGridAdapter(getContext(), dataBean2);
                             mGvHome.setAdapter(gridAdapter);
                             mGvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
@@ -96,7 +96,7 @@ public class OnLineSortFragment extends Fragment {
                                     Bundle bundle = new Bundle();
                                     bundle.putString("s", "10分类");
                                     bundle.putString("sort_id", String.valueOf(dataBean2.get(position).getId()));
-                                    JumpUtil.newInstance().jumpRight(getActivity(), SearchGoodsListActivity.class, bundle);
+                                    JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                                 }
                             });
 
@@ -106,7 +106,7 @@ public class OnLineSortFragment extends Fragment {
                                     listAdapter.selectedPosition(position);
                                     listAdapter.notifyDataSetInvalidated();
                                     dataBean2 = bean.getData().get(position).getLower();
-                                    gridAdapter = new ClassificationGridAdapter(getActivity(), dataBean2);
+                                    gridAdapter = new ClassificationGridAdapter(getContext(), dataBean2);
                                     mGvHome.setAdapter(gridAdapter);
                                     mGvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                         @Override
@@ -114,7 +114,7 @@ public class OnLineSortFragment extends Fragment {
                                             Bundle bundle = new Bundle();
                                             bundle.putString("s", "10分类");
                                             bundle.putString("sort_id", String.valueOf(dataBean2.get(position).getId()));
-                                            JumpUtil.newInstance().jumpRight(getActivity(), SearchGoodsListActivity.class, bundle);
+                                            JumpUtil.newInstance().jumpRight(getContext(), SearchGoodsListActivity.class, bundle);
                                         }
                                     });
                                 }

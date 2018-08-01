@@ -5,11 +5,13 @@
     android:orientation="vertical">
     <CheckBox
         android:id="@+id/ck_chose"
-        android:layout_width="25dp"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:button="@drawable/check_box_style"/>
+        android:button="@drawable/check_box_style"
+        android:padding="@dimen/dp_10"
+        android:layout_gravity="center"/>
     <ImageView
         android:id="@+id/iv_show_pic"
         android:layout_width="60dp"
@@ -30,7 +32,6 @@
             android:id="@+id/tv_commodity_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="酒红色纯红色纯羊毛西服套装"
             android:textColor="@color/blackColor"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -57,26 +58,26 @@
                 android:id="@+id/tv_commodity_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="￥390"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="¥100"/>
             <TextView
                 android:id="@+id/tv_commodity_integral"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="积分3900"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:layout_marginLeft="@dimen/dp_10"/>
+                android:layout_marginLeft="@dimen/dp_10"
+                android:text="积分100"/>
             <TextView
                 android:id="@+id/tv_commodity_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="x1"
-                android:textColor="@color/blackColor" />
+                android:textColor="@color/blackColor"
+                android:text="x1"/>
             <LinearLayout
                 android:id="@+id/rl_edit"
                 android:layout_width="120dp"

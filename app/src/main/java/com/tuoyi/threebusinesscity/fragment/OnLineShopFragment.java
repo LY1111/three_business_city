@@ -24,6 +24,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -78,7 +79,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
     EditText mSearch;
     @BindView(R.id.mBanner1)
     Banner mBanner1;
-    @BindView(R.id.mainf_head_grid_list)
+    @BindView(R.id.mainf_list)
     RecyclerView mainfHeadGridList;
     @BindView(R.id.mImg1)
     ImageView mImg1;
@@ -128,6 +129,12 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             view = inflater.inflate(R.layout.fragment_online_shop_fragment, null);
         }
         unbinder = ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         LatestGoodsRecyclerview.setNestedScrollingEnabled(false);
         integralRecyclerView.setNestedScrollingEnabled(false);
         /* 设置倒计时 单位秒 */
@@ -170,9 +177,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
         initData();
         initAd();
         initKill();
-        return view;
     }
-
 
     /* 积分秒杀前4个 */
     private void initKill() {
@@ -202,7 +207,7 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                             mHandPick4Text.setText(killbeanList.get(3).getName());
                             mHandPick4Point.setText("积分" + killbeanList.get(3).getPrice());*/
 
-                            LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+                            LinearLayoutManager manager = new LinearLayoutManager(getContext());
                             manager.setOrientation(LinearLayoutManager.HORIZONTAL);
                             integralRecyclerView.setLayoutManager(manager);
                             Collections.reverse(killbeanList);
@@ -238,12 +243,13 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
                         OnLineShopAdBean bean = gson.fromJson(response.body(), OnLineShopAdBean.class);
                         if (bean.getCode() == 200) {
                             dataBean = bean.getData();
-                            Glide.with(getActivity()).load(IMGS + dataBean.get(0).getPicurl()).into(mImg1);
-                            Glide.with(getActivity()).load(IMGS + dataBean.get(1).getPicurl()).into(mImg2);
-                            Glide.with(getActivity()).load(IMGS + dataBean.get(2).getPicurl()).into(mImg3);
+                            RequestOptions options=new RequestOptions().placeholder(R.drawable.s_img);
+                            Glide.with(getActivity()).load(IMGS + dataBean.get(0).getPicurl()).apply(options).into(mImg1);
+                            Glide.with(getActivity()).load(IMGS + dataBean.get(1).getPicurl()).apply(options).into(mImg2);
+                            Glide.with(getActivity()).load(IMGS + dataBean.get(2).getPicurl()).apply(options).into(mImg3);
                             initAdClick();
                         } else {
-                            ToastUtil.show(getContext(), bean.getMessage());
+                            ToastUtil.show(getActivity(), bean.getMessage());
                         }
                     }
                 });
@@ -386,6 +392,18 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             public void OnBannerClick(int position) {
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    mBanner1.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mBanner1.stopAutoPlay();
     }
 
     @Override
@@ -593,7 +611,8 @@ public class OnLineShopFragment extends Fragment implements AMapLocationListener
             } else {
                 //其他条目中的逻辑在此
                 ((BodyViewHolder) viewHolder).getTextView().setText(dataList.get(position - 1).getName());
-                Glide.with(getContext()).load(IMGS + dataList.get(position - 1).getImage()).into(((BodyViewHolder) viewHolder).getIv());
+                RequestOptions options=new RequestOptions().placeholder(R.drawable.s_img);
+                Glide.with(getContext()).load(IMGS + dataList.get(position - 1).getImage()).apply(options).into(((BodyViewHolder) viewHolder).getIv());
 //                ((BodyViewHolder) viewHolder).getmPoint().setText(dataList.get(position - 1).getPoint());
                 ((BodyViewHolder) viewHolder).getmMoney().setText("¥" + dataList.get(position - 1).getPrice());
                 ((BodyViewHolder) viewHolder).getmDetail().setOnClickListener(new View.OnClickListener() {

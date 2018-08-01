@@ -193,7 +193,6 @@ public class OnLineCarFragment extends android.support.v4.app.Fragment implement
             }
         }
         //ToastUtil.show(getContext(), "总价：" + totalPrice+"======="+integral1);
-       // ToastUtil.show(getContext(), "总价" +optionBean.size());
         if (goodsBean.size()>0){
             Intent intent=new Intent(getActivity(),Confirmation_OrderActivity.class);
             intent.putParcelableArrayListExtra("goodsBean", (ArrayList<? extends Parcelable>) goodsBean);
@@ -272,7 +271,7 @@ public class OnLineCarFragment extends android.support.v4.app.Fragment implement
             if (shoppingCartBean.isChoosed()) {
                 totalCount++;
                 totalPrice += shoppingCartBean.getPrice() * shoppingCartBean.getQuantity();
-                integral1 += shoppingCartBean.getTotal_pay_points() * shoppingCartBean.getQuantity();
+                integral1 += shoppingCartBean.getPay_points() * shoppingCartBean.getQuantity();
             }
         }
         tvShowPrice.setText("合计:¥" + totalPrice);

@@ -69,6 +69,37 @@
             android:inputType="number"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/common10dp">
+        <EditText
+            android:id="@+id/et_PayLineNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="@dimen/common10dp"
+            android:hint="输入银行卡支付行号"
+            android:textSize="@dimen/sp_16"
+            android:inputType="number"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/common10dp">
+        <EditText
+            android:id="@+id/et_OpeningBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="@dimen/common10dp"
+            android:hint="输入银行卡开户行名称"
+            android:textSize="@dimen/sp_16"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/tv_addcard"
         android:layout_width="match_parent"

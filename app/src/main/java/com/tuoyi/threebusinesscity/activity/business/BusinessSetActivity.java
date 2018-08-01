@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.andview.refreshview.utils.LogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -163,8 +164,20 @@ public class BusinessSetActivity extends AppCompatActivity {
                             tvType.setText(msgBean.getData().getCommission_name());
                             sort_id=msgBean.getData().getClassification_id();
                             type_id=msgBean.getData().getCommission_id();
+                            lon=msgBean.getData().getLongitude();
+                            lat=msgBean.getData().getLatitude();
+                            sheng=msgBean.getData().getProvince();
+                            shi=msgBean.getData().getAutograph();
+                            xian=msgBean.getData().getCity();
+                            headImgurl=msgBean.getData().getImage();
+                            imgurl=msgBean.getData().getBackground_image();
+                            RequestOptions options = new RequestOptions();
+                            options.placeholder(R.mipmap.headimg);
+                            Glide.with(BusinessSetActivity.this).load(Config.IMGS+msgBean.getData().getImage()).apply(options).into(headImage);
+                            options.placeholder(R.mipmap.banner_img);
+                            Glide.with(BusinessSetActivity.this).load(Config.IMGS+msgBean.getData().getBackground_image()).apply(options).into(bannerImg);
+
                         }
-                        //Toast.makeText(BusinessSetActivity.this, msgBean.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -198,9 +211,12 @@ public class BusinessSetActivity extends AppCompatActivity {
                             etContacts.setText(msgBean.getData().getUsername());
                             tv_sort.setText(msgBean.getData().getClassification_name());
                             tvType.setText(msgBean.getData().getCommission_name());
+                            RxToast.success(msgBean.getMessage());
                             RxActivityTool.finishActivity(BusinessSetActivity.this);
+                        }else {
+                            RxToast.error(msgBean.getMessage());
                         }
-                        Toast.makeText(BusinessSetActivity.this, msgBean.getMessage(), Toast.LENGTH_SHORT).show();
+
 
                     }
                 });
@@ -331,7 +347,7 @@ public class BusinessSetActivity extends AppCompatActivity {
                     file0 = roadImageView(resultUri, bannerImg);
                 }
                 initUploadImage(file0);
-                RxToast.success("剪辑成功");
+                //RxToast.success("剪辑成功");
                 break;
 
             case UCrop.REQUEST_CROP://UCrop裁剪之后的处理
@@ -345,7 +361,7 @@ public class BusinessSetActivity extends AppCompatActivity {
                     }
                     LogUtils.e("adassdada" + file);
                     initUploadImage(file);
-                    RxToast.success("剪辑成功");
+                    //RxToast.success("剪辑成功");
                 } else if (resultCode == UCrop.RESULT_ERROR) {
                     final Throwable cropError = UCrop.getError(data);
                 }

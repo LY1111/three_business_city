@@ -5,8 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.mob.MobSDK;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
+import com.pgyersdk.crash.PgyCrashManager;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -17,7 +16,6 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tuoyi.threebusinesscity.R;
 import com.vondear.rxtools.RxTool;
-//import com.pgyersdk.crash.PgyCrashManager;
 
 /**
  * Created by md
@@ -35,13 +33,13 @@ public class MyApplication extends Application {
 //        JPushInterface.init(this);//极光推送
         RxTool.init(this);//工具包
         MultiDex.install(this);//兼容包
-//        PgyCrashManager.register(this);//蒲公英
-        Logger.addLogAdapter(new AndroidLogAdapter() {
-            @Override
-            public boolean isLoggable(int priority, String tag) {
-                return true;
-            }
-        });//json日志
+        PgyCrashManager.register(this);//蒲公英
+//        Logger.addLogAdapter(new AndroidLogAdapter() {
+//            @Override
+//            public boolean isLoggable(int priority, String tag) {
+//                return true;
+//            }
+//        });//json日志
         //ShareSDK分享
         MobSDK.init(this);
     }
@@ -88,7 +86,7 @@ public class MyApplication extends Application {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.loading_bg,R.color.background_content);//全局设置主题颜色
+                layout.setPrimaryColorsId(R.color.loading_bg, R.color.background_content);//全局设置主题颜色
                 return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
             }
         });

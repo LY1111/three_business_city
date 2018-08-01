@@ -20,6 +20,7 @@ import com.tuoyi.threebusinesscity.bean.UserBean;
 import com.tuoyi.threebusinesscity.url.Config;
 import com.tuoyi.threebusinesscity.util.JumpUtil;
 import com.tuoyi.threebusinesscity.util.RxActivityTool;
+import com.vondear.rxtools.RxBarTool;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,10 +40,11 @@ public class MyLocationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mylocation);
+        RxBarTool.setStatusBarColor(this, R.color.colorPrimary);
         ButterKnife.bind(this);
         RxActivityTool.addActivity(this);
         where=getIntent().getStringExtra("where");
-        getLocation();
+        //getLocation();
     }
 
     @Override
@@ -72,7 +74,7 @@ public class MyLocationActivity extends AppCompatActivity {
                                         intent.putExtra("address_id",adressListBen.getData().get(position).getAddress_id());
                                         intent.putExtra("name",adressListBen.getData().get(position).getName());
                                         intent.putExtra("phone",adressListBen.getData().get(position).getTelephone());
-                                        intent.putExtra("address",adressListBen.getData().get(position).getAddress());
+                                        intent.putExtra("address",adressListBen.getData().get(position).getProvince()+ adressListBen.getData().get(position).getCity()+adressListBen.getData().get(position).getCountry() +adressListBen.getData().get(position).getAddress());
                                         setResult(2,intent);
                                         finish();
                                     }

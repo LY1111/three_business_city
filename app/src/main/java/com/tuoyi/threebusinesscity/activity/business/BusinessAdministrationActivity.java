@@ -83,7 +83,7 @@ public class BusinessAdministrationActivity extends AppCompatActivity {
 
     //获取店铺商品列表
     private void initData() {
-        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/AppBusinessProve/get_business_goods")
+        OkGo.<String>post(Config.s+"api/AppBusinessProve/get_business_goods")
                 .tag(this)
                 .params("business_token", UserBean.getBusineToken(this))
                 .execute(new StringCallback() {

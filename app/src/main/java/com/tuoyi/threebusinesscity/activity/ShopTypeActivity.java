@@ -56,7 +56,7 @@ public class ShopTypeActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        OkGo.<String>post("http://sszl.tuoee.com/api/member/get_business_commission")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/member/get_business_commission")
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {

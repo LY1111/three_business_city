@@ -62,7 +62,7 @@ public class ShareActivity1 extends AppCompatActivity {
     }
 
     private void getOrderDetail() {
-        OkGo.<String>post("http://sszl.tuoee.com/api/AppProve/sharing_links")
+        OkGo.<String>post(com.tuoyi.threebusinesscity.url.Config.s+"api/AppProve/sharing_links")
                 .tag(this)
                 .params("token", UserBean.getToken(ShareActivity1.this))
                 .execute(new StringCallback() {
